@@ -44,11 +44,10 @@ A successful deployment to Heroku requires a few setup steps:
     rake secret
     ```
 
-2. Set the token on Heroku:
+2. Set `SECRET_TOKEN` upon Heroku Deploy:
 
-    ```
-    heroku config:set SECRET_TOKEN=the_token_you_generated
-    ```
+  [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy?template=https://github.com/sfbrigade/adopt-a-drain)
+
 
 3. [Precompile your assets](https://devcenter.heroku.com/articles/rails3x-asset-pipeline-cedar)
 
