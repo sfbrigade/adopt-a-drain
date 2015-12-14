@@ -71,36 +71,6 @@ $(function() {
     origin,
     anchor
   );
-
-  var legend = document.getElementById('legend');
-  var iconBase = '/assets/markers/';
-  console.log(iconBase);
-  var icons = {
-    available: {
-      name: 'Available',
-      icon: iconBase + 'tosewer.png'
-    },
-    adopted: {
-      name: 'Adopted',
-      icon: iconBase + 'adopted.png'
-    },
-    adopted_by_you: {
-      name: 'Adopted by you',
-      icon: iconBase + 'adoptedbyyou.png'
-    }
-  };
-  
-  for (var key in icons) {
-    var type = icons[key];
-    var name = type.name;
-    var icon = type.icon;
-    var div = document.createElement('div');
-    div.innerHTML = '<img src="' + icon + '"> ' + name;
-    legend.appendChild(div);
-  }
-  
-  map.controls[google.maps.ControlPosition.BOTTOM_CENTER].push(legend);
-
   var activeThingId;
   var activeMarker;
   var activeInfoWindow;
@@ -299,6 +269,17 @@ $(function() {
     if(!$(this).data('state') || $(this).data('state') === 'user_sign_up') {
       if($('#user_name').val() === '') {
         errors.push($('#user_name'));
+<<<<<<< HEAD
+        $('#user_name').parent().addClass('has-error');
+      } else {
+        $('#user_name').parent().removeClass('has-error');
+      }
+      if($('#user_password_confirmation').val().length < 6 || $('#user_password_confirmation').val().length > 20) {
+        errors.push($('#user_password_confirmation'));
+        $('#user_password_confirmation').parent().addClass('has-error');
+      } else {
+        $('#user_password_confirmation').parent().removeClass('has-error');
+=======
         $('#user_name').parent().addClass(errorClass);
       } else {
         $('#user_name').parent().removeClass(errorClass);
@@ -308,6 +289,7 @@ $(function() {
         $('#user_password_confirmation').parent().addClass(errorClass);
       } else {
         $('#user_password_confirmation').parent().removeClass(errorClass);
+>>>>>>> fix-form-error-display
       }
       if(errors.length > 0) {
         $(submitButton).attr("disabled", false);
@@ -334,6 +316,29 @@ $(function() {
             $(submitButton).attr("disabled", false);
             if(data.errors.email) {
               errors.push($('#user_email'));
+<<<<<<< HEAD
+              $('#user_email').parent().addClass('has-error');
+            }
+            if(data.errors.name) {
+              errors.push($('#user_name'));
+              $('#user_name').parent().addClass('has-error');
+            }
+            if(data.errors.organization) {
+              errors.push($('#user_organization'));
+              $('#user_organization').parent().addClass('has-error');
+            }
+            if(data.errors.voice_number) {
+              errors.push($('#user_voice_number'));
+              $('#user_voice_number').parent().addClass('has-error');
+            }
+            if(data.errors.sms_number) {
+              errors.push($('#user_sms_number'));
+              $('#user_sms_number').parent().addClass('has-error');
+            }
+            if(data.errors.password) {
+              errors.push($('#user_password_confirmation'));
+              $('#user_password_confirmation').parent().addClass('has-error');
+=======
               $('#user_email').parent().addClass(errorClass);
             }
             if(data.errors.name) {
@@ -355,6 +360,7 @@ $(function() {
             if(data.errors.password) {
               errors.push($('#user_password_confirmation'));
               $('#user_password_confirmation').parent().addClass(errorClass);
+>>>>>>> fix-form-error-display
             }
             errors[0].focus();
           },
@@ -380,10 +386,15 @@ $(function() {
     } else if($(this).data('state') === 'user_sign_in') {
       if($('#user_password').val().length < 6 || $('#user_password').val().length > 20) {
         errors.push($('#user_password'));
+<<<<<<< HEAD
+        $('#user_password').parent().addClass('has-error');
+      } else {
+        $('#user_password').parent().removeClass('has-error');
+=======
         $('#user_password').parent().addClass(errorClass);
-        $('#user_password').next('.help-block').html('Invalid password.');
       } else {
         $('#user_password').parent().removeClass(errorClass);
+>>>>>>> fix-form-error-display
       }
       if(errors.length > 0) {
         $(submitButton).attr("disabled", false);
@@ -404,8 +415,12 @@ $(function() {
           error: function(jqXHR) {
             var response = $.parseJSON(jqXHR.responseText)
             $(submitButton).attr("disabled", false);
-            $('#user_password').parent().addClass(errorClass);
+<<<<<<< HEAD
+            $('#user_password').parent().addClass('has-error');
             $('#user_password').next(".help-block").html(response.error);
+=======
+            $('#user_password').parent().addClass(errorClass);
+>>>>>>> fix-form-error-display
             $('#user_password').focus();
           },
           success: function(data) {
@@ -444,7 +459,11 @@ $(function() {
           },
           error: function(jqXHR) {
             $(submitButton).attr("disabled", false);
+<<<<<<< HEAD
+            $('#user_email').parent().addClass('has-error');
+=======
             $('#user_email').parent().addClass(errorClass);
+>>>>>>> fix-form-error-display
             $('#user_email').focus();
           },
           success: function() {
@@ -565,6 +584,35 @@ $(function() {
     var errors = []
     if(!/[\w\.%\+\]+@[\w\]+\.+[\w]{2,}/.test($('#user_email').val())) {
       errors.push($('#user_email'));
+<<<<<<< HEAD
+      $('#user_email').parent().addClass('has-error');
+    } else {
+      $('#user_email').parent().removeClass('has-error');
+    }
+    if($('#user_name').val() === '') {
+      errors.push($('#user_name'));
+      $('#user_name').parent().addClass('has-error');
+    } else {
+      $('#user_name').parent().removeClass('has-error');
+    }
+    if($('#user_zip').val() != '' && !/^\d{5}(-\d{4})?$/.test($('#user_zip').val())) {
+      errors.push($('#user_zip'));
+      $('#user_zip').parent().addClass('has-error');
+    } else {
+      $('#user_zip').parent().removeClass('has-error');
+    }
+    if($('#user_password').val() && ($('#user_password').val().length < 6 || $('#user_password').val().length > 20)) {
+      errors.push($('#user_password'));
+      $('#user_password').parent().addClass('has-error');
+    } else {
+      $('#user_password').parent().removeClass('has-error');
+    }
+    if($('#user_current_password').val().length < 6 || $('#user_current_password').val().length > 20) {
+      errors.push($('#user_current_password'));
+      $('#user_current_password').parent().addClass('has-error');
+    } else {
+      $('#user_current_password').parent().removeClass('has-error');
+=======
       $('#user_email').parent().addClass(errorClass);
     } else {
       $('#user_email').parent().removeClass(errorClass);
@@ -592,6 +640,7 @@ $(function() {
       $('#user_current_password').parent().addClass(errorClass);
     } else {
       $('#user_current_password').parent().removeClass(errorClass);
+>>>>>>> fix-form-error-display
     }
     if(errors.length > 0) {
       $(submitButton).attr("disabled", false);
@@ -627,6 +676,53 @@ $(function() {
           $(submitButton).attr("disabled", false);
           if(data.errors.email) {
             errors.push($('#user_email'));
+<<<<<<< HEAD
+            $('#user_email').parent().addClass('has-error');
+          }
+          if(data.errors.name) {
+            errors.push($('#user_name'));
+            $('#user_name').parent().addClass('has-error');
+          }
+          if(data.errors.organization) {
+            errors.push($('#user_organization'));
+            $('#user_organization').parent().addClass('has-error');
+          }
+          if(data.errors.voice_number) {
+            errors.push($('#user_voice_number'));
+            $('#user_voice_number').parent().addClass('has-error');
+          }
+          if(data.errors.sms_number) {
+            errors.push($('#user_sms_number'));
+            $('#user_sms_number').parent().addClass('has-error');
+          }
+          if(data.errors.address_1) {
+            errors.push($('#user_address_1'));
+            $('#user_address_1').parent().addClass('has-error');
+          }
+          if(data.errors.address_2) {
+            errors.push($('#user_address_2'));
+            $('#user_address_2').parent().addClass('has-error');
+          }
+          if(data.errors.city) {
+            errors.push($('#user_city'));
+            $('#user_city').parent().addClass('has-error');
+          }
+          if(data.errors.state) {
+            errors.push($('#user_state'));
+            $('#user_state').parent().addClass('has-error');
+          }
+          if(data.errors.zip) {
+            errors.push($('#user_zip'));
+            $('#user_zip').parent().addClass('has-error');
+          }
+          if(data.errors.password) {
+            errors.push($('#user_password'));
+            $('#user_password').parent().addClass('has-error');
+          }
+          if(data.errors.current_password) {
+            errors.push($('#user_current_password'));
+            $('#user_current_password').parent().addClass('has-error');
+=======
             $('#user_email').parent().addClass(errorClass);
           }
           if(data.errors.name) {
@@ -672,6 +768,7 @@ $(function() {
           if(data.errors.current_password) {
             errors.push($('#user_current_password'));
             $('#user_current_password').parent().addClass(errorClass);
+>>>>>>> fix-form-error-display
           }
           errors[0].focus();
         },
