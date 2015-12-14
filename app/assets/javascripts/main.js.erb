@@ -141,7 +141,7 @@ $(function() {
           $('#address').parent().addClass('has-error');
           $('#address').focus();
         } else {
-          $('#address').parent().removeClass('error');
+          $('#address').parent().removeClass('has-error');
           var i = -1;
           $(data).each(function(index, thing) {
             if($.inArray(thing.id, thingIds) === -1) {
@@ -176,6 +176,7 @@ $(function() {
     if($('#address').val() === '') {
       $(submitButton).attr("disabled", false);
       $('#address').parent().addClass('has-error');
+      $('#address').next(".help-block").html('You must enter a value');
       $('#address').focus();
     } else {
       $.ajax({
@@ -187,17 +188,22 @@ $(function() {
           'address': $('#address').val()
         },
         error: function(jqXHR) {
+          var response = $.parseJSON(jqXHR.responseText);
           $(submitButton).attr("disabled", false);
           $('#address').parent().addClass('has-error');
+          $('#address').next(".help-block").html(response.error);
           $('#address').focus();
         },
         success: function(data) {
           $(submitButton).attr("disabled", false);
+          console.log(data);
           if(data.errors) {
             $('#address').parent().addClass('has-error');
+            $('#address').next(".help-block").html('');
             $('#address').focus();
           } else {
-            $('#address').parent().removeClass('error');
+            $('#address').parent().removeClass('has-error');
+            $('#address').next(".help-block").html('');
             addMarkersAround(data[0], data[1]);
             var center = new google.maps.LatLng(data[0], data[1]);
             map.setCenter(center);
@@ -257,20 +263,20 @@ $(function() {
       errors.push($('#user_email'));
       $('#user_email').parent().addClass('has-error');
     } else {
-      $('#user_email').parent().removeClass('error');
+      $('#user_email').parent().removeClass('has-error');
     }
     if(!$(this).data('state') || $(this).data('state') === 'user_sign_up') {
       if($('#user_name').val() === '') {
         errors.push($('#user_name'));
         $('#user_name').parent().addClass('has-error');
       } else {
-        $('#user_name').parent().removeClass('error');
+        $('#user_name').parent().removeClass('has-error');
       }
       if($('#user_password_confirmation').val().length < 6 || $('#user_password_confirmation').val().length > 20) {
         errors.push($('#user_password_confirmation'));
         $('#user_password_confirmation').parent().addClass('has-error');
       } else {
-        $('#user_password_confirmation').parent().removeClass('error');
+        $('#user_password_confirmation').parent().removeClass('has-error');
       }
       if(errors.length > 0) {
         $(submitButton).attr("disabled", false);
@@ -345,7 +351,7 @@ $(function() {
         errors.push($('#user_password'));
         $('#user_password').parent().addClass('has-error');
       } else {
-        $('#user_password').parent().removeClass('error');
+        $('#user_password').parent().removeClass('has-error');
       }
       if(errors.length > 0) {
         $(submitButton).attr("disabled", false);
@@ -364,21 +370,24 @@ $(function() {
             }
           },
           error: function(jqXHR) {
+            var response = $.parseJSON(jqXHR.responseText)
             $(submitButton).attr("disabled", false);
             $('#user_password').parent().addClass('has-error');
+            $('#user_password').next(".help-block").html(response.error);
             $('#user_password').focus();
           },
           success: function(data) {
-            $('.sidebar').addClass('signed-in');
+            $('.container-fluid').addClass('signed-in');
             $('.sidebar').removeClass('sidebar-full');
             $.ajax({
               type: 'GET',
               url: '/sidebar/search',
+              /*
               data: {
                 'flash': {
                   'notice': "<%= I18n.t("notices.signed_in") %>"
                 }
-              },
+              },*/
               success: function(data) {
                 $('#content').html(data);
               }
@@ -526,31 +535,31 @@ $(function() {
       errors.push($('#user_email'));
       $('#user_email').parent().addClass('has-error');
     } else {
-      $('#user_email').parent().removeClass('error');
+      $('#user_email').parent().removeClass('has-error');
     }
     if($('#user_name').val() === '') {
       errors.push($('#user_name'));
       $('#user_name').parent().addClass('has-error');
     } else {
-      $('#user_name').parent().removeClass('error');
+      $('#user_name').parent().removeClass('has-error');
     }
     if($('#user_zip').val() != '' && !/^\d{5}(-\d{4})?$/.test($('#user_zip').val())) {
       errors.push($('#user_zip'));
       $('#user_zip').parent().addClass('has-error');
     } else {
-      $('#user_zip').parent().removeClass('error');
+      $('#user_zip').parent().removeClass('has-error');
     }
     if($('#user_password').val() && ($('#user_password').val().length < 6 || $('#user_password').val().length > 20)) {
       errors.push($('#user_password'));
       $('#user_password').parent().addClass('has-error');
     } else {
-      $('#user_password').parent().removeClass('error');
+      $('#user_password').parent().removeClass('has-error');
     }
     if($('#user_current_password').val().length < 6 || $('#user_current_password').val().length > 20) {
       errors.push($('#user_current_password'));
       $('#user_current_password').parent().addClass('has-error');
     } else {
-      $('#user_current_password').parent().removeClass('error');
+      $('#user_current_password').parent().removeClass('has-error');
     }
     if(errors.length > 0) {
       $(submitButton).attr("disabled", false);
@@ -654,14 +663,14 @@ $(function() {
         $.ajax({
           type: 'GET',
           url: '/sidebar/combo_form',
-          data: {
+          /*data: {
             'flash': {
               'warning': "<%= I18n.t("notices.signed_out") %>"
             }
-          },
+          },*/
           success: function(data) {
             $('.sidebar').removeClass('sidebar-full');
-            $('.sidebar').removeClass('signed-in');
+            $('.container-fluid').removeClass('signed-in');
             $('#content').html(data);
           }
         });
