@@ -11,7 +11,6 @@ class Thing < ActiveRecord::Base
   validates :city_id, uniqueness: true, allow_nil: true
   validates :lat, presence: true
   validates :lng, presence: true
-  attr_accessor :owned_by_you
 
   def self.find_closest(lat, lng, limit = 10)
     query = <<-SQL
