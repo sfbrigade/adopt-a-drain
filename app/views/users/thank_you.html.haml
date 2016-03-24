@@ -6,4 +6,7 @@
     %i.fa.fa-facebook-square.fa-2x
   %a{ href: "https://twitter.com/intent/tweet?text=#{URI.encode(t("titles.tweet_text", root_url: root_url, thing: t("defaults.thing")))}"}
     %i.fa.fa-twitter-square.fa-2x
+%p
+  %a{:href => "#", :id => "rename_thing_link", :class => "btn btn-default btn-block"}
+    = t("titles.rename", :thing => t("defaults.thing"))
 = render :partial => 'things/abandon'

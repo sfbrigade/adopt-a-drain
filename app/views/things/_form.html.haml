@@ -1,0 +1,14 @@
+- button ||=  "adopt"
+= form_for :thing, :url => things_path, :method => :put, :html => {:id => "adoption_form"} do |f|
+  = f.hidden_field "id"
+  = f.hidden_field "user_id", :value => current_user.id
+  %fieldset.form-group
+    = f.label "name", t("labels.name_thing", :thing => t("defaults.thing")), :id => "thing_name_label", :class => "control-label"
+    = f.text_field "name", :class => "form-control"
+  %fieldset.form-group
+    = f.submit t("buttons.#{button}"), :class => "btn btn-primary btn-block"
+
+  - unless @thing.detail_link.blank?
+    %p
+      %a{href: "#{@thing.detail_link}", target: '_blank'}
+        = t("links.thing_details", :thing => t("defaults.thing"))

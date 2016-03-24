@@ -13,7 +13,7 @@ class ThingsController < ApplicationController
   def update
     @thing = Thing.find(params[:id])
     if @thing.update_attributes(thing_params)
-      send_adoption_email(@thing.user, @thing) if @thing.adopted?
+      send_adoption_email(@thing.user, @thing) if @thing.previous_changes.include?(:user_id) # don't resend email if renaming
 
       respond_with @thing
     else

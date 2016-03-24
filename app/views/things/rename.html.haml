@@ -1,0 +1,3 @@
+%h2
+  = t("titles.rename", :thing => t("defaults.thing").titleize)
+= render :partial => 'things/form', locals: { button: 'rename' }

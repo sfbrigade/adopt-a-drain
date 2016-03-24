@@ -637,6 +637,21 @@ $(function() {
     }
     return false;
   });
+  $('#map').on('click', '#rename_thing_link', function() {
+      $.ajax({
+        type: 'GET',
+        url: '/edit_window',
+        data: {
+          'thing_id': activeThingId
+        },
+        success: function(data) {
+          activeInfoWindow.close();
+          activeInfoWindow.setContent(data);
+          activeInfoWindow.open(map, activeMarker);
+        }
+      });
+      return false;
+  });
   $('.sidebar').on('click','#edit_profile_link', function() {
     var link = $(this);
     $(link).addClass('disabled');

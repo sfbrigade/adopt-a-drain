@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   get '/address', to: 'addresses#show', as: 'address'
   get '/info_window', to: 'info_window#index', as: 'info_window'
+  get '/edit_window', to: 'edit_window#index', as: 'edit_window'
   get '/sitemap', to: 'sitemaps#index', as: 'sitemap'
 
   scope '/sidebar', controller: :sidebar do
