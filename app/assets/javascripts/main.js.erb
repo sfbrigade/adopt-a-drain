@@ -43,6 +43,10 @@ $(function() {
     map.setCenter(center);
   }
   */
+  //                                              lat, lon
+  initialLocation = new google.maps.LatLng(36.0000027,-78.8977007);
+  map.setCenter(initialLocation);
+  map.setZoom(18);
   var iconBase = '<%= image_path 'markers/' %>';
   var size = new google.maps.Size(27.0, 38.0);
   var origin = new google.maps.Point(0, 0);
@@ -118,7 +122,7 @@ $(function() {
   $('#toggleLegend').click(function(){
     $('#legend .legend-items').slideToggle(function(){
       var text = $('#legend .show-hide a').html().trim();
-      $('#legend .show-hide a').html( text == 'Hide' ? 'Show' : 'Hide'); 
+      $('#legend .show-hide a').html( text == 'Hide' ? 'Show' : 'Hide');
     });
   });
 
