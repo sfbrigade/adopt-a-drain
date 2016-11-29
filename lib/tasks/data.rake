@@ -7,15 +7,16 @@ namespace :data do
 
   task download_csv: :environment do
     puts 'Downloading CSV data...'
-    uri = 'http://gisweb2.durhamnc.gov/ArcGIS/rest/services/PublicWorks/PublicWorks/MapServer/46/query?f=json&out&geometry=%7B%22ymax%22:921388.0377604166,%22xmax%22:2228921.275173611,%22ymin%22:750608.9622395834,%22xmin%22:1874322.724826389%7D&returnGeometry=true&outSR=4326&outFields=FACILITYID,LOCATION,OWNER,STATUS,COMMENT,TYPE&returnIdsOnly=true&where=TYPE%3D%27COMBO%20INLET%27'
+    arcgis_path = 'ArcGIS/rest/services/PublicWorks/PublicWorks/MapServer/46/query?f=json&returnGeometry=true&outSR=4326&outFields=FACILITYID,LOCATION,OWNER,STATUS,COMMENT,TYPE&where=TYPE%3D%27COMBO%20INLET%27%20and%20OWNER%3D%27CITY-ROW%27'
+    uri = "http://gisweb2.durhamnc.gov/#{arcgis_path}&returnIdsOnly=true"
+    print "uri: #{uri}\n"
     json_string = open(uri).read
     ids = JSON.parse(json_string)
     output_csv = File.open("durham_drains.csv", "w")
     output_csv.write("lon,lat,owner,status,type\n")
-    ids["objectIds"].each_slice(100).each do |chunk|
-      uri = "http://gisweb2.durhamnc.gov/ArcGIS/rest/services/PublicWorks/PublicWorks/MapServer/46/query?f=json&out&geometry=%7B%22ymax%22:921388.0377604166,%22xmax%22:2228921.275173611,%22ymin%22:750608.9622395834,%22xmin%22:1874322.724826389%7D&returnGeometry=true&outSR=4326&outFields=FACILITYID,LOCATION,OWNER,STATUS,COMMENT,TYPE&where=TYPE%3D%27COMBO%20INLET%27&objectIds=#{chunk.join(',')}"
+    ids["objectIds"].each_slice(150).each do |chunk|
+      uri = "http://gisweb2.durhamnc.gov/#{arcgis_path}&objectIds=#{chunk.join(',')}"
       print "uri: #{uri}\n"
-      sleep 1
       json_string = open(uri).read
       data = JSON.parse(json_string)
       data["features"].each do |d|
@@ -33,17 +34,11 @@ namespace :data do
     puts "Downloaded #{drains.size} Drains."
 
     drains.each do |drain|
-      # lat,lon,owner,status,type
-      # next unless ['Storm Water Inlet Drain', 'Catch Basin Drain'].include?(drain['type'])
-
-      lat = drain['lat']
-      lng = drain['lon']
-
       thing_hash = {
         name: drain['type'],
         system_use_code: drain['type'],
-        lat: lat,
-        lng: lng,
+        lat: drain['lat'],
+        lng: drain['lon'],
       }
 
       thing = Thing.where(city_id: 'Durham').first_or_initialize
