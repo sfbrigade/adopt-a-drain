@@ -41,14 +41,7 @@ namespace :data do
         lng: drain['lon'],
       }
 
-      thing = Thing.where(city_id: 'Durham').first_or_initialize
-      if thing.new_record?
-        puts "Updating thing #{thing_hash[:city_id]}"
-      else
-        puts "Creating thing #{thing_hash[:city_id]}"
-      end
-
-      thing.update_attributes!(thing_hash)
+      thing = Thing.create(thing_hash)
     end
   end
 end
