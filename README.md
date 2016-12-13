@@ -17,9 +17,9 @@ Claim responsibility for cleaning out a storm drain after it rains.
 
 ## Demo
 You can see a running version of the application at
-[https://aqueous-mountain-49898.herokuapp.com/][demo].
+[https://adoptdurhamdrains.herokuapp.com/][demo].
 
-[demo]: https://aqueous-mountain-49898.herokuapp.com/
+[demo]: https://adoptdurhamdrains.herokuapp.com/
 
 ## Installation
 This application requires [Postgres](http://www.postgresql.org/) to be installed
