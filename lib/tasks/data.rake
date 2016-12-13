@@ -7,20 +7,20 @@ namespace :data do
 
   task download_csv: :environment do
     puts 'Downloading CSV data...'
-    arcgis_path = 'ArcGIS/rest/services/PublicWorks/PublicWorks/MapServer/46/query?f=json&returnGeometry=true&outSR=4326&outFields=FACILITYID,LOCATION,OWNER,STATUS,COMMENT,TYPE&where=TYPE%3D%27COMBO%20INLET%27%20and%20OWNER%3D%27CITY-ROW%27'
+    arcgis_path = '/ArcGIS/rest/services/PublicWorks/PublicWorks/MapServer/46/query?f=json&returnGeometry=true&outSR=4326&outFields=TASK,FORM,OPERATIONALAREA,FACILITYID,LOCATION,OWNER,STATUS,COMMENT,TYPE&where=TYPE%3D%27COMBO%20INLET%27%20and%20OWNER%3D%27CITY-ROW%27%20and%20STATUS%3D%27EXISTING%27%20and%20TASK%3D%27INLET%27'
     uri = "http://gisweb2.durhamnc.gov/#{arcgis_path}&returnIdsOnly=true"
     print "uri: #{uri}\n"
     json_string = open(uri).read
     ids = JSON.parse(json_string)
     output_csv = File.open("durham_drains.csv", "w")
-    output_csv.write("lon,lat,owner,status,type\n")
+    output_csv.write("lon,lat,owner,watershed,type,form\n")
     ids["objectIds"].each_slice(150).each do |chunk|
       uri = "http://gisweb2.durhamnc.gov/#{arcgis_path}&objectIds=#{chunk.join(',')}"
       print "uri: #{uri}\n"
       json_string = open(uri).read
       data = JSON.parse(json_string)
       data["features"].each do |d|
-        output_csv.write("#{d["geometry"]["x"]},#{d["geometry"]["y"]},#{d["attributes"]["OWNER"]},#{d["attributes"]["STATUS"]},#{d["attributes"]["TYPE"]}\n")
+        output_csv.write("#{d["geometry"]["x"]},#{d["geometry"]["y"]},#{d["attributes"]["OWNER"]},#{d["attributes"]["OPERATIONALAREA"]},#{d["attributes"]["TYPE"]},#{d["attributes"]["FORM"]}\n")
       end
     end
     output_csv.close
