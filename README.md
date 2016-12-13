@@ -1,15 +1,5 @@
 # Adopt-a-Drain
 
-[![Join the chat at https://gitter.im/sfbrigade/adopt-a-drain](https://badges.gitter.im/sfbrigade/adopt-a-drain.svg)](https://gitter.im/sfbrigade/adopt-a-drain?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-
-[![Build Status](http://img.shields.io/travis/sfbrigade/adopt-a-drain.svg)][travis]
-[![Dependency Status](http://img.shields.io/gemnasium/sfbrigade/adopt-a-drain.svg)][gemnasium]
-[![Coverage Status](http://img.shields.io/coveralls/sfbrigade/adopt-a-drain.svg)][coveralls]
-
-[travis]: http://travis-ci.org/sfbrigade/adopt-a-drain
-[gemnasium]: https://gemnasium.com/sfbrigade/adopt-a-drain
-[coveralls]: https://coveralls.io/r/sfbrigade/adopt-a-drain
-
 Claim responsibility for cleaning out a storm drain after it rains.
 
 ## Screenshot
@@ -17,9 +7,9 @@ Claim responsibility for cleaning out a storm drain after it rains.
 
 ## Demo
 You can see a running version of the application at
-[https://adoptdurhamdrains.herokuapp.com/][demo].
+[https://adoptadraindurham.herokuapp.com/][demo].
 
-[demo]: https://adoptdurhamdrains.herokuapp.com/
+[demo]: https://adoptadraindurham.herokuapp.com/
 
 ## Installation
 This application requires [Postgres](http://www.postgresql.org/) to be installed
