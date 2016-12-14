@@ -24,8 +24,8 @@ de:
     address: "Adresse"
     address_1: "1 City Hall Plaza"
     address_2: "Suite 500"
-    city: "Boston"
-    city_state: "Boston, Massachusetts"
+    city: "Durham"
+    city_state: "Durham, North Carolina"
     neighborhood: "Downtown"
     sms_number: "857-555-1212"
     state: "MA"
@@ -84,8 +84,10 @@ de:
     tos: "Nutzungsbedingungen"
   sponsors:
     built: "Erbaut in Boston"
+    # Not sure what to put in built
     cfa: "Code for Amerika"
     city: "City of Boston"
+    # Not sure what to put in city
     mayor:
-      name: "Martin J. Walsh"
+      name: "Bill Bell"
       title: "Mayor"
