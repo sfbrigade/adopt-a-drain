@@ -24,11 +24,11 @@ pt:
     address: "endereço"
     address_1: "1 City Hall Plaza"
     address_2: "Suite 500"
-    city: "Boston"
-    city_state: "Boston, Massachusetts"
+    city: "Durham"
+    city_state: "Durham, North Carolina"
     neighborhood: "Downtown"
     sms_number: "857-555-1212"
-    state: "MA"
+    state: "NC"
     thing: "hidrante"
     this_thing: "Este %{thing}"
     tagline: "Responsabilidade pedido de pá para fora um %{thing} de incêndio depois que neva."
@@ -84,8 +84,9 @@ pt:
     tos: "Termos de Serviço"
   sponsors:
     built: "Construído em Boston"
+    # Not sure what the build is for this
     cfa: "Código para a América"
-    city: "Cidade de Boston"
+    city: "Cidade de Durham"
     mayor:
-      name: "Martin J. Walsh"
+      name: "Bill Bell"
       title: "Mayor"
