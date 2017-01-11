@@ -248,8 +248,5 @@ DEPENDENCIES
   validates_formatting_of
   webmock
 
-RUBY VERSION
-   ruby 2.2.3p173
-
 BUNDLED WITH
    1.13.6
