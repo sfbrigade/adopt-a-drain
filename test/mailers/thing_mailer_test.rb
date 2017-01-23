@@ -39,4 +39,21 @@ class ThingMailerTest < ActionMailer::TestCase
     assert_equal ['erik@example.com'], email.to
     assert_equal 'We really do love you, Erik!', email.subject
   end
+
+  test 'drain_update_report' do
+    admin_1 = users(:admin)
+    admin_2 = users(:admin)
+    admin_2.update(email: 'admin2@example.com')
+    email = nil
+    deleted_thing = things(:thing_1)
+
+    assert_emails(1) do
+      email = ThingMailer.drain_update_report([deleted_thing], [], []).deliver_now
+    end
+
+    assert_includes email.to, admin_1.email
+    assert_includes email.to, admin_2.email
+
+    assert_equal email.subject, 'Adopt-a-Drain import (1 adopted drains removed, 0 drains added, 0 removed)'
+  end
 end
