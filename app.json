@@ -1,0 +1,10 @@
+{
+  "name": "Adopt-a-drain",
+  "description": "A web application that allows citizens to 'adopt' civic infrastructure",
+  "repository": "https://github.com/sfbrigade/adopt-a-drain",
+  "logo": "https://avatars1.githubusercontent.com/u/3926630?v=3&s=200",
+  "keywords": ["ruby", "civic"],
+  "env": {
+     "SECRET_TOKEN": "rake secret"
+   }
+}
