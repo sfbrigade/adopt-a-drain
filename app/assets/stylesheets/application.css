@@ -28,11 +28,9 @@ div#logos {
 
 div#logos img {
   width: 100%;
-}
-
-div#logos img.dpw, div#logos img.puc{
-  width: auto;
-  height: 112px;
+  height: auto;
+  max-width: 100px;
+  max-height: 200px;
 }
 
 div#logos .row div{
