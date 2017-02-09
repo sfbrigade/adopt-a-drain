@@ -2,11 +2,11 @@
 # Forking Adopt a drain 
 
 
-<!--  the open source code is Comment paragraph
+The open source code is Comment paragraph
 Comment paragraph
-Just go through the directories in here and update them for your city with the files or information that you have. -->
+Just go through the directories in here and update them for your city with the files or information that you have. 
 
-1. Change the <title> for the html page
+1. Change the **__title__** for the html page
 
 
 2. Update **every image** and **image directory** in this directory for: 
