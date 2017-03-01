@@ -32,13 +32,18 @@
         #logos
           .row
             .col-xs-6
+              %a{:href => "http://dconc.gov/"}
+                = image_tag "logos/DurhamCountyLogo.png", :alt => t("sponsors.built"), :title => t("sponsors.built"), :class => "cfsf"
+            .col-xs-6
+              %a{:href => "https://durhamnc.gov/"}
+                = image_tag "logos/DurhamCity logo.PNG", :alt => t("sponsors.built"), :title => t("sponsors.built"), :class => "cfsf"
+            .col-xs-6
               %a{:href => "http://codefordurham.com/"}
                 = image_tag "logos/CodeforDurhamlogo.png", :alt => t("sponsors.built"), :title => t("sponsors.built"), :class => "cfsf"
-               
-            .col-xs-6.col-xs-offset-3
+            .col-xs-6
               %a{:href => "http://codeforamerica.org/"}
                 = image_tag "logos/cfa.jpg", :alt => t("sponsors.cfa"), :title => t("sponsors.cfa"), :class => "cfa"
-        
+
         #feedback
           .row
             .col-md-6
