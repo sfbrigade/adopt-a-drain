@@ -6,10 +6,10 @@ class AdoptedControllerTest < ActionController::TestCase
     @user = users(:erik)
   end
 
-  test "should get index" do
-    @request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Basic.encode_credentials(@user.email, "correct")
+  test 'should get index' do
+    @request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Basic.encode_credentials(@user.email, 'correct')
 
-    get :index 
+    get :index
     assert_response :success
   end
 end

@@ -26,6 +26,6 @@ Rails.application.routes.draw do
       scope '/drains' do
         get '/adopted' => 'adopted#index'
       end
-    end 
+    end
   end
 end
