@@ -14,7 +14,7 @@ You can see a running version of the application at
 ## Installation
 This application requires [Postgres](http://www.postgresql.org/) to be installed
 
-    git clone git://github.com/sfbrigade/adopt-a-drain.git
+    git clone git://github.com/codefordurham/adopt-a-drain.git
     cd adopt-a-drain
     bundle install
 
@@ -165,8 +165,8 @@ timely fashion. If critical issues for a particular implementation exist at the
 time of a major release, support for that Ruby version may be dropped.
 
 ## Copyright
-Copyright (c) 2017 Code for Durham. See [LICENSE.md](https://github.com/sfbrigade/adopt-a-drain/blob/master/LICENSE.md) for details.
+Copyright (c) 2017 Code for Durham. See [LICENSE.md](https://github.com/codefordurham/adopt-a-drain/blob/master/LICENSE.md) for details.
 
-[license]: https://github.com/sfbrigade/adopt-a-drain/blob/master/LICENSE.md
+[license]: https://github.com/codefordurham/adopt-a-drain/blob/master/LICENSE.md
 
 
