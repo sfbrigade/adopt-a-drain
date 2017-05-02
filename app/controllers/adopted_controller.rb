@@ -3,24 +3,25 @@ class AdoptedController < ApplicationController
 
   def index
     @things = Thing.where.not(user_id: !nil)
-    respond_to do |format|
-      format.csv do
-        headers['Content-Type'] ||= 'text/csv'
-        headers['Content-Disposition'] = "attachment; filename=\"adopted_drains.csv\""
-      end
-      format.xml do 
-        render xml: @things.map { |thing| {latitude: thing.lat, longitude: thing.lng, city_id: 'N-' + thing.city_id.to_s} }
-      end
-      format.json do
-        render json: @things.map { |thing| {latitude: thing.lat, longitude: thing.lng, city_id: 'N-' + thing.city_id.to_s} }
-      end
-      format.all do 
-        render json: @things.map { |thing| {latitude: thing.lat, longitude: thing.lng, city_id: 'N-' + thing.city_id.to_s} }
-      end
-    end
+    render_types
   end
 
 private
+
+  def render_types
+    respond_to do |format|
+      format.csv do
+        headers['Content-Type'] ||= 'text/csv'
+        headers['Content-Disposition'] = 'attachment; filename=\'adopted_drains.csv\''
+      end
+      format.xml { render xml: format_fields(@things) }
+      format.all { render json: format_fields(@things) }
+    end
+  end
+
+  def format_fields(obj)
+    obj.map { |thing| {latitude: thing.lat, longitude: thing.lng, city_id: 'N-' + thing.city_id.to_s} }
+  end
 
   def authenticate
     authenticate_or_request_with_http_basic('Administration') do |username, password|
