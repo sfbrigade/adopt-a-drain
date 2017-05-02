@@ -1,8 +1,9 @@
 class AdoptedController < ApplicationController
-  before_filter :authenticate, :admin?
+  before_filter :authenticate
 
   def index
-    render html: "<div> You made it!!! </div> "
+    @things = Thing.where.not(:user_id => !nil)
+    render json: @things
   end
 
   private
@@ -10,15 +11,14 @@ class AdoptedController < ApplicationController
       authenticate_or_request_with_http_basic('Administration') do |username, password|
         user = User.find_by(email: username)
         if user && user.valid_password?(password)
-           sign_in :user, user
+          if user.admin? 
+            return true
+          else
+            render html: "<div> You must be an admin to access this page </div>".html_safe
+          end
         end
       end
     end
 
-    def admin?
-      if user_signed_in?
-        render html: "<div> You must be an admin to access this page </div>".html_safe unless current_user.admin?
-      end
-    end
 
 end
