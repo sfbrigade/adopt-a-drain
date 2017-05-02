@@ -3,7 +3,21 @@ class AdoptedController < ApplicationController
 
   def index
     @things = Thing.where.not(user_id: !nil)
-    render json: @things
+    respond_to do |format|
+      format.csv do
+        headers['Content-Type'] ||= 'text/csv'
+        headers['Content-Disposition'] = "attachment; filename=\"adopted_drains.csv\""
+      end
+      format.xml do 
+        render xml: @things.map { |thing| {latitude: thing.lat, longitude: thing.lng, city_id: 'N-' + thing.city_id.to_s} }
+      end
+      format.json do
+        render json: @things.map { |thing| {latitude: thing.lat, longitude: thing.lng, city_id: 'N-' + thing.city_id.to_s} }
+      end
+      format.all do 
+        render json: @things.map { |thing| {latitude: thing.lat, longitude: thing.lng, city_id: 'N-' + thing.city_id.to_s} }
+      end
+    end
   end
 
 private
