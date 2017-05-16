@@ -412,9 +412,11 @@ $(function() {
       }
       if($('#user_password_confirmation').val().length < 6 || $('#user_password_confirmation').val().length > 20) {
         errors.push($('#user_password_confirmation'));
+        $('<p id="password-error">Password must be between 6 and 20 characters long</p>').insertBefore('#user_password_confirmation');
         $('#user_password_confirmation').parent().addClass(errorClass);
       } else {
         $('#user_password_confirmation').parent().removeClass(errorClass);
+        $('#password-error').remove();
       }
       if(errors.length > 0) {
         $(submitButton).attr("disabled", false);

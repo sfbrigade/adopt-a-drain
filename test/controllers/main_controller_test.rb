@@ -11,7 +11,7 @@ class MainControllerTest < ActionController::TestCase
   test 'should return the home page' do
     get :index
     assert_response :success
-    assert_select 'title', 'Adopt-a-Drain San Francisco'
+    assert_select 'title', 'Adopt-a-Drain Durham'
     assert_select 'p#tagline', 'Help the city avoid flooding by clearing drains of debris. Click to learn what this means.'
   end
 
@@ -25,7 +25,7 @@ class MainControllerTest < ActionController::TestCase
     end
     assert_select 'label#city_state_label', 'City'
     assert_select 'select#city_state' do
-      assert_select 'option', 'San Francisco, California'
+      assert_select 'option', 'Durham, NC'
     end
     assert_select 'input#address', true
     assert_select 'input[name="commit"]' do

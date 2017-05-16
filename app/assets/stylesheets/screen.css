@@ -190,3 +190,7 @@ img.lock {
   opacity: 0.8;
   filter: alpha(opacity=80); /* For IE8 and earlier */
 }
+
+#password-error {
+  color: #a94442;
+}
