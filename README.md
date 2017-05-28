@@ -2,6 +2,8 @@
 
 Claim responsibility for cleaning out a storm drain after it rains.
 
+[![CircleCI](https://circleci.com/gh/codefordurham/adopt-a-drain.svg?style=svg)](https://circleci.com/gh/codefordurham/adopt-a-drain)
+
 ## Screenshot
 ![Adopt-a-Drain](/adopt.png "Adopt-a-Drain")
 
