@@ -15,6 +15,7 @@ end
 
 r = Random.new
 
+=begin
 500.times do |i|
   Thing.where(city_id: i).first_or_initialize.tap do |thing|
     thing.name = "Some Drain #{i}"
@@ -24,3 +25,18 @@ r = Random.new
     thing.save!
   end
 end
+
+=end
+
+
+1000.times do |i|
+  first_name = Faker::Name.first_name
+  last_name = Faker::Name.last_name 
+  email = "user-#{i+1}@usertest.org"
+  password = "pass1234"
+  User.create!(first_name: first_name,
+               last_name: last_name,
+               email: email,
+               password: password)
+end
+
