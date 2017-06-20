@@ -75,6 +75,8 @@ GEM
       railties (>= 4.0, < 5.1)
     erubis (2.7.0)
     execjs (2.6.0)
+    faker (1.7.3)
+      i18n (~> 0.5)
     font-awesome-rails (4.5.0.1)
       railties (>= 3.2, < 5.1)
     geokit (1.10.0)
@@ -233,6 +235,7 @@ DEPENDENCIES
   coveralls
   devise
   dotenv-rails
+  faker (= 1.7.3)
   geokit
   haml
   http_accept_language

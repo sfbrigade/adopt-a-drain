@@ -3,6 +3,7 @@ ruby '2.2.3'
 
 gem 'dotenv-rails', groups: [:development, :test]
 gem 'rails', '~> 4.2.4'
+gem 'faker', '1.7.3'
 gem 'airbrake', '~> 5.2'
 gem 'devise'
 gem 'geokit'
