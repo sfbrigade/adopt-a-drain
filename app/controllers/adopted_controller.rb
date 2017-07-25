@@ -2,7 +2,7 @@ class AdoptedController < ApplicationController
   before_action :authenticate
 
   def index
-    @things = Thing.where.not(user_id: !nil)
+    @things = Thing.where.not(user_id: nil)
     render_types
   end
 
