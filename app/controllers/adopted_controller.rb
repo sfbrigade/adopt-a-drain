@@ -1,6 +1,11 @@
 class AdoptedController < ApplicationController
   before_action :authenticate
 
+  # GET /api/v1/drains/adopted
+  # Optional params:
+  #
+  #  format=[json|xml|csv]
+  #  cursor=[-1 | next_cursor | prev_cursor]
   def index
     @things = Thing.where.not(user_id: nil)
     render_types
