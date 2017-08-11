@@ -8,8 +8,11 @@ Rails.application.configure do
   # since you don't have to restart the web server when you make code changes.
   config.cache_classes = false
 
+  # If the following ip_address isn't IPv4, then it's IPv6 and unusable in this situation. We have this check in
+  # first place because some dev servers are remote, therefore 'localhost' can't always be used.
+  host = Socket.ip_address_list[1].ipv4? ? Socket.ip_address_list[1].ip_address : 'localhost'
   # asset host
-  config.action_controller.asset_host = 'http://' + Socket.ip_address_list[1].ip_address + ':3000'
+  config.action_controller.asset_host = 'http://' + host + ':3000'
   config.action_mailer.asset_host = config.action_controller.asset_host
 
   # Do not eager load code on boot.
