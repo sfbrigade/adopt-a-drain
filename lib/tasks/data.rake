@@ -9,6 +9,7 @@ namespace :data do
 
   task auto_adopt: :environment do
     # Make random users adopt drains to test server load when generating API data
+    # There has to be users in DB for this to work
 
     unless Rails.env.production?
       Thing.first(10_000).each do |t|
