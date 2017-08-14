@@ -26,6 +26,7 @@ end
 group :development do
   gem 'byebug'
   gem 'spring'
+  gem 'kaminari'
 end
 
 group :production do

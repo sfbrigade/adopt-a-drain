@@ -239,6 +239,7 @@ DEPENDENCIES
   geokit
   haml
   http_accept_language
+  kaminari
   local_time
   obscenity (~> 1.0, >= 1.0.2)
   paranoia (~> 2.2)
@@ -261,4 +262,4 @@ RUBY VERSION
    ruby 2.2.3p173
 
 BUNDLED WITH
-   1.13.7
+   1.15.3
