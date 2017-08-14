@@ -27,6 +27,7 @@ end
 
 group :development do
   gem 'spring'
+  gem 'kaminari'
 end
 
 group :production do

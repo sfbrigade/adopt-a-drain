@@ -262,6 +262,7 @@ DEPENDENCIES
   geokit (~> 1.0)
   haml (~> 5.0)
   http_accept_language (~> 2.0)
+  kaminari
   local_time (~> 2.0)
   obscenity (~> 1.0, >= 1.0.2)
   paranoia (~> 2.4)
