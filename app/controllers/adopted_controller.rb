@@ -1,26 +1,43 @@
 class AdoptedController < ApplicationController
   before_action :authenticate
+  before_action :make_cur_page, :make_other_pages, only: [:index]
 
   # GET /api/v1/drains/adopted
   # Optional params:
   #
   #  format=[json|xml|csv]
-  #  cursor=[-1 | next_cursor | prev_cursor]
+  #  page
   def index
-    @things = Thing.where.not(user_id: nil)
+    @results = {next_page: @next_page, prev_page: @prev_page, drains: @things}
     render_types
   end
 
 private
+
+  # Determine if the user supplied a valid page number, if not they get first page
+  def make_cur_page
+    page = params[:page].blank? ? 2 : params[:page]
+    @cur_page = Thing.where.not(user_id: nil).page(page)
+    @things = format_fields(@cur_page)
+  end
+
+  # Determine next and previous pages, so the user can navigate if needed
+  def make_other_pages
+    @next_page = @cur_page.next_page.nil? ? 0 : @cur_page.next_page
+    @prev_page = @cur_page.prev_page.nil? ? 0 : @cur_page.prev_page
+  end
 
   def render_types
     respond_to do |format|
       format.csv do
         headers['Content-Type'] ||= 'text/csv'
         headers['Content-Disposition'] = 'attachment; filename=\'adopted_drains.csv\''
+
+        # Assuming that a CSV was requested in order to retrieve all results at once
+        @allthings = Thing.where.not(user_id: nil)
       end
-      format.xml { render xml: format_fields(@things) }
-      format.all { render json: format_fields(@things) }
+      format.xml { render xml: @results }
+      format.all { render json: @results }
     end
   end
 
