@@ -1,7 +1,8 @@
 development: &DEVELOPMENT
   adapter: postgresql
-  user: <%= ENV['DB_USER'] || ENV['USER'] %>
-  database: adopt_a_thing_development
+  user: <%= ENV['DB_USER'] || ENV['USER'] || 'postgres' %>
+  password: <%= ENV['DB_PASSWORD'] || 'Iskids01!' %>
+  database: <%= ENV['DB_NAME'] || 'adopt_a_thing_development' %>
   host: <%= ENV['DB_HOST'] || 'localhost' %>
 
 # Warning: The database defined as "test" will be erased and
