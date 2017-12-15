@@ -9,7 +9,7 @@ Rails.application.configure do
   config.cache_classes = false
 
   # asset host
-  config.action_controller.asset_host = 'http://' + Socket.ip_address_list[1].ip_address + ':3000'
+  config.action_controller.asset_host = 'http://localhost:3000'
   config.action_mailer.asset_host = config.action_controller.asset_host
 
   # Do not eager load code on boot.
