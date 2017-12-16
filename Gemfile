@@ -10,9 +10,10 @@ gem 'local_time', '~> 2.0'
 gem 'obscenity', '~> 1.0', '>= 1.0.2'
 gem 'pg'
 gem 'rails', '~> 4.2.10'
-gem 'faker', '1.7.3'
+gem 'faker', '~> 1.7.0'
 gem 'rails_admin', '~> 1.0'
 gem 'validates_formatting_of', '~> 0.9.0'
+gem 'kaminari', '~> 1.0'
 
 gem 'paranoia', '~> 2.4'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw]
@@ -27,7 +28,6 @@ end
 
 group :development do
   gem 'spring'
-  gem 'kaminari'
 end
 
 group :production do
