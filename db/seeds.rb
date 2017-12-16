@@ -1,12 +1,6 @@
 User.where(email: 'john@example.com').first_or_initialize.tap do |user|
+  # Add a mock user with admin privileges
   user.first_name = 'John'
-  user.last_name = 'Doe'
-  user.password = 'password'
-  user.save!
-end
-
-User.where(email: 'admin@example.com').first_or_initialize.tap do |user|
-  user.first_name = 'Jane'
   user.last_name = 'Doe'
   user.password = 'password'
   user.admin = true
@@ -15,7 +9,6 @@ end
 
 r = Random.new
 
-=begin
 500.times do |i|
   Thing.where(city_id: i).first_or_initialize.tap do |thing|
     thing.name = "Some Drain #{i}"
@@ -25,9 +18,6 @@ r = Random.new
     thing.save!
   end
 end
-
-=end
-
 
 1000.times do |i|
   first_name = Faker::Name.first_name
@@ -39,4 +29,3 @@ end
                email: email,
                password: password)
 end
-
