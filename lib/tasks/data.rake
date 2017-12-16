@@ -32,12 +32,15 @@ namespace :data do
     # Make random users adopt drains to test server load when generating API data
     # There has to be users in DB for this to work
 
-    unless Rails.env.production?
-      Thing.first(10_000).each do |t|
+    if Rails.env.production?
+        puts "Can't run this in production"
+    else
+      Thing.first(1000).each_with_index do |t, i|
         if t.user_id.blank?
-          t.user_id = User.find_by('id' => Random.rand(1..User.last.id)).id
+          t.user_id = User.order('RANDOM()').limit(1).first.id
           t.save
         end
+        puts i.to_s + " Adopting a drain"
       end
     end
   end
