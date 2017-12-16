@@ -28,3 +28,18 @@ namespace :data do
     end
   end
 end
+
+namespace :change_data do
+  task auto_adopt: :environment do
+    if Rails.env.production?
+      puts "Can't run this in production"
+    else
+      Thing.first(1000).each do |t|
+        if t.user_id.blank?
+          t.user_id = User.order('RANDOM()').limit(1).first.id
+          t.save
+        end
+      end
+    end
+  end
+end

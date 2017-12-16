@@ -76,6 +76,8 @@ GEM
       railties (>= 3.2, < 5.2)
     erubis (2.7.0)
     execjs (2.7.0)
+    faker (1.7.3)
+      i18n (~> 0.5)
     ffi (1.9.18)
     font-awesome-rails (4.7.0.2)
       railties (>= 3.2, < 5.2)
@@ -257,9 +259,11 @@ DEPENDENCIES
   coveralls
   devise (~> 3.0)
   dotenv-rails
+  faker (~> 1.7.0)
   geokit (~> 1.0)
   haml (~> 5.0)
   http_accept_language (~> 2.0)
+  kaminari (~> 1.0)
   local_time (~> 2.0)
   obscenity (~> 1.0, >= 1.0.2)
   paranoia (~> 2.4)
