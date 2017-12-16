@@ -14,6 +14,8 @@ gem 'obscenity', '~> 1.0', '>= 1.0.2'
 gem 'pg'
 gem 'rails_admin'
 gem 'validates_formatting_of'
+gem 'faker', '~> 1.7.0'
+gem 'kaminari', '~> 1.0'
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
 gem 'paranoia', '~> 2.2'
