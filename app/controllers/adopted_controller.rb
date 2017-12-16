@@ -5,11 +5,10 @@ class AdoptedController < ApplicationController
   # GET /api/v1/drains/adopted
   # Optional params:
   #
-  #  format=[json|xml|csv]
   #  page
   def index
     @results = { next_page: @next_page, prev_page: @prev_page, total_pages: @adopted_things.page(1).total_pages, drains: @things }
-    render_types
+    render json: @results
   end
 
 private
@@ -29,19 +28,6 @@ private
   def make_other_pages
     @next_page = @cur_page.next_page.nil? ? -1 : @cur_page.next_page
     @prev_page = @cur_page.prev_page.nil? ? -1 : @cur_page.prev_page
-  end
-
-  def render_types
-    respond_to do |format|
-      format.csv do
-        headers['Content-Type'] ||= 'text/csv'
-        headers['Content-Disposition'] = 'attachment; filename=\'adopted_drains.csv\''
-
-        @allthings
-      end
-      format.xml { render xml: @results }
-      format.all { render json: @results }
-    end
   end
 
   def format_fields(obj)
