@@ -1,12 +1,14 @@
 class AdoptedController < ApplicationController
   before_action :authenticate
-  before_action :get_adopted_things, :make_cur_page, :make_other_pages, only: [:index]
 
   # GET /api/v1/drains/adopted
   # Optional params:
   #
   #  page
   def index
+    get_adopted_things
+    make_cur_page
+    make_other_pages
     @results = { next_page: @next_page, prev_page: @prev_page, total_pages: @adopted_things.page(1).total_pages, drains: @things }
     render json: @results
   end
