@@ -1,5 +1,0 @@
-<%- headers = ['Lat', 'Lng', 'City ID'] -%>
-<%= CSV.generate_line headers %>
-<%- @allthings.each do |thing| -%>
-<%= CSV.generate_line([thing.lat, thing.lng, "N-" + thing.city_id.to_s]) -%>
-<%- end -%>
