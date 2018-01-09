@@ -16,7 +16,7 @@ class AdoptedController < ApplicationController
 private
   
   def get_adopted_things
-    @adopted_things = Thing.where.not(user_id: nil)
+    @adopted_things = Thing.adopted
   end
   
   # Determine if the user supplied a valid page number, if not they get first page
