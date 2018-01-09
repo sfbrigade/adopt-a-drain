@@ -14,7 +14,7 @@ Rails.application.configure do
   # "localhost"/127.0.0.1 ... when developing locally
   # remote domainname/IP ... when developing on a remote server
   this_server = Socket.ip_address_list[1]
-  this_server_hostname = (this_server.getnameinfo[0] == 'localhost') ? 'localhost' : this_server.ip_address
+  this_server_hostname = this_server.getnameinfo[0] == 'localhost' ? 'localhost' : this_server.ip_address
   config.action_controller.asset_host = 'http://' + this_server_hostname + ':3000'
   config.action_mailer.asset_host = config.action_controller.asset_host
 

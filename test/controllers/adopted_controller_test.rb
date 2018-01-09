@@ -14,8 +14,6 @@ class AdoptedControllerTest < ActionController::TestCase
     @thing2.user_id = @user2.id
     @thing.save
     @thing2.save
-    
-
   end
 
   test 'should get index' do
@@ -39,28 +37,26 @@ class AdoptedControllerTest < ActionController::TestCase
     assert_equal 'text/html', @response.content_type # If user were an admin, content_type would be JSON, since that is default
   end
 
-
   test 'drain data is correct' do
     @request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Basic.encode_credentials(@admin.email, 'correct')
     get :index
-    random_drain = JSON.parse(@response.body)["drains"].first
-    drain = Thing.find_by(city_id: random_drain["city_id"].gsub("N-",""))
+    random_drain = JSON.parse(@response.body)['drains'].first
+    drain = Thing.find_by(city_id: random_drain['city_id'].gsub('N-', ''))
 
     assert_not_nil drain
-    assert_equal drain.lat.to_s, random_drain["latitude"]
-    assert_equal drain.lng.to_s, random_drain["longitude"]
-
+    assert_equal drain.lat.to_s, random_drain['latitude']
+    assert_equal drain.lng.to_s, random_drain['longitude']
   end
 
   test 'page counts' do
     Rails.application.load_seed # Seed the user with users and drains
-    Rake::Task['data:auto_adopt'].invoke # Adopt the seeded drains with seeded users
+    Rake::Task['modify:auto_adopt'].invoke # Adopt the seeded drains with seeded users
     @request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Basic.encode_credentials(@admin.email, 'correct')
     get :index
     json = JSON.parse(@response.body)
 
-    assert_equal json["next_page"], 2
-    assert_equal json["prev_page"], -1
-    assert_equal json["total_pages"], 5 # Should be 5 - default drains per page is 100 and we seeded the DB with 500
+    assert_equal json['next_page'], 2
+    assert_equal json['prev_page'], -1
+    assert_equal json['total_pages'], 5 # Should be 5 - default drains per page is 100 and we seeded the DB with 500
   end
 end

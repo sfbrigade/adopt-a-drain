@@ -6,22 +6,22 @@ class AdoptedController < ApplicationController
   #
   #  page
   def index
-    get_adopted_things
+    adopted_things
     make_cur_page
     make_other_pages
-    @results = { next_page: @next_page, prev_page: @prev_page, total_pages: @adopted_things.page(1).total_pages, drains: @things }
+    @results = {next_page: @next_page, prev_page: @prev_page, total_pages: @adopted_things.page(1).total_pages, drains: @things}
     render json: @results
   end
 
 private
-  
-  def get_adopted_things
+
+  def adopted_things
     @adopted_things = Thing.adopted
   end
-  
+
   # Determine if the user supplied a valid page number, if not they get first page
   def make_cur_page
-    page = ((params[:page].blank?) || (params[:page].to_i == 0)) ? 1 :  params[:page]
+    page = params[:page].blank? || params[:page].to_i.zero? ? 1 : params[:page]
     @cur_page = @adopted_things.page(page)
     @things = format_fields(@cur_page)
   end
@@ -41,7 +41,7 @@ private
       user = User.find_by(email: username)
       if user && user.valid_password?(password)
         return true if user.admin?
-        render html: '<div> You must be an admin to access this page </div>'.html_safe
+        render html: '<div> You must be an admin to access this page </div>'
       end
     end
   end
