@@ -1,5 +1,5 @@
 require 'test_helper'
-require 'Rake'
+require 'rake'
 
 class AdoptedControllerTest < ActionController::TestCase
   setup do
