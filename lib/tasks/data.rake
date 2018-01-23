@@ -28,13 +28,14 @@ namespace :data do
   end
 
   task load_drains: :environment do
-    puts 'Downloading Drains... ... ...'
+    puts 'Loading drains...'
     url = 'durham_drains.csv'
     csv_string = open(url).read
     drains = CSV.parse(csv_string, headers: true)
-    puts "Downloaded #{drains.size} Drains."
+    puts "#{drains.size} Drains."
 
-    drains.each do |drain|
+    drains.each_slice(100).each do |drain|
+      puts "."
       thing_hash = {
         name: drain['type'],
         system_use_code: drain['type'],

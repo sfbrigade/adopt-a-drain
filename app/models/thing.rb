@@ -12,6 +12,7 @@ class Thing < ActiveRecord::Base
   validates :name, obscenity: true
 
   def self.find_closest(lat, lng, limit = 10)
+    # Great circle calculation - distance between lat/long.
     query = <<-SQL
       SELECT *, (3959 * ACOS(COS(RADIANS(?)) * COS(RADIANS(lat)) * COS(RADIANS(lng) - RADIANS(?)) + SIN(RADIANS(?)) * SIN(RADIANS(lat)))) AS distance
       FROM things
