@@ -9,7 +9,7 @@ gem 'geokit'
 gem 'haml'
 gem 'http_accept_language'
 gem 'obscenity', '~> 1.0', '>= 1.0.2'
-gem 'pg'
+gem 'pg', '~> 0.18'
 gem 'rails_admin'
 gem 'validates_formatting_of'
 
@@ -27,7 +27,6 @@ end
 
 group :production do
   gem 'rails_12factor'
-  gem 'pg'
   gem 'puma'
   gem 'skylight'
 end
