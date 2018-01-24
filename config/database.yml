@@ -12,5 +12,4 @@ test:
   database: adopt_a_thing_test
 
 production:
-  adapter: postgresql
   url: <%= ENV['DATABASE_URL'] %>
