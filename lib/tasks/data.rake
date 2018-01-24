@@ -34,16 +34,18 @@ namespace :data do
     drains = CSV.parse(csv_string, headers: true)
     puts "#{drains.size} Drains."
 
-    drains.each_slice(100).each do |drain|
-      puts "."
-      thing_hash = {
-        name: drain['type'],
-        system_use_code: drain['type'],
-        lat: drain['lat'],
-        lng: drain['lon'],
-      }
+    drains.each_slice(100) do |group|
+      group.each { |drain|
+        print "."
+        thing_hash = {
+          name: drain['type'],
+          system_use_code: drain['type'],
+          lat: drain['lat'],
+          lng: drain['lon'],
+        }
 
-      thing = Thing.create(thing_hash)
+        Thing.create(thing_hash)
+      }
     end
   end
 end
