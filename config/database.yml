@@ -12,4 +12,4 @@ test:
   database: adopt_a_thing_test
 
 production:
-  url: <%= ENV['DATABASE_URL'] %>
+  <<: *DEVELOPMENT
