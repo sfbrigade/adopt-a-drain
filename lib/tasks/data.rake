@@ -35,8 +35,8 @@ namespace :data do
     puts "#{drains.size} Drains."
 
     drains.each_slice(100) do |group|
+      print "."
       group.each { |drain|
-        print "."
         thing_hash = {
           name: drain['type'],
           system_use_code: drain['type'],
