@@ -22,33 +22,35 @@ $(function() {
   };
   var map = new google.maps.Map(document.getElementById("map"), mapOptions);
 
-  var previousWatchPosition = null;
-  var id = navigator.geolocation.watchPosition(function success(pos) {
-    var newLocation = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
-    map.panTo(newLocation);
-
-    if (!previousWatchPosition) {
-      // TODO if this is the first time we have recieved coordinats and the user
-      // has done etheir of these things, don't update our map's location:
-      //  * entered an address
-      //  * moved the map around.
-    } else {
-      // TODO otherwise, again, don't update the map's location if...this
-      // coordinate is the same-ish as the previous watchPosition coordinate.
-    }
-  }, function error(err) {
-    // console.log("|error");
-    // console.log(err);
-  }, {
-    enableHighAccuracy: false,
-    timeout: 10 * 1000,
-    maximumAge: 20 * 1000
-  });
+  // TODO for mobile apps it would be nice to have the map follow you as you
+  // walked around a neighborhood:
+  // var previousWatchPosition = null;
+  // var id = navigator.geolocation.watchPosition(function success(pos) {
+  //   var newLocation = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
+  //   map.panTo(newLocation);
+  //
+  //   if (!previousWatchPosition) {
+  //     // TODO if this is the first time we have recieved coordinats and the user
+  //     // has done etheir of these things, don't update our map's location:
+  //     //  * entered an address
+  //     //  * moved the map around.
+  //   } else {
+  //     // TODO otherwise, again, don't update the map's location if...this
+  //     // coordinate is the same-ish as the previous watchPosition coordinate.
+  //   }
+  // }, function error(err) {
+  //   // console.log("|error");
+  //   // console.log(err);
+  // }, {
+  //   enableHighAccuracy: false,
+  //   timeout: 10 * 1000,
+  //   maximumAge: 20 * 1000
+  // });
 
   //                                          lat, lon
   initialLocation = new google.maps.LatLng(35.996,-78.902);
   map.setCenter(initialLocation);
-  map.setZoom(17);
+  map.setZoom(18);
   var iconBase = '<%= image_path 'markers/' %>';
   var size = new google.maps.Size(27.0, 38.0);
   var origin = new google.maps.Point(0, 0);
@@ -248,21 +250,19 @@ $(function() {
   }
   function zoomTo(lat, lng, zoomLevel) {
     if (typeof zoomLevel === 'undefined') { zoomLevel = 18; }
-    // addMarkersAround(lat, lng);
     map.setCenter(new google.maps.LatLng(lat, lng));
     map.setZoom(zoomLevel);
   }
-  // TODO what does google maps idle event mean?
+  // When the map has finished updating (from a drag, recenter, etc)
   google.maps.event.addListener(map, 'idle', function() {
     var center = map.getCenter();
-    console.log("|map.getZoom() = "+ map.getZoom());
+    // Get the zoom level, if it is above a threshold, remove all markers
+    // from the map, and don't add any more.
     if (map.getZoom() <= 17) {
       for (var i=0; i<markers.length; i++) {
         markers[i].setMap(null);
       }
       markers = [];
-      // TODO get the zoom level, if it is above a threshold, remove all markers
-      // from the map, and don't add any more.
     } else {
       addMarkersAround(center.lat(), center.lng());
     }
