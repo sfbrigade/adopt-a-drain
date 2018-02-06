@@ -241,7 +241,7 @@ DEPENDENCIES
   haml
   http_accept_language
   obscenity (~> 1.0, >= 1.0.2)
-  pg
+  pg (~> 0.18)
   puma
   rails (~> 4.2.4)
   rails_12factor

@@ -6,8 +6,6 @@ namespace :data do
   require 'json'
 
   task download_csv: :environment do
-    TYPES_TO_SKIP = ["HEADWALL", "END SECTION"]
-
     puts 'Downloading CSV data...'
     arcgis_path = '/api/records/1.0/download/?dataset=stormwater-drains'\
       '&refine.owner=CITY-ROW&refine.status=EXISTING&refine.task=INLET'\
@@ -34,9 +32,11 @@ namespace :data do
     drains = CSV.parse(csv_string, headers: true)
     puts "#{drains.size} Drains."
 
-    drains.each_slice(100) do |group|
-      print "."
-      group.each { |drain|
+    total = 0
+    drains.each_slice(1000) do |group|
+      updated = 0
+      created = 0
+      group.each do |drain|
         thing_hash = {
           name: drain['type'],
           system_use_code: drain['type'],
@@ -44,8 +44,25 @@ namespace :data do
           lng: drain['lon'],
         }
 
-        Thing.create(thing_hash)
-      }
+        # Match any existing records, accounting for rounding errors:
+        thing = Thing
+          .where('round(lat, 10) = ?', BigDecimal(thing_hash[:lat]).round(10))
+          .where('round(lng, 10) = ?', BigDecimal(thing_hash[:lng]).round(10))
+          .first
+        if thing
+          thing.assign_attributes(thing_hash)
+          if thing.changed?
+            updated += 1
+          end
+        else
+          Thing.create(thing_hash)
+          created += 1
+        end
+        
+        total += 1
+      end
+
+      print "updated/created: #{updated}/#{created} ... #{total}\n"
     end
   end
 end
