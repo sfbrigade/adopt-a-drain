@@ -19,4 +19,13 @@ Rails.application.routes.draw do
   resource :things
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
   root to: 'main#index'
+
+  # API
+  scope '/api' do
+    scope '/v1' do
+      scope '/drains' do
+        get '/adopted' => 'adopted#index'
+      end
+    end
+  end
 end
