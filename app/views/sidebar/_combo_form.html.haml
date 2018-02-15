@@ -42,9 +42,11 @@
           = t("captions.private_optional")
       = f.telephone_field "sms_number", :placeholder => t("defaults.sms_number"), :class => "form-control"
     .form-group
-      %label.control-label{:for => "user_password_confirmation", :id => "user_password_confirmation_label"}
+      %label.control-label{:name => "password", :type => "password", :for => "user_password_confirmation", :id => "user_password_confirmation_label"}
         = t("labels.password_choose")
       = f.password_field "password_confirmation", :class => "form-control"
+      %span.fa.fa-fw.fa-eye.field-icon.toggle-password{:toggle => "#user_password_confirmation"}
+
       .help-block
     %p.tos
       = t("defaults.tos", :tos => link_to(t("titles.tos"), "#tos", :id => "tos_link", :"data-toggle" => "modal", :"data-target" => "#tos")).html_safe

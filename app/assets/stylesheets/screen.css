@@ -26,6 +26,14 @@ input {
   margin-bottom: 10px;
 }
 
+.field-icon {
+  float: right;
+  margin-left: -45px;
+  margin-top: -35px;
+  position: relative;
+  z-index: 2;
+}
+
 input[type="radio"], input[type="checkbox"] {
   display: inline;
   width: auto;
