@@ -7,14 +7,14 @@
     = search_field_tag "address", params[:address], :placeholder => t("labels.address"), :class => "search-query form-control"
     .help-block
   %fieldset.form-actions
-    = submit_tag t("buttons.find", :thing => t("defaults.thing").pluralize), :class => "btn btn-primary btn-block"
+    = submit_tag t("buttons.find", :thing => t("defaults.thing").pluralize), :class => "btn btn-info btn-block"
 .break
 - if signed_in?
   = render :partial => "sidebar/user_things"
-  %a{:href => edit_user_registration_path, :id => "edit_profile_link", :class => "btn btn-warning btn-block"}
+  %a{:href => edit_user_registration_path, :id => "edit_profile_link", :class => "btn btn-primary btn-block"}
     = t("buttons.edit_profile")
   %a{:href => destroy_user_session_path, :id => "sign_out_link", :class => "btn btn-danger btn-block"}
     = t("buttons.sign_out")
 - else
-  %a{:href => combo_form_path, :class => "link btn btn-secondary"}
+  %a{:href => combo_form_path, :class => "link btn btn-primary"}
     = t("buttons.sign_up_or_in")

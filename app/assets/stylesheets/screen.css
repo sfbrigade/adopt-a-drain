@@ -26,6 +26,14 @@ input {
   margin-bottom: 10px;
 }
 
+.field-icon {
+  float: right;
+  margin-left: -45px;
+  margin-top: -35px;
+  position: relative;
+  z-index: 2;
+}
+
 input[type="radio"], input[type="checkbox"] {
   display: inline;
   width: auto;
@@ -45,8 +53,6 @@ form select, button.btn, input[type="submit"].btn {
 
 .btn-primary {
   color: #ffffff;
-  background-color: #8871B3;
-  border-color: #8871B3;
 }
 
 .btn-secondary {
@@ -111,7 +117,6 @@ form input.search-query {
 
 .sidebar p#tagline {
   color: #ffffff;
-  background-color: #8871B3;
   padding: 10px 20px;
   text-align: center;
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
