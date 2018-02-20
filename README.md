@@ -32,8 +32,8 @@ To setup a local development environment with
 
 ```
 # Override database settings as the docker host:
-echo DB_HOST=db > .env
-echo DB_USER=postgres >> .env
+echo "DB_HOST=db" > .env
+echo "DB_USER=postgres" >> .env
 
 # Setup your docker based postgres database:
 docker-compose run --rm web bundle exec rake db:setup
