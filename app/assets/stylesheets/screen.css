@@ -49,7 +49,8 @@ input#user_existing {
   margin-bottom: 10px;
 }
 
-form select, button.btn, input[type="submit"].btn {}
+form select, button.btn, input[type="submit"].btn {
+}
 
 .btn-primary {
   color: #ffffff;
@@ -104,13 +105,15 @@ form input.search-query {
   padding-left: 10px;
 }
 
-.sidebar {}
+.sidebar {
+}
 
 .sidebar .control-group {
   margin-left: 20px;
 }
 
-.sidebar .form-actions {}
+.sidebar .form-actions {
+}
 
 .sidebar p#tagline {
   color: #ffffff;
