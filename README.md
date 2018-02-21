@@ -7,11 +7,9 @@ Claim responsibility for cleaning out a storm drain after it rains.
 ## Screenshot
 ![Adopt-a-Drain](/adopt.png "Adopt-a-Drain")
 
-## Demo
-You can see a running version of the application at
-[https://adoptadraindurham.herokuapp.com/][demo].
+## Production
 
-[demo]: https://adoptadraindurham.herokuapp.com/
+https://adoptadrain.codefordurham.com/
 
 ## Installation
 This application requires [Postgres](http://www.postgresql.org/) to be installed
