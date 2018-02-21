@@ -32,6 +32,7 @@ input {
   margin-top: -35px;
   position: relative;
   z-index: 2;
+  padding-right: 22px;
 }
 
 input[type="radio"], input[type="checkbox"] {
@@ -48,8 +49,7 @@ input#user_existing {
   margin-bottom: 10px;
 }
 
-form select, button.btn, input[type="submit"].btn {
-}
+form select, button.btn, input[type="submit"].btn {}
 
 .btn-primary {
   color: #ffffff;
@@ -65,7 +65,6 @@ form select, button.btn, input[type="submit"].btn {
   color: #fff;
   background-color: #005596;
 }
-
 
 form input.search-query {
   -moz-border-radius: 14px;
@@ -105,15 +104,13 @@ form input.search-query {
   padding-left: 10px;
 }
 
-.sidebar {
-}
+.sidebar {}
 
 .sidebar .control-group {
   margin-left: 20px;
 }
 
-.sidebar .form-actions {
-}
+.sidebar .form-actions {}
 
 .sidebar p#tagline {
   color: #ffffff;
@@ -193,7 +190,8 @@ img.lock {
   height: 9px;
   width: 7px;
   opacity: 0.8;
-  filter: alpha(opacity=80); /* For IE8 and earlier */
+  filter: alpha(opacity=80);
+  /* For IE8 and earlier */
 }
 
 #password-error {
