@@ -30,18 +30,17 @@ div#logos img {
   width: 100%;
 }
 
-div#logos img.dpw, div#logos img.puc{
+div#logos img.dpw, div#logos img.puc {
   width: auto;
   height: 112px;
 }
 
-div#logos .row div{
+div#logos .row div {
   text-align: center;
 }
 
-input[type="text"], input[type="email"], input[type="password"], input[type="search"]
-{
-  font-size:16px;
+input[type="text"], input[type="email"], input[type="password"], input[type="search"] {
+  font-size: 16px;
 }
 
 h3, .h3 {
@@ -67,8 +66,8 @@ h5.my-things {
 }
 
 .sidebar {
-	height: 90px;
-	overflow: hidden;
+  height: 90px;
+  overflow: hidden;
   background-color: #fff;
   z-index: 2;
 }
@@ -102,13 +101,13 @@ h5.my-things {
 }
 
 .click-to-learn {
-	text-align: center;
+  text-align: center;
 }
 
 .map-container {
   position: absolute;
-  top:90px;
-  bottom:0;
+  top: 90px;
+  bottom: 0;
   width: 100%;
   z-index: 0;
 }
@@ -127,45 +126,19 @@ h5.my-things {
   margin: 15px;
 }
 
-.signed-in  .map-container {
+.signed-in .map-container {
   top: 210px;
 }
 
 .btn-primary {
   color: #fff;
   border-color: #2e6da4;
-  box-shadow: 
-    0 1px 2px #fff,
-    0 -1px 1px #666,
-    inset 0 -1px 1px rgba(0,0,0,0.5),
-    inset 0 1px 1px rgba(255,255,255,0.8);
 }
 
 .btn-primary:hover {
   color: #fff;
   background-color: #005596;
   border-color: #204d74;
-  text-decoration: underline;
-}
-
-
-.btn-info {
-  box-shadow: 
-    0 1px 2px #fff,
-    0 -1px 1px #666,
-    inset 0 -1px 1px rgba(0,0,0,0.5),
-    inset 0 1px 1px rgba(255,255,255,0.8);
-}
-
-.btn-info:hover{
-  text-decoration: underline;
-}
-.btn-secondary {
-  box-shadow: 
-    0 1px 2px #fff,
-    0 -1px 1px #666,
-    inset 0 -1px 1px rgba(0,0,0,0.5),
-    inset 0 1px 1px rgba(255,255,255,0.8);
 }
 
 .btn-danger {
@@ -236,22 +209,18 @@ a.guidelines {
     z-index: 2;
     overflow: scroll;
   }
-
   .signed-in .map-container, .map-container {
     width: 75%;
     top: 0;
     right: 0;
   }
-
   .navbar img {
     max-width: 60%;
     margin: 5px;
   }
-
   .sidebar button.navbar-toggle {
     display: none;
   }
-
   #legend {
     right: auto;
   }
