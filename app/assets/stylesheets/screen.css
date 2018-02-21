@@ -32,6 +32,7 @@ input {
   margin-top: -35px;
   position: relative;
   z-index: 2;
+  padding-right: 22px;
 }
 
 input[type="radio"], input[type="checkbox"] {
@@ -65,7 +66,6 @@ form select, button.btn, input[type="submit"].btn {
   color: #fff;
   background-color: #005596;
 }
-
 
 form input.search-query {
   -moz-border-radius: 14px;
@@ -193,7 +193,8 @@ img.lock {
   height: 9px;
   width: 7px;
   opacity: 0.8;
-  filter: alpha(opacity=80); /* For IE8 and earlier */
+  filter: alpha(opacity=80);
+  /* For IE8 and earlier */
 }
 
 #password-error {
