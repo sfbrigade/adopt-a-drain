@@ -4,6 +4,10 @@ $(function() {
   var browserSupportFlag =  new Boolean();
   var errorClass = 'has-error';
   var current_user_id = $('#current_user_id').val() ? $('#current_user_id').val() : '';
+	// Cache the last latitude and longitude so that we don't call the things.json
+	// API if we already are showing the points of the map:
+	var lastLat = 0;
+	var lastLng = 0;
   var mapOptions = {
     center: center,
     disableDoubleClickZoom: false,
@@ -189,9 +193,16 @@ $(function() {
       adoptedThings.push([user_id, marker]);
     }
   }
+
   function addMarkersAround(lat, lng) {
+		if (lng === lastLng && lat === lastLat) {
+			return;
+		}
+		lastLng = lng;
+		lastLat = lat;
     var current_user_id = $('#current_user_id').val() ? $('#current_user_id').val() : '';
     var submitButton = $("#address_form input[type='submit']");
+		var width = Math.abs(map.getBounds().getNorthEast().lng() - map.getBounds().getSouthWest().lng())
     $.ajax({
       type: 'GET',
       url: '/things.json',
@@ -199,7 +210,7 @@ $(function() {
         'utf8': '✓',
         'lat': lat,
         'lng': lng,
-        'limit': $('#address_form input[name="limit"]').val()
+        'radius': (69 * width) / 2
       },
       error: function(jqXHR) {
         $(submitButton).attr("disabled", false);
@@ -219,20 +230,18 @@ $(function() {
               // continue
               return true;
             }
-            setTimeout(function() {
-              var point = new google.maps.LatLng(thing.lat, thing.lng);
-              var type = 'tosewer'
-              if(thing.system_use_code == 'MS4') {
-                type = 'tobayocean';
-              }
-              if(thing.user_id) {
-                type  = 'adopted';
-              }
-              if(thing.user_id == current_user_id){
-                type = 'adoptedbyyou'
-              }
-              addMarker(thing.id, point, type, thing.user_id);
-            }, i * 100);
+						var point = new google.maps.LatLng(thing.lat, thing.lng);
+						var type = 'tosewer'
+						if(thing.system_use_code == 'MS4') {
+							type = 'tobayocean';
+						}
+						if(thing.user_id) {
+							type  = 'adopted';
+						}
+						if(thing.user_id == current_user_id){
+							type = 'adoptedbyyou'
+						}
+						addMarker(thing.id, point, type, thing.user_id);
           });
         }
       }

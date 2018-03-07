@@ -11,15 +11,13 @@ class Thing < ActiveRecord::Base
   validates :lng, presence: true
   validates :name, obscenity: true
 
-  def self.find_closest(lat, lng, limit = 10)
+  def self.find_closest(lat, lng, radius_miles)
     # Great circle calculation - distance between lat/long.
     query = <<-SQL
-      SELECT *, (3959 * ACOS(COS(RADIANS(?)) * COS(RADIANS(lat)) * COS(RADIANS(lng) - RADIANS(?)) + SIN(RADIANS(?)) * SIN(RADIANS(lat)))) AS distance
-      FROM things
-      ORDER BY distance
-      LIMIT ?
+      SELECT * FROM things
+			WHERE (3959 * ACOS(COS(RADIANS(?)) * COS(RADIANS(lat)) * COS(RADIANS(lng) - RADIANS(?)) + SIN(RADIANS(?)) * SIN(RADIANS(lat)))) < ?
       SQL
-    find_by_sql([query, lat.to_f, lng.to_f, lat.to_f, limit.to_i])
+    find_by_sql([query, lat.to_f, lng.to_f, lat.to_f, radius_miles.to_f])
   end
 
   def reverse_geocode
