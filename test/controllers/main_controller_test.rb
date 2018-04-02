@@ -2,16 +2,13 @@
 
 require 'test_helper'
 
-class MainControllerTest < ActionController::TestCase
-  include Devise::Test::ControllerHelpers
-
+class MainControllerTest < ActionDispatch::IntegrationTest
   setup do
-    request.env['devise.mapping'] = Devise.mappings[:user]
     @user = users(:erik)
   end
 
   test 'should return the home page' do
-    get :index
+    get '/'
     assert_response :success
     assert_select 'title', 'Adopt-a-Drain San Francisco'
     assert_select 'button#tagline', 'What does it mean to adopt a drain?'
@@ -19,7 +16,7 @@ class MainControllerTest < ActionController::TestCase
 
   test 'should show search form when signed in' do
     sign_in @user
-    get :index
+    get '/'
     assert_response :success
     assert_select 'form' do
       assert_select '[action=?]', '/address'
