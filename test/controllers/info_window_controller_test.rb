@@ -2,8 +2,7 @@
 
 require 'test_helper'
 
-class InfoWindowControllerTest < ActionController::TestCase
-  include Devise::Test::ControllerHelpers
+class InfoWindowControllerTest < ActionDispatch::IntegrationTest
   setup do
     @thing = things(:thing_1)
     @user = users(:erik)
@@ -13,7 +12,7 @@ class InfoWindowControllerTest < ActionController::TestCase
     sign_in @user
     @thing.user_id = @user.id
     @thing.save!
-    get :index, thing_id: @thing.id
+    get info_window_url, params: {thing_id: @thing.id}
     assert_not_nil assigns :thing
     assert_response :success
     assert_template 'users/thank_you'
@@ -35,7 +34,7 @@ class InfoWindowControllerTest < ActionController::TestCase
   test 'should show the profile if the drain is adopted' do
     @thing.user_id = @user.id
     @thing.save!
-    get :index, thing_id: @thing.id
+    get info_window_url, params: {thing_id: @thing.id}
     assert_not_nil assigns :thing
     assert_response :success
     assert_template 'users/profile'
@@ -45,7 +44,7 @@ class InfoWindowControllerTest < ActionController::TestCase
 
   test 'should show adoption form if drain is not adopted' do
     sign_in @user
-    get :index, thing_id: @thing.id
+    get info_window_url, params: {thing_id: @thing.id}
     assert_not_nil assigns :thing
     assert_response :success
     assert_template :adopt
@@ -68,7 +67,7 @@ class InfoWindowControllerTest < ActionController::TestCase
     sign_in @user
     Thing.stub :find_by, @thing do
       @thing.stub :detail_link, 'http://example.com' do
-        get :index, thing_id: @thing.id
+        get info_window_url, params: {thing_id: @thing.id}
       end
     end
     assert_response :success
@@ -78,7 +77,7 @@ class InfoWindowControllerTest < ActionController::TestCase
   end
 
   test 'should show sign-in form if signed out' do
-    get :index, thing_id: @thing.id
+    get info_window_url, params: {thing_id: @thing.id}
     assert_not_nil assigns :thing
     assert_response :success
     assert_template 'users/sign_in'

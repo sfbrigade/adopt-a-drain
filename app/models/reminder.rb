@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Reminder < ActiveRecord::Base
+class Reminder < ApplicationRecord
   include ActiveModel::ForbiddenAttributesProtection
   belongs_to :from_user, class_name: 'User'
   belongs_to :thing

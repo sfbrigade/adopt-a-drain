@@ -2,8 +2,7 @@
 
 require 'test_helper'
 
-class ThingsControllerTest < ActionController::TestCase
-  include Devise::Test::ControllerHelpers
+class ThingsControllerTest < ActionDispatch::IntegrationTest
   setup do
     stub_request(:get, 'https://maps.google.com/maps/api/geocode/json').
       with(query: {latlng: '42.383339,-71.049226', sensor: 'false'}).
@@ -14,14 +13,14 @@ class ThingsControllerTest < ActionController::TestCase
   end
 
   test 'should list drains' do
-    get :show, format: 'json', lat: 42.358431, lng: -71.059773
+    get things_url, params: {lat: 42.358431, lng: -71.059773, format: :json}
     assert_not_nil assigns :things
     assert_response :success
   end
 
   test 'should 404 if there are no drains' do
     Thing.all.map(&:destroy!)
-    get :show, format: 'json', lat: 43.358431, lng: -71.059773
+    get things_url, params: {lat: 43.358431, lng: -71.059773, format: :json}
     assert_response :missing
     assert_equal ['Could not find drain.'], JSON.parse(response.body)['errors']['address']
   end
@@ -29,7 +28,7 @@ class ThingsControllerTest < ActionController::TestCase
   test 'should return true if a drain is owned by logged in user' do
     sign_in @user
     @thing.user_id = @user.id
-    get :show, format: 'json', lat: 42.358431, lng: -71.059773
+    get things_url, params: {lat: 42.358431, lng: -71.059773, format: :json}
     assert_not_nil assigns :things
     assert_response :success
   end
@@ -37,7 +36,7 @@ class ThingsControllerTest < ActionController::TestCase
   test 'should update drain display name' do
     sign_in @user
     assert_not_equal 'Birdsill', @thing.display_name
-    put :update, format: 'json', id: @thing.id, thing: {user_id: @user.id, adopted_name: 'Birdsill'}
+    put things_url, params: {id: @thing.id, thing: {user_id: @user.id, adopted_name: 'Birdsill'}, format: :json}
     @thing.reload
     assert_equal 'Birdsill', @thing.display_name
     assert_not_nil assigns :thing
@@ -47,7 +46,7 @@ class ThingsControllerTest < ActionController::TestCase
   test 'should error when updating drain with invalid data' do
     Thing.stub(:find, @thing) do
       @thing.stub(:update, false) do
-        put :update, format: 'json', id: @thing.id, thing: {adopted_name: 'hello'}
+        put things_url, params: {id: @thing.id, thing: {adopted_name: 'hello'}, format: :json}
       end
     end
     assert_response :error
@@ -56,7 +55,7 @@ class ThingsControllerTest < ActionController::TestCase
   test 'should update drain and send an adopted confirmation email' do
     sign_in @user
     num_deliveries = ActionMailer::Base.deliveries.size
-    put :update, format: 'json', id: @thing.id, thing: {adopted_name: 'Drain', user_id: @user.id}
+    put things_url, params: {id: @thing.id, thing: {adopted_name: 'Drain', user_id: @user.id}, format: :json}
     assert @thing.reload.adopted?
     assert_equal num_deliveries + 1, ActionMailer::Base.deliveries.size
     assert_response :success
@@ -69,7 +68,7 @@ class ThingsControllerTest < ActionController::TestCase
   test 'should send second confirmation email' do
     sign_in @user
     @user.things = [things(:thing_2)]
-    put :update, format: 'json', id: @thing.id, thing: {adopted_name: 'Drain', user_id: @user.id}
+    put things_url, params: {id: @thing.id, thing: {adopted_name: 'Drain', user_id: @user.id}, format: :json}
     assert @thing.reload.adopted?
     assert_response :success
 
@@ -81,7 +80,7 @@ class ThingsControllerTest < ActionController::TestCase
   test 'should update drain but not send an adopted confirmation email upon abandonment' do
     sign_in @user
     num_deliveries = ActionMailer::Base.deliveries.size
-    put :update, format: 'json', id: @thing.id, thing: {adopted_name: 'Another Drain', user_id: nil} # a nil user_id is an abandonment
+    put things_url, params: {id: @thing.id, thing: {adopted_name: 'Another Drain', user_id: nil}, format: :json} # a nil user_id is an abandonment
     assert_not @thing.reload.adopted?
     assert_equal num_deliveries, ActionMailer::Base.deliveries.size
     assert_response :success

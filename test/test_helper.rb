@@ -15,6 +15,12 @@ require File.expand_path('../config/environment', __dir__)
 require 'rails/test_help'
 require 'webmock/minitest'
 
+module ActionDispatch
+  class IntegrationTest
+    include Devise::Test::IntegrationHelpers
+  end
+end
+
 module ActiveSupport
   class TestCase
     ActiveRecord::Migration.check_pending!
