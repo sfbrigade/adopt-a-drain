@@ -14,20 +14,14 @@
     .form-group
       %label.control-label{:for => "user_first_name", :id => "user_first_name_label"}
         = t("labels.first_name")
-        %small
-          = t("captions.public")
       = f.text_field "first_name", :class => "form-control"
     .form-group
-      %label.control-label{:for => "user_last_name", :id => "user_last_name_label"}
+      %labelthin.control-label{:for => "user_last_name", :id => "user_last_name_label"}
         = t("labels.last_name")
-        %small
-          = t("captions.public_optional")
       = f.text_field "last_name", :class => "form-control"
     .form-group
-      %label.control-label{:for => "user_organization", :id => "user_organization_label"}
+      %labelthin.control-label{:for => "user_organization", :id => "user_organization_label"}
         = t("labels.organization")
-        %small
-          = t("captions.public_optional")
       = f.text_field "organization", :class => "form-control"
     .form-group.hidden
       %label.control-label{:for => "user_voice_number", :id => "user_voice_number_label"}
@@ -36,10 +30,10 @@
           = image_tag "lock.png", :class => "lock", :alt => t("captions.private"), :title => t("captions.private")
       = f.telephone_field "voice_number", :placeholder => t("defaults.voice_number"), :class => "form-control"
     .form-group
-      %label.control-label{:for => "user_sms_number", :id => "user_sms_number_label"}
+      %labelthin.control-label{:for => "user_sms_number", :id => "user_sms_number_label"}
         = t("labels.sms_number")
         %small
-          = t("captions.private_optional")
+          =t("captions.private")
       = f.telephone_field "sms_number", :placeholder => t("defaults.sms_number"), :class => "form-control"
     .form-group
       %label.control-label{:name => "password", :type => "password", :for => "user_password_confirmation", :id => "user_password_confirmation_label"}
