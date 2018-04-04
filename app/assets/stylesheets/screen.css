@@ -17,6 +17,11 @@ label {
   text-align: left;
 }
 
+labelthin {
+  text-align: left;
+  font-weight: lighter;
+}
+
 input {
   width: 200px;
 }
