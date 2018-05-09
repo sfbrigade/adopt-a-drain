@@ -37,6 +37,7 @@ class ThingImporter
         lng: lng,
         type: csv_thing['Drain_Type'],
         system_use_code: csv_thing['System_Use_Code'],
+        priority: csv_thing['Priority'] == '1',
       }
     end
 
@@ -58,10 +59,11 @@ class ThingImporter
           lat numeric(16,14),
           lng numeric(17,14),
           city_id integer,
-          system_use_code varchar
+          system_use_code varchar,
+          priority boolean
         )
       SQL
-      conn.raw_connection.prepare(insert_statement_id, 'INSERT INTO temp_thing_import (name, lat, lng, city_id, system_use_code) VALUES($1, $2, $3, $4, $5)')
+      conn.raw_connection.prepare(insert_statement_id, 'INSERT INTO temp_thing_import (name, lat, lng, city_id, system_use_code, priority) VALUES($1, $2, $3, $4, $5, $6)')
 
       response = Net::HTTP.get_response(URI.parse(source_url))
       raise 'unable to fetch data source' unless response.is_a? Net::HTTPSuccess
@@ -72,7 +74,7 @@ class ThingImporter
         each do |thing|
         conn.raw_connection.exec_prepared(
           insert_statement_id,
-          [thing[:type], thing[:lat], thing[:lng], thing[:city_id], thing[:system_use_code]],
+          [thing[:type], thing[:lat], thing[:lng], thing[:city_id], thing[:system_use_code], thing[:priority]],
         )
       end
 
@@ -103,12 +105,13 @@ class ThingImporter
       SQL
 
       ActiveRecord::Base.connection.execute(<<-SQL.strip_heredoc)
-        INSERT INTO things(name, lat, lng, city_id, system_use_code)
-        SELECT name, lat, lng, city_id, system_use_code FROM temp_thing_import
+        INSERT INTO things(name, lat, lng, city_id, system_use_code, priority)
+        SELECT name, lat, lng, city_id, system_use_code, priority FROM temp_thing_import
         ON CONFLICT(city_id) DO UPDATE SET
           lat = EXCLUDED.lat,
           lng = EXCLUDED.lng,
           name = EXCLUDED.name,
+          priority = EXCLUDED.priority,
           deleted_at = NULL
       SQL
 

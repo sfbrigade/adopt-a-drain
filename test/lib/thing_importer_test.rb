@@ -32,11 +32,11 @@ class ThingImporterTest < ActiveSupport::TestCase
 
     fake_url = 'http://sf-drain-data.org'
     fake_response = [
-      'PUC_Maximo_Asset_ID,Drain_Type,System_Use_Code,Location',
-      'N-3,Catch Basin Drain,ABC,"(42.38, -71.07)"',
-      'N-10,Catch Basin Drain,DEF,"(36.75, -121.40)"',
-      'N-11,Catch Basin Drain,ABC,"(37.75, -122.40)"',
-      'N-12,Catch Basin Drain,DEF,"(39.75, -121.40)"',
+      'PUC_Maximo_Asset_ID,Drain_Type,System_Use_Code,Location,Priority',
+      'N-3,Catch Basin Drain,ABC,"(42.38, -71.07)",1',
+      'N-10,Catch Basin Drain,DEF,"(36.75, -121.40)",0',
+      'N-11,Catch Basin Drain,ABC,"(37.75, -122.40)",1',
+      'N-12,Catch Basin Drain,DEF,"(39.75, -121.40)",1',
     ].join("\n")
     stub_request(:get, fake_url).to_return(body: fake_response)
 
@@ -59,14 +59,17 @@ class ThingImporterTest < ActiveSupport::TestCase
     assert_not_nil new_thing
     assert_equal new_thing.lat, BigDecimal(39.75, 16)
     assert_equal new_thing.lng, BigDecimal(-121.40, 16)
+    assert_equal new_thing.priority, true
 
     # Asserts properties on thing_11 have been updated
     assert_equal thing11.lat, BigDecimal(37.75, 16)
     assert_equal thing11.lng, BigDecimal(-122.40, 16)
+    assert_equal thing11.priority, true
 
     # Asserts properties on thing_10 have been updated
     assert_equal 'Catch Basin Drain', thing10.name
     assert_equal BigDecimal(36.75, 16), thing10.lat
     assert_equal BigDecimal(-121.40, 16), thing10.lng
+    assert_equal false, thing10.priority
   end
 end
