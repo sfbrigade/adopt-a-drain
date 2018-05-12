@@ -28,5 +28,8 @@ module AdoptAThing
 
     config.action_controller.per_form_csrf_tokens = true
     config.action_controller.forgery_protection_origin_check = true
+
+    # TODO: Remove once we are happy with Rails 5.2 as this new behavior will log everyone out
+    config.action_dispatch.use_authenticated_cookie_encryption = false
   end
 end
