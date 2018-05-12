@@ -20,7 +20,7 @@ class AdoptionMover
               WHERE
                 user_id IS NOT NULL
                 -- only recently deleted things
-                AND (deleted_at > #{ActiveRecord::Base.sanitize(from)})
+                AND (deleted_at > #{ActiveRecord::Base.connection.quote(from)})
             )
           SELECT
             deleted_adopted_things.id AS deleted_adopted_thing_id,
@@ -39,7 +39,7 @@ class AdoptionMover
               ORDER BY distance_in_feet
               LIMIT 1
             ) AS closest_unadopted_thing ON 1=1
-          WHERE distance_in_feet < #{ActiveRecord::Base.sanitize(maximum_movement_in_feet)}
+          WHERE distance_in_feet < #{ActiveRecord::Base.connection.quote(maximum_movement_in_feet)}
           ORDER BY distance_in_feet
           ;
 SQL

@@ -9,8 +9,6 @@ require 'obscenity/active_model'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-ActiveSupport.halt_callback_chains_on_return_false = false
-
 module AdoptAThing
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
@@ -26,7 +24,6 @@ module AdoptAThing
     # config.i18n.default_locale = :de
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
-    config.active_record.raise_in_transactional_callbacks = true
     config.active_record.belongs_to_required_by_default = true
 
     config.action_controller.per_form_csrf_tokens = true
