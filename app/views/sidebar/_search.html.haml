@@ -1,4 +1,4 @@
-= form_tag "/address", :method => "get", :id => "address_form", :class => "search-form" do
+= form_with url: "/address", :method => "get", :id => "address_form", :class => "search-form" do
   = hidden_field_tag "limit", params[:limit] || 25
   = hidden_field_tag "current_user_id", current_user.try(:id)
   %fieldset.form-group.hidden
