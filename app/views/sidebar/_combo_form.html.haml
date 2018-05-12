@@ -1,4 +1,4 @@
-= form_with model: User.new, :html => {:id => "combo-form", :class => "form-vertical"} do |f|
+= form_for :user, :html => {:id => "combo-form", :class => "form-vertical"} do |f|
   %fieldset#common_fields
     .form-group
       %label.control-label{:for => "user_email", :id => "user_email_label"}
