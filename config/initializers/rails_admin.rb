@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 RailsAdmin.config do |config|
-  # not real models
+  # internal models
   # https://github.com/sferik/rails_admin/issues/3014
   config.excluded_models = ['ActiveStorage::Blob', 'ActiveStorage::Attachment']
 
