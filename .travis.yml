@@ -16,4 +16,4 @@ deploy:
   app: adoptadrainsf-staging
   on:
     repo: sfbrigade/adopt-a-drain
-    branch: production
+    branch: master
