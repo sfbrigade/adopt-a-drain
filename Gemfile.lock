@@ -85,7 +85,7 @@ GEM
     ffi (1.9.23)
     font-awesome-rails (4.7.0.4)
       railties (>= 3.2, < 6.0)
-    geokit (1.11.0)
+    geokit (1.12.0)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
     haml (5.0.4)
@@ -274,7 +274,7 @@ DEPENDENCIES
   coveralls
   devise (~> 4.3)
   dotenv-rails
-  geokit (~> 1.0)
+  geokit (~> 1.12)
   haml (~> 5.0)
   http_accept_language (~> 2.0)
   local_time (~> 2.0)
