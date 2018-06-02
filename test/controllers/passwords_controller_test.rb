@@ -48,7 +48,7 @@ class PasswordsControllerTest < ActionDispatch::IntegrationTest
     @user.send_reset_password_instructions
     put user_password_url, params: {user: {reset_password_token: 'invalid_token', password: 'new_password'}}
     @user.reload
-    assert !@user.valid_password?('new_password')
+    assert_not @user.valid_password?('new_password')
     assert_response :error
     assert_equal ['is invalid'], JSON.parse(response.body)['errors']['reset_password_token']
   end
