@@ -24,21 +24,38 @@ $(function() {
     zoomControl: true,
     styles: [
       {
-        "featureType": "poi.business",
+        "featureType": "administrative",
+        "elementType": "geometry",
         "stylers": [
           {
             "visibility": "off"
-          },
-        ],
+          }
+        ]
       },
       {
-        "featureType": "poi.park",
-        "elementType": "labels.text",
+        "featureType": "poi",
         "stylers": [
           {
             "visibility": "off"
-          },
-        ],
+          }
+        ]
+      },
+      {
+        "featureType": "road",
+        "elementType": "labels.icon",
+        "stylers": [
+          {
+            "visibility": "off"
+          }
+        ]
+      },
+      {
+        "featureType": "transit",
+        "stylers": [
+          {
+            "visibility": "off"
+          }
+        ]
       },
       {
         "featureType": "landscape",
@@ -82,15 +99,6 @@ $(function() {
           {"hue": "#0078FF"},
           {"saturation": -13.200000000000003},
           {"lightness": 2.4000000000000057},
-          {"gamma": 1}
-        ]
-      },
-      {
-        "featureType": "poi",
-        "stylers": [
-          {"hue": "#00FF6A"},
-          {"saturation": -1.0989010989011234},
-          {"lightness": 11.200000000000017},
           {"gamma": 1}
         ]
       }
