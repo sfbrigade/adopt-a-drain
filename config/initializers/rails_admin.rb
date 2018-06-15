@@ -17,7 +17,7 @@ RailsAdmin.config do |config|
 
   config.model 'Thing' do
     list do
-      scopes [nil, :only_deleted]
+      scopes [nil, :adopted, :only_deleted]
     end
 
     label I18n.t('defaults.thing')
