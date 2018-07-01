@@ -29,7 +29,7 @@ class Thing < ApplicationRecord
       WHERE deleted_at is NULL
       ORDER BY distance
       LIMIT ?
-      SQL
+    SQL
     find_by_sql([query, lat.to_f, lng.to_f, limit.to_i])
   end
 

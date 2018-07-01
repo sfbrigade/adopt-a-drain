@@ -42,7 +42,7 @@ class AdoptionMover
           WHERE distance_in_feet < #{ActiveRecord::Base.connection.quote(maximum_movement_in_feet)}
           ORDER BY distance_in_feet
           ;
-SQL
+        SQL
 
         records.each do |record|
           deleted_adopted_thing = Thing.unscoped.find(record['deleted_adopted_thing_id'])
