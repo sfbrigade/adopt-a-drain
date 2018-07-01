@@ -5,7 +5,7 @@ ruby '2.5.0'
 
 gem 'airbrake', '~> 7.3'
 gem 'devise', '~> 4.3'
-gem 'geokit', '~> 1.12'
+gem 'geokit', '~> 1.13'
 gem 'haml', '~> 5.0'
 gem 'http_accept_language', '~> 2.0'
 gem 'local_time', '~> 2.0'
