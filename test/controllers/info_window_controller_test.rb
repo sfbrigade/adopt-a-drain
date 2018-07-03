@@ -63,16 +63,27 @@ class InfoWindowControllerTest < ActionDispatch::IntegrationTest
     end
   end
 
-  test 'should show special link on adoption form if it has one' do
+  test 'should show priority text on adoption form for priority drains' do
     sign_in @user
     Thing.stub :find_by, @thing do
-      @thing.stub :detail_link, 'http://example.com' do
+      @thing.stub 'priority', true do
+        get info_window_url, params: {thing_id: @thing.id}
+      end
+    end
+    assert_response :success
+    assert_select 'p', /.* in Need/
+  end
+
+  test 'should show special link on adoption form for MS4' do
+    sign_in @user
+    Thing.stub :find_by, @thing do
+      @thing.stub 'system_use_code', 'MS4' do
         get info_window_url, params: {thing_id: @thing.id}
       end
     end
     assert_response :success
     assert_select 'a', /This .* is special! Learn why./ do
-      assert_select '[href=?]', 'http://example.com'
+      assert_select '[href=?]', 'http://sfwater.org/index.aspx?page=399'
     end
   end
 

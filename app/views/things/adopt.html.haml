@@ -9,7 +9,10 @@
   %fieldset.form-group
     = f.submit t("buttons.adopt"), :class => "btn btn-primary btn-block"
 
-  - unless @thing.detail_link.blank?
+  - if @thing.priority
     %p
-      %a{href: "#{@thing.detail_link}", target: '_blank'}
-        = t("links.thing_details", :thing => t("defaults.thing"))
+      = t("titles.priority_html", :thing_title  => t("defaults.thing").titlecase, :thing => t("defaults.thing"))
+  - elsif @thing.system_use_code == 'MS4'
+    %p
+      %a{href: "http://sfwater.org/index.aspx?page=399", target: '_blank'}
+        = t("links.special", :thing => t("defaults.thing"))
