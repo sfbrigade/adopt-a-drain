@@ -153,22 +153,7 @@ $(function() {
       origin,
       anchor
     ),
-    priority_adopted: new google.maps.MarkerImage(constants.priorityAdoptedMarkerImage,
-      size,
-      origin,
-      anchor
-    ),
-    priority_adopted_by_you: new google.maps.MarkerImage(constants.priorityAdoptedByYouImage,
-      size,
-      origin,
-      anchor
-    ),
-    priority_to_sewer: new google.maps.MarkerImage(constants.priorityToSewerMarkerImage,
-      size,
-      origin,
-      anchor
-    ),
-    priority_to_bay_ocean: new google.maps.MarkerImage(constants.priorityToBayOceanMarkerImage,
+    priority: new google.maps.MarkerImage(constants.priorityMarkerImage,
       size,
       origin,
       anchor
@@ -191,6 +176,11 @@ $(function() {
         title: 'Sewer to ocean/bay',
         icon: constants.toBayOceanMarkerImage
       },
+      available_priority: {
+        name: 'Drains in Need',
+        title: 'Priority drains',
+        icon: constants.priorityMarkerImage
+      },
       adopted: {
         name: 'Adopted',
         title: 'Adopted by other',
@@ -200,26 +190,6 @@ $(function() {
         name: 'Adopted by you',
         title: 'Adopted by you',
         icon: constants.adoptedByYouImage
-      },
-      priority_available: {
-        name: 'Priority',
-        title: 'Priority',
-        icon: constants.priorityToSewerMarkerImage
-      },
-      priority_available_bay: {
-        name: 'Drains to Ocean/Bay (priority)',
-        title: 'Sewer to ocean/bay (priority)',
-        icon: constants.priorityToBayOceanMarkerImage
-      },
-      adopted_priority: {
-        name: 'Adopted (priority)',
-        title:  'Adopted by other (priority)',
-        icon: constants.priorityAdoptedMarkerImage
-      },
-      priority_adopted_by_you: {
-        name: 'Adopted by you (priority)',
-        title: 'Adopted by you (priority)',
-        icon: constants.priorityAdoptedByYouImage
       }
   };
 
@@ -229,7 +199,7 @@ $(function() {
     var name = type.name;
     var icon = type.icon;
     var title = type.title;
-    legendItems.append($('<div class="col-xs-6 col-md-3"></div>').append(
+    legendItems.append($('<div class="col-xs-6 col-md-4"></div>').append(
       '<img src="' + icon + '" alt="' + title + ' icon" title="' + title + '"> ' + name + '</img>'
     ));
   }
@@ -332,14 +302,14 @@ $(function() {
               if (thing.system_use_code == 'MS4') {
                 type = 'to_bay_ocean';
               }
+              if(thing.priority) { // override bay to ocean
+                type = 'priority';
+              }
               if (thing.user_id) {
                 type  = 'adopted';
               }
               if (thing.user_id == current_user_id) {
                 type = 'adopted_by_you'
-              }
-              if(thing.priority) {
-                type = 'priority_' + type;
               }
               addMarker(thing.id, point, type, thing.user_id);
             }, i * 100);
