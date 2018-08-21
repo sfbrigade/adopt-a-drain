@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class CreateReminders < ActiveRecord::Migration
+class CreateReminders < ActiveRecord::Migration[4.2]
   def change
     create_table :reminders do |t|
       t.timestamps

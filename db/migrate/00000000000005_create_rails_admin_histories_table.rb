@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class CreateRailsAdminHistoriesTable < ActiveRecord::Migration
+class CreateRailsAdminHistoriesTable < ActiveRecord::Migration[4.2]
   def change
     create_table :rails_admin_histories do |t|
       t.string :message # title, name, or object_id

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class CreateThings < ActiveRecord::Migration
+class CreateThings < ActiveRecord::Migration[4.2]
   def change
     create_table :things do |t|
       t.timestamps
