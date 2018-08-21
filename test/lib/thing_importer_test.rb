@@ -32,7 +32,7 @@ class ThingImporterTest < ActiveSupport::TestCase
 
     fake_url = 'http://sf-drain-data.org'
     fake_response = [
-      'PUC_Maximo_Asset_ID,Drain_Type,System_Use_Code,Location,Priority',
+      'PUC_Maximo_Asset_ID,Drain_Type,System_Use_Code,Location,PRIORITY_STATUS',
       'N-3,Catch Basin Drain,ABC,"(42.38, -71.07)",1',
       'N-10,Catch Basin Drain,DEF,"(36.75, -121.40)",0',
       'N-11,Catch Basin Drain,ABC,"(37.75, -122.40)",1',

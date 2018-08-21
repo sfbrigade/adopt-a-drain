@@ -37,7 +37,7 @@ class ThingImporter
         lng: lng,
         type: csv_thing['Drain_Type'],
         system_use_code: csv_thing['System_Use_Code'],
-        priority: csv_thing['Priority'] == '1',
+        priority: csv_thing['PRIORITY_STATUS'] == '1',
       }
     end
 
