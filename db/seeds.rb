@@ -21,6 +21,7 @@ r = Random.new
     thing.lat = r.rand(37.75..37.78)
     thing.lng = r.rand(-122.43..-122.41)
     thing.system_use_code = ['MS4', 'STORM', 'COMB', 'UNK'].sample
+    thing.priority = [true, false].sample
     thing.save!
   end
 end

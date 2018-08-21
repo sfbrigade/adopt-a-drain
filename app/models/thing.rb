@@ -45,16 +45,6 @@ class Thing < ApplicationRecord
     !user.nil?
   end
 
-  # Link to more details about type of Thing
-  #
-  # Currently hardcoding since we only have one special case, but we should
-  # move this into the database if we add an additional
-  def detail_link
-    return 'http://sfwater.org/index.aspx?page=399' if system_use_code == 'MS4'
-
-    nil
-  end
-
   def as_json(options = {})
     super({methods: [:display_name]}.merge(options))
   end

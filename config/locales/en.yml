@@ -74,7 +74,7 @@ en:
     remembered_password: "Never mind. I remembered my password."
     click_for_more: "Click to learn more"
     learn_more: "Learn more about adopting a %{thing}"
-    thing_details: "This %{thing} is special! Learn why."
+    special: "This %{thing} is special! Learn why."
   notices:
     abandoned: "%{thing} abandoned!"
     adopted: "You just adopted a %{thing}!"
@@ -99,6 +99,7 @@ en:
     edit_profile: "Edit your Profile"
     main: "Adopt-a-%{thing} San Francisco"
     ofline: "of %{organization}"
+    priority_html: '<strong>%{thing_title} in Need</strong> - this %{thing} tends to get dirtier than its siblings and needs more TLC'
     sign_in: "Sign in to adopt this %{thing}"
     thank_you: "Thank you for adopting this %{thing}!"
     email_text: "I just adopted one of San Francisco's 25,000+ storm drains and pledged to help keep it clear of leaves and debris. You, too, can Adopt a Drain and help the City avoid flooding at %{root_url}."

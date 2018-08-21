@@ -131,73 +131,82 @@ $(function() {
   var size = new google.maps.Size(27.0, 38.0);
   var origin = new google.maps.Point(0, 0);
   var anchor = new google.maps.Point(13.0, 18.0);
-  var adoptedMarker = new google.maps.MarkerImage(constants.adoptedMarkerImage,
-    size,
-    origin,
-    anchor
-  );
-  var adoptedByYouMarker = new google.maps.MarkerImage(constants.adoptedByYouImage,
-    size,
-    origin,
-    anchor
-  );
-  var toSewerMarker = new google.maps.MarkerImage(constants.toSewerMarkerImage,
-    size,
-    origin,
-    anchor
-  );
-  var toBayOceanMarker = new google.maps.MarkerImage(constants.toBayOceanMarkerImage,
-    size,
-    origin,
-    anchor
-  );
-  var markerShadowImage = new google.maps.MarkerImage(constants.markerShadowImage,
-    new google.maps.Size(46.0, 37.0),
-    origin,
-    anchor
-  );
 
-  var legend = document.getElementById('legend');
-
-  var legendItems = document.createElement('div');
-  legendItems.className = "legend-items";
-
-  var icons = {
-    available: {
-      name: 'Drains to Sewer',
-      title:  'Sewer',
-      icon: constants.toSewerMarkerImage
-    },
-    availableBay: {
-      name: 'Drains to Ocean/Bay',
-      title: 'Sewer to ocean/bay',
-      icon: constants.toBayOceanMarkerImage
-    },
-    adopted: {
-      name: 'Adopted',
-      title:  'Adopted by other',
-      icon: constants.adoptedMarkerImage
-    },
-    adopted_by_you: {
-      name: 'Adopted by you',
-      title:  'Adopted by you',
-      icon: constants.adoptedByYouImage
-    }
+  var markerImages = {
+    adopted: new google.maps.MarkerImage(constants.adoptedMarkerImage,
+      size,
+      origin,
+      anchor
+    ),
+    adopted_by_you: new google.maps.MarkerImage(constants.adoptedByYouImage,
+      size,
+      origin,
+      anchor
+    ),
+    to_sewer: new google.maps.MarkerImage(constants.toSewerMarkerImage,
+      size,
+      origin,
+      anchor
+    ),
+    to_bay_ocean: new google.maps.MarkerImage(constants.toBayOceanMarkerImage,
+      size,
+      origin,
+      anchor
+    ),
+    priority: new google.maps.MarkerImage(constants.priorityMarkerImage,
+      size,
+      origin,
+      anchor
+    ),
+    markerShadowImage: new google.maps.MarkerImage(constants.markerShadowImage,
+      new google.maps.Size(46.0, 37.0),
+      origin,
+      anchor
+    ),
   };
 
+  var icons = {
+      available: {
+        name: 'Drains to Sewer',
+        title:  'Sewer',
+        icon: constants.toSewerMarkerImage
+      },
+      available_bay: {
+        name: 'Drains to Ocean/Bay',
+        title: 'Sewer to ocean/bay',
+        icon: constants.toBayOceanMarkerImage
+      },
+      available_priority: {
+        name: 'Drains in Need',
+        title: 'Priority drains',
+        icon: constants.priorityMarkerImage
+      },
+      adopted: {
+        name: 'Adopted',
+        title: 'Adopted by other',
+        icon: constants.adoptedMarkerImage
+      },
+      adopted_by_you: {
+        name: 'Adopted by you',
+        title: 'Adopted by you',
+        icon: constants.adoptedByYouImage
+      }
+  };
+
+  var legendItems = $('<div class="container-fluid legend-items"></div>');
   for (var key in icons) {
     var type = icons[key];
     var name = type.name;
     var icon = type.icon;
     var title = type.title;
-    var div = document.createElement('div');
-    div.innerHTML = '<img src="' + icon + '" alt="' + title + ' icon" title="' + title + '"> ' + name;
-    legendItems.appendChild(div);
+    legendItems.append($('<div class="col-xs-6 col-md-4"></div>').append(
+      '<img src="' + icon + '" alt="' + title + ' icon" title="' + title + '"> ' + name + '</img>'
+    ));
   }
 
-  legend.appendChild(legendItems);
+  $('#legend').append(legendItems);
 
-  map.controls[google.maps.ControlPosition.BOTTOM_CENTER].push(legend);
+  map.controls[google.maps.ControlPosition.BOTTOM_CENTER].push(document.getElementById('legend'));
 
   $('#toggleLegend').click(function(){
     $('#legend .legend-items').slideToggle(function(){
@@ -213,21 +222,14 @@ $(function() {
   var thingIds = [];
   var adoptedThings = [];
   function addMarker(thingId, point, type, user_id) {
-    if(type === 'adopted') {
-      var image = adoptedMarker;
-    } else if(type === 'adoptedbyyou') {
-      var image = adoptedByYouMarker;
-    } else if(type === 'tosewer') {
-      var image = toSewerMarker;
-    } else if(type === 'tobayocean') {
-      var image = toBayOceanMarker;
-    }
+    var image = markerImages[type];
+
     var marker = new google.maps.Marker({
       animation: google.maps.Animation.DROP,
       icon: image,
       map: map,
       position: point,
-      shadow: markerShadowImage
+      shadow: markerImages['shadow'],
     });
     google.maps.event.addListener(marker, 'click', function() {
       console.log(marker);
@@ -260,7 +262,7 @@ $(function() {
       });
     });
     thingIds.push(thingId);
-    if (type === 'adopted' || type === 'adoptedbyyou') {
+    if (type === 'adopted' || type === 'adopted_by_you') {
       adoptedThings.push([user_id, marker]);
     }
   }
@@ -296,15 +298,18 @@ $(function() {
             }
             setTimeout(function() {
               var point = new google.maps.LatLng(thing.lat, thing.lng);
-              var type = 'tosewer'
-              if(thing.system_use_code == 'MS4') {
-                type = 'tobayocean';
+              var type = 'to_sewer'
+              if (thing.system_use_code == 'MS4') {
+                type = 'to_bay_ocean';
               }
-              if(thing.user_id) {
+              if(thing.priority) { // override bay to ocean
+                type = 'priority';
+              }
+              if (thing.user_id) {
                 type  = 'adopted';
               }
-              if(thing.user_id == current_user_id){
-                type = 'adoptedbyyou'
+              if (thing.user_id == current_user_id) {
+                type = 'adopted_by_you'
               }
               addMarker(thing.id, point, type, thing.user_id);
             }, i * 100);
@@ -316,7 +321,7 @@ $(function() {
   function flipMarkers() {
     for (var key in adoptedThings) {
       if(adoptedThings[key][0] == current_user_id) {
-        adoptedThings[key][1].setIcon(adoptedByYouMarker);
+        adoptedThings[key][1].setIcon(markerImages['adopted_by_you']);
       } else {
         adoptedThings[key][1].setIcon(adoptedMarker);
       }
@@ -680,7 +685,7 @@ $(function() {
             activeInfoWindow.close();
             activeInfoWindow.setContent(data);
             activeInfoWindow.open(map, activeMarker);
-            activeMarker.setIcon(adoptedByYouMarker);
+            activeMarker.setIcon(markerImages['adopted_by_you']);
             activeMarker.setAnimation(google.maps.Animation.BOUNCE);
           }
         });
@@ -720,7 +725,7 @@ $(function() {
               activeInfoWindow.close();
               activeInfoWindow.setContent(data);
               activeInfoWindow.open(map, activeMarker);
-              activeMarker.setIcon(toSewerMarker);
+              activeMarker.setIcon(markerImages['to_sewer']);
               activeMarker.setAnimation(null);
             }
           });
