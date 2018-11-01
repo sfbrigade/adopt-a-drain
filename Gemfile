@@ -3,7 +3,7 @@
 source 'https://rubygems.org'
 ruby '2.5.0'
 
-gem 'airbrake', '~> 7.3'
+gem 'airbrake', '~> 7.4'
 gem 'devise', '~> 4.5'
 gem 'geokit', '~> 1.13'
 gem 'haml', '~> 5.0'
