@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 ruby '2.5.0'
 
 gem 'airbrake', '~> 8.1'
-gem 'devise', '~> 4.5'
+gem 'devise', '~> 4.6'
 gem 'geokit', '~> 1.13'
 gem 'haml', '~> 5.0'
 gem 'http_accept_language', '~> 2.0'
