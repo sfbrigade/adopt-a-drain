@@ -17,7 +17,7 @@
             .small
               Last updated
               = local_date(Time.now, '%B %e, %Y')
-          %a.guidelines{:href => "#guidelines", :"data-toggle" => "modal", :"data-target" => "#guidelines"}
+          %a.details{:href => "#details", :"data-toggle" => "modal", :"data-target" => "#details"}
             %button.btn.btn-block.btn-primary#tagline
               = t("defaults.tagline")
         #content
@@ -31,7 +31,7 @@
             = render :partial => "sidebar/search"
         -# Corresponds to guideline div above
         %div.hidden.visible-xs-block
-          %a.guidelines{:href => "#guidelines", :"data-toggle" => "modal", :"data-target" => "#guidelines"}
+          %a.details{:href => "#details", :"data-toggle" => "modal", :"data-target" => "#details"}
             %button.btn.btn-block.btn-primary#tagline
               = t("defaults.tagline")
         #logos
@@ -64,8 +64,8 @@
         .show-hide
           %a#toggleLegend{:href=>"#"}
             Hide
-  = render :partial => "sidebar/tos"
-  = render :partial => "sidebar/guidelines"
+  = render :partial => "sidebar/tos", layout: "layouts/modal", locals: {id: "tos", title: "Volunteer Waiver Release Of Liability"}
+  = render :partial => "sidebar/details", layout: "layouts/modal", locals: {id: "details", title: "What Does it Mean To Adopt a Drain?"}
 :javascript
   $(function() {
     $('.navbar-toggle').on('click', function(){
