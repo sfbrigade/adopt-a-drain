@@ -104,7 +104,7 @@ en:
     thank_you: "Thank you for adopting this %{thing}!"
     email_text: "I just adopted one of San Francisco's 25,000+ storm drains and pledged to help keep it clear of leaves and debris. You, too, can Adopt a Drain and help the City avoid flooding at %{root_url}."
     tweet_text: "Flooded streets aren't fun. I adopted my own SF storm drain at %{root_url}. Claim and name yours #sfsewer @sfwater"
-    tos: "Terms of Service"
+    tos: "Volunteer Waiver"
   site:
     description: "You can adopt one of San Francisco's 25,000+ storm drains and pledge to help keep it clear of leaves and debris this rainy season. Lend a hand and help the City avoid flooding."
   sponsors:
