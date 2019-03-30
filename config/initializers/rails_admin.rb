@@ -35,13 +35,16 @@ RailsAdmin.config do |config|
     list do
       scopes [nil, :only_deleted]
     end
-
     configure :created_at do
       label 'Account Creation Date'
     end
 
     configure :updated_at do
       label 'Last Login'
+    end
+
+    update do
+      exclude_fields :password, :password_confirmation
     end
   end
 end
