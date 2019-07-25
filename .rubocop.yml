@@ -1,5 +1,5 @@
-Rails:
-  Enabled: true
+require:
+  - rubocop-rails
 
 AllCops:
   TargetRailsVersion: 4.0

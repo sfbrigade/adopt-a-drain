@@ -39,7 +39,7 @@ end
 group :test do
   gem 'coveralls', require: false
   gem 'rails-controller-testing' # TODO: remove and replace usages
-  gem 'rubocop'
+  gem 'rubocop-rails'
   gem 'simplecov', require: false
   gem 'webmock'
 end

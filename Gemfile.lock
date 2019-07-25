@@ -213,6 +213,9 @@ GEM
       rainbow (>= 2.2.2, < 4.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 1.4.0, < 1.7)
+    rubocop-rails (2.2.1)
+      rack (>= 1.1)
+      rubocop (>= 0.72.0)
     ruby-progressbar (1.10.1)
     safe_yaml (1.0.5)
     sass (3.6.0)
@@ -288,7 +291,7 @@ DEPENDENCIES
   rails-controller-testing
   rails_12factor
   rails_admin (~> 1.4)
-  rubocop
+  rubocop-rails
   sass-rails (>= 4.0.3)
   simplecov
   skylight
