@@ -18,18 +18,7 @@ Layout/SpaceInsideHashLiteralBraces:
 Layout/AccessModifierIndentation:
   EnforcedStyle: outdent
 
-Metrics/AbcSize:
-  Exclude:
-    - 'app/controllers/passwords_controller.rb'
-    - 'app/controllers/sessions_controller.rb'
-    - 'app/controllers/users_controller.rb'
-    - 'lib/thing_importer.rb'
-    - 'lib/adoption_mover.rb'
-
 Metrics/BlockLength:
-  Exclude:
-    - 'config/initializers/*'
-    - 'lib/adoption_mover.rb' # removing heredocs would decrease readibility
   ExcludedMethods: ['test']
 
 Metrics/BlockNesting:
@@ -44,8 +33,6 @@ Metrics/MethodLength:
   Max: 10
   Exclude:
     - 'db/migrate/*.rb'
-    - 'lib/thing_importer.rb' # removing heredocs would decrease readibility
-    - 'lib/adoption_mover.rb' # removing heredocs would decrease readibility
 
 Metrics/ParameterLists:
   Max: 4
@@ -72,7 +59,3 @@ Style/TrailingCommaInArrayLiteral:
 
 Style/TrailingCommaInHashLiteral:
   EnforcedStyleForMultiline: 'comma'
-
-Style/WordArray:
-  Exclude:
-    - 'app/helpers/application_helper.rb'

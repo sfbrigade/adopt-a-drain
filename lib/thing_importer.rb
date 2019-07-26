@@ -48,6 +48,9 @@ class ThingImporter
     end
 
     # load all of the items into a temporary table, temp_thing_import
+    #
+    # rubocop:disable Metrics/AbcSize
+    # rubocop:disable Metrics/MethodLength
     def import_temp_things(source_url)
       insert_statement_id = SecureRandom.uuid
 
@@ -80,6 +83,8 @@ class ThingImporter
 
       conn.execute('CREATE INDEX "temp_thing_import_city_id" ON temp_thing_import(city_id)')
     end
+    # rubocop:enable Metrics/AbcSize
+    # rubocop:enable Metrics/MethodLength
 
     # mark drains as deleted that do not exist in the new set
     # return the deleted drains partitioned by whether they were adopted
@@ -94,6 +99,7 @@ class ThingImporter
       deleted_things.partition { |thing| thing['user_id'].present? }
     end
 
+    # rubocop:disable Metrics/MethodLength
     def upsert_things
       # postgresql's RETURNING returns both updated and inserted records so we
       # query for the items to be inserted first
@@ -117,5 +123,6 @@ class ThingImporter
 
       created_things
     end
+    # rubocop:enable Metrics/MethodLength
   end
 end
