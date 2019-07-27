@@ -8,10 +8,13 @@ class AdoptionMover
     # within `maximum_movement_in_feet` away
     #
     # Returns a hash of {to_id: from_id}
+    #
+    # rubocop:disable Metrics/AbcSize
+    # rubocop:disable Metrics/MethodLength
     def move_close_deleted_adoptions(from, maximum_movement_in_feet)
       moved_adoptions = {}
 
-      Thing.transaction do
+      Thing.transaction do # rubocop:disable Metrics/BlockLength
         records = ActiveRecord::Base.connection.execute <<-SQL.strip_heredoc
           WITH
             deleted_adopted_things AS (
@@ -60,5 +63,7 @@ class AdoptionMover
 
       moved_adoptions
     end
+    # rubocop:enable Metrics/AbcSize
+    # rubocop:enable Metrics/MethodLength
   end
 end

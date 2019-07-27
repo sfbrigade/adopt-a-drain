@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
 module ApplicationHelper
-  def us_states # rubocop:disable MethodLength
+  # rubocop:disable Metrics/MethodLength
+  # rubocop:disable Style/WordArray
+  def us_states
     [
       ['Massachusetts', 'MA'],
       ['Alabama', 'AL'],
@@ -58,4 +60,6 @@ module ApplicationHelper
       ['Wyoming', 'WY'],
     ]
   end
+  # rubocop:enable Metrics/MethodLength
+  # rubocop:enable Style/WordArray
 end

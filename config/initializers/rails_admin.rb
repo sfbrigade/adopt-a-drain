@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RailsAdmin.config do |config|
+RailsAdmin.config do |config| # rubocop:disable Metrics/BlockLength
   # internal models
   # https://github.com/sferik/rails_admin/issues/3014
   config.excluded_models = ['ActiveStorage::Blob', 'ActiveStorage::Attachment']

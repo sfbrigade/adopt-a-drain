@@ -19,7 +19,7 @@ class PasswordsController < Devise::PasswordsController
     render('main/index')
   end
 
-  def update
+  def update # rubocop:disable Metrics/AbcSize
     self.resource = resource_class.reset_password_by_token(resource_params)
 
     yield resource if block_given?

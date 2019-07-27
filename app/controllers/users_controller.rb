@@ -5,7 +5,7 @@ class UsersController < Devise::RegistrationsController
     render('sidebar/edit_profile', layout: 'sidebar')
   end
 
-  def update
+  def update # rubocop:disable Metrics/AbcSize
     self.resource = resource_class.to_adapter.get!(send(:"current_#{resource_name}").to_key)
     if update_resource(resource, account_update_params)
       yield resource if block_given?
@@ -18,7 +18,7 @@ class UsersController < Devise::RegistrationsController
     end
   end
 
-  def create
+  def create # rubocop:disable Metrics/AbcSize
     build_resource(sign_up_params)
     if resource.save
       yield resource if block_given?
