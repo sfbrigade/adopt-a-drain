@@ -92,7 +92,7 @@ GEM
     haml (5.1.1)
       temple (>= 0.8.0)
       tilt
-    hashdiff (0.4.0)
+    hashdiff (1.0.0)
     http_accept_language (2.1.1)
     i18n (1.6.0)
       concurrent-ruby (~> 1.0)
@@ -262,7 +262,7 @@ GEM
       activemodel
     warden (1.2.8)
       rack (>= 2.0.6)
-    webmock (3.6.0)
+    webmock (3.6.2)
       addressable (>= 2.3.6)
       crack (>= 0.3.2)
       hashdiff (>= 0.4.0, < 2.0.0)
