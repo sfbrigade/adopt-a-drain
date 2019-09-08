@@ -3,6 +3,8 @@
 require 'net/http'
 require 'uri'
 
+LOCATION_REGEX = /POINT \((?<lng>-?\d+\.\d+) (?<lat>-?\d+\.\d+)\)/.freeze
+
 # class for importing things from CSV datasource
 # is currently very specific to drains from DataSF
 #
@@ -30,11 +32,13 @@ class ThingImporter
     end
 
     def normalize_thing(csv_thing)
-      (lat, lng) = csv_thing['Location'].delete('()').split(',').map(&:strip)
+      matches = csv_thing['Location'].match(LOCATION_REGEX)
+      throw "could not match location #{csv_thing['Location']}" unless matches
+
       {
         city_id: csv_thing['PUC_Maximo_Asset_ID'].gsub!('N-', ''),
-        lat: lat,
-        lng: lng,
+        lat: matches[:lat],
+        lng: matches[:lng],
         type: csv_thing['Drain_Type'],
         system_use_code: csv_thing['System_Use_Code'],
         priority: csv_thing['PRIORITY_STATUS'] == '1',
