@@ -33,10 +33,10 @@ class ThingImporterTest < ActiveSupport::TestCase
     fake_url = 'http://sf-drain-data.org'
     fake_response = [
       'PUC_Maximo_Asset_ID,Drain_Type,System_Use_Code,Location,PRIORITY_STATUS',
-      'N-3,Catch Basin Drain,ABC,"(42.38, -71.07)",1',
-      'N-10,Catch Basin Drain,DEF,"(36.75, -121.40)",0',
-      'N-11,Catch Basin Drain,ABC,"(37.75, -122.40)",1',
-      'N-12,Catch Basin Drain,DEF,"(39.75, -121.40)",1',
+      'N-3,Catch Basin Drain,ABC,"POINT (-71.07 42.38)",1',
+      'N-10,Catch Basin Drain,DEF,"POINT (-121.40 36.75)",0',
+      'N-11,Catch Basin Drain,ABC,"POINT (-122.40 37.75)",1',
+      'N-12,Catch Basin Drain,DEF,"POINT (-121.40 39.75)",1',
     ].join("\n")
     stub_request(:get, fake_url).to_return(body: fake_response)
 
