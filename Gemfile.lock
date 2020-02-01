@@ -48,9 +48,9 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.7.0)
       public_suffix (>= 2.0.2, < 5.0)
-    airbrake (9.5.0)
-      airbrake-ruby (~> 4.8)
-    airbrake-ruby (4.8.0)
+    airbrake (10.0.1)
+      airbrake-ruby (~> 4.13)
+    airbrake-ruby (4.13.0)
       rbtree3 (~> 0.5)
     arel (9.0.0)
     ast (2.4.0)
@@ -192,7 +192,7 @@ GEM
       thor (>= 0.19.0, < 2.0)
     rainbow (3.0.0)
     rake (13.0.0)
-    rbtree3 (0.5.0)
+    rbtree3 (0.6.0)
     remotipart (1.4.3)
     responders (3.0.0)
       actionpack (>= 5.0)
@@ -264,7 +264,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  airbrake (~> 9.5)
+  airbrake (~> 10.0)
   byebug
   coveralls
   devise (~> 4.7)
