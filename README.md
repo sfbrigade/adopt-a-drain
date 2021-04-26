@@ -42,6 +42,68 @@ To setup a local development environment with
 # Override database settings as the docker host:
 echo DB_HOST=db > .env
 echo DB_USER=postgres >> .env
+```
+## Medford updates
+```
+# Medford update 1
+edit Dockerfile to reflect ruby 2.6.3
+
+# Medford update 2 - Update mimemagic
+bundle update mimemagic 
+
+# Medford update 3 - add user information to .env file
+USER=theuser
+POSTGRES_PASSWORD=thepassword
+
+# Medford update 4 - Update database.yml
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: adopt_a_thing_development
+  pool: 5
+  username: postgres
+  password: <%= ENV['POSTGRES_PASSWORD'] %>
+  
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: adopt_a_thing_test
+  pool: 5
+  username: postgres
+  password: <%= ENV['POSTGRES_PASSWORD'] %>
+
+medford update #5: 
+adjust docker-compose.yml
+    environment:
+      PGDATABASE: adopt_a_thing_development
+      PGUSER: postgres
+      PGHOST: db
+  
+added to Dockerfile: (copied from Savannah implementation)
+    EXPOSE 3000
+    COPY . /myapp
+    ARG BUNDLE_INSTALL_ARGS
+    ARG RAILS_ENV=development
+    RUN bundle install ${BUNDLE_INSTALL_ARGS}
+    RUN if [ "$RAILS_ENV" = "production" ]; then SECRET_TOKEN=$(rake secret) bundle exec rake assets:precompile; fi
+    CMD ["bundle", "exec", "puma", "-C", "config/puma.rb"]
+
+medford update #6
+    Docker has changed since this repo was built.  Docker has added additional security requirements.
+    Add the postgres password to the .env file, and then add these lines to docker config files.
+    docker-compose.yml:
+        db:
+            image: postgres
+            environment: 
+            - POSTGRES_PASSWORD=<%= ENV['POSTGRES_PASSWORD'] %>
+    database.yml:
+        (to both development: and test:)
+            username: postgres
+            password: <%= ENV['POSTGRES_PASSWORD'] %>
+    see - https://stackoverflow.com/questions/60368999/why-wont-my-docker-postgresql-container-run-anymore
+
+medford update #7
+    docker-compose up
 
 # Setup your docker based postgres database:
 docker-compose run --rm web bundle exec rake db:setup
