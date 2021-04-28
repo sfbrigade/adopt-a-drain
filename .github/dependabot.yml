@@ -1,0 +1,22 @@
+version: 2
+updates:
+- package-ecosystem: bundler
+  directory: "/"
+  schedule:
+    interval: monthly
+    time: "09:00"
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: rails
+    versions:
+    - ">= 6.a, < 7"
+  - dependency-name: webmock
+    versions:
+    - 3.11.0
+    - 3.11.2
+  - dependency-name: nokogiri
+    versions:
+    - 1.11.0
+  - dependency-name: rails
+    versions:
+    - 5.2.4.4
