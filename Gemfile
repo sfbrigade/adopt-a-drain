@@ -11,7 +11,7 @@ gem 'http_accept_language', '~> 2.0'
 gem 'local_time', '~> 2.1'
 gem 'obscenity', '~> 1.0', '>= 1.0.2'
 gem 'pg'
-gem 'rails', '~> 5.2.3'
+gem 'rails', '~> 5.2.6'
 gem 'rails_admin', '~> 2.0'
 gem 'validates_formatting_of', '~> 0.9.0'
 
