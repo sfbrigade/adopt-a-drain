@@ -1,10 +1,11 @@
 // require constants
 
 var constants = window.constants
+var cityConfig = window.cityConfig
 
 $(function() {
   var initialLocation;
-  var center = new google.maps.LatLng(37.774929, -122.419416);
+  var center = new google.maps.LatLng(cityConfig.mapCenterLat, cityConfig.mapCenterLng);
   var browserSupportFlag =  new Boolean();
   var errorClass = 'has-error';
   var current_user_id = $('#current_user_id').val() ? $('#current_user_id').val() : '';

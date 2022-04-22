@@ -67,6 +67,10 @@
   = render :partial => "sidebar/tos", layout: "layouts/modal", locals: {id: "tos", title: "Volunteer Waiver & Release Of Liability"}
   = render :partial => "sidebar/details", layout: "layouts/modal", locals: {id: "details", title: "What Does it Mean To Adopt a Drain?"}
 :javascript
+  this.cityConfig = { 
+    mapCenterLat: #{c('map_center.lat')}, 
+    mapCenterLng: #{c('map_center.lng')} 
+  }
   $(function() {
     $('.navbar-toggle').on('click', function(){
       $('div.sidebar').toggleClass('sidebar-full');

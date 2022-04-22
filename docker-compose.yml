@@ -5,7 +5,8 @@ services:
     volumes:
       - postgres:/var/lib/postgresql/data
     environment:
-      POSTGRES_HOST_AUTH_METHOD: trust
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
   web:
     build: .
     command: bundle exec rails s -p ${PORT:-3000} -b '0.0.0.0'
@@ -15,6 +16,7 @@ services:
       - "${PORT:-3000}:${PORT:-3000}"
     environment:
       PORT: ${PORT:-3000}
+      DB_HOST: db
     depends_on:
       - db
 
