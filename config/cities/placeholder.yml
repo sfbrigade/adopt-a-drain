@@ -1,0 +1,14 @@
+map_center:
+  lat: "37.774929"
+  lng: "-122.419416"
+city:
+  name: <%= CityHelper.p("city.name") %>
+  type: <%= CityHelper.p("city.type") %>
+app_url: <%= CityHelper.p("app_url") %>
+details:
+  destination: <%= CityHelper.p("details.destination") %>
+  trash_page_label: <%= CityHelper.p("details.trash_page_label") %>
+  trash_page_url: <%= CityHelper.p("details.trash_page_url") %>
+  contact_email: <%= CityHelper.p("details.contact_email") %>
+  contact_name: <%= CityHelper.p("details.contact_name") %>
+  report_issues: <%= CityHelper.p("details.report_issues") %>

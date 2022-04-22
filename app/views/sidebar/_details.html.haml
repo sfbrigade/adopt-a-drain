@@ -1,85 +1,30 @@
 %p
-  Thank you for your interest in adopting one or more of San Francisco's 25,000+ storm drains (also called catch
-  basins). By pledging to keep your drain free of leaves and debris, you are joining your neighbors in helping to
-  protect the environment, manage stormwater, and minimize flooding.
-%h3
-  How to Care For Your Adopted Drain
-%ul
-  %li
-    If possible, clear the drain before it starts raining.
-  %li
-    Put leaves and other natural material in the green compost bin.
-    Put trash in the black garbage bin.
-  %li
-    Clear about 10 feet on both sides of the drain.
-  %li
-    Medical waste or needles? Construction debris? Toxic materials? <a target="_blank" 
-    href=" http://www.sf311.org/index.aspx?page=298"> 
-    Report it to the City's Customer Service Center, 311 on the web </a>
-    (or dial 3-1-1).
-%h3
-  Drain Cleaning Safety Tips
-%ul
-  %li
-    Never try to lift the drain grate.
-  %li
-    Clear from the sidewalk, not the street.
-  %li
-    Wear reflective clothing so vehicles can see you.
-  %li
-    Always wear gloves and be careful of sharp objects!
-  %li
-    Use a rake, broom, or shovel - not your hands.
-%p
-  %em
-    Remember, the City and County of San Francisco won't be held
-    responsible for anything that happens to you or others in service
-    of maintaining your drain. Please be careful!
-
-%h3
-  Free Tools and Training
-%p
-  We invite drain adopters to periodic events during the rainy season
-  where they can receive drain cleaning trainings and free tools and
-  supplies. Please keep an eye on your email for notification of these
-  events. You will also receive email reminders from the SFPUC to clear
-  your drains when rain is expected.
-
-%h3
-  Spread the Word!
-%p
-  Excited about the Adopt a Drain program? Want to encourage your
-  coworkers, friends and neighbors to participate? Utilize social media
-  to spread the word.
-%p
-  %a{target: "_blank", href: "https://www.facebook.com/SFWater", class: ""}
-    =image_tag("icons/facebook.png", :alt => "sfwater facebook", :title => "sfwater facebook")
-  %a{target: "_blank", href: "https://www.instagram.com/sfwater/", class: ""}
-    =image_tag "icons/instagram.png", :alt => "sfwater instagram", :title => "sfwater instagram"
-  %a{target: "_blank", href: "https://twitter.com/SFWater", class: ""}
-    =image_tag "icons/twitter.png", :alt => "sfwater twitter", :title => "sfwater twitter"
+  <i>What is an Adopt-a-Drain program? What does it mean to adopt a drain? </i>An Adopt-a-Drain program is a volunteer program which helps keep our local environment clean and healthy. Participants sign up to adopt a drain (or drains!) and then check on that drain before and after heavy rain, wind, or snow. Any extra care is even better! Anything that goes down the drain ends up in #{c("details.destination")}, which is why this program is so helpful. Keeping the drains clear can also help prevent streets from flooding as it ensures that water can freely flow down the drain.
 
 %p
-  Remember to tag us <a target="_blank" href=https://twitter.com/sfwater?lang=en>@SFWater</a>
-  and to use the following hashtags: <a target="_blank"
-  href="https://twitter.com/hashtag/drainhero">#DrainHero</a>, <a target="_blank"
-  href="https://twitter.com/hashtag/adoptadrain">#AdoptADrain</a> and <a target="_blank"
-  href="https://twitter.com/hashtag/sfsewer">#SFSewer</a>.
+  <i> What am I adopting? What is a storm drain? </i> Storm drains are the grates you see in streets and roads. They’ll be to the side of the road, along the curb, and in #{c("city.name")} are typically square. Since asphalt and pavement can’t absorb water, any rain and melting snow flow along the street and into these drains. A basin below the grates, called a catch basin, is meant to collect this water and any debris but it can fill up quickly and doesn’t capture everything. Water that goes into the drains - and anything in that water, like trash - doesn’t get treated or go to a wastewater plant, instead it empties into nearby water bodies.
 
-%h3
-  Volunteer Developer Opportunities
-%p
-  Are you a programmer with Ruby on Rails experience who wants to help
-  improve and maintain the Adopt a Drain application? Don't be shy!
-  We're always seeking assistance with the code! Get involved and
-  follow our <a target="_blank"
-  href="https://github.com/sfbrigade/adopt-a-drain">GitHub page</a>.
+%h2
+  Drain Cleaning Instructions
 
-%h3
-  Contact Us
-%p
-  Email questions and feedback to <a target="_blank"
-  href="mailto:info@sfwater.org">info@sfwater.org</a>. We'd love to
-  hear from you!
+%ol
+  %li
+    Be mindful of road traffic and keep an eye out for cars, trucks, and bicycles when clearing your drain. Work from the sidewalk as much as possible.
+  %li
+    Clear any debris that is directly blocking your storm drain, and clear an area a few feet around the drain to remove anything that could get swept in or block the drain. This might include leaves, sticks, snow, or trash.
+  %li
+    Wear gloves or use a rake or broom to clear the drain, and use caution when picking up debris.
+  %li
+    Dispose of trash or recyclables as you would normally, in their appropriate bins. Organic material like leaves and sticks can be disposed of with your yard waste. Visit <a target="_blank" href="#{c("details.trash_page_url")}"> #{c("details.trash_page_label")} </a> if you have questions about how to dispose of anything you clear out of your drain.
+  %li
+    Never try to remove the grate or reach inside the storm drain.
+  %li
+    Be sure to check your drain around major weather events - before and after it rains, or after a snow storm.
+  %li
+    Check if your drain has a label saying “No Dumping, Drains to River.” If it doesn’t, let us know if you’d like to help out and add one by contacting #{c("details.contact_name")} at <a href="mailto:#{c("details.contact_email")}">#{c("details.contact_email")}</a>.
+  %li
+    If anything appears to be broken, or you have any concerns about your drain, please report non-emergency issues #{c("details.report_issues")}.
+  %li
+    Please contact <a href="mailto:#{c("details.contact_email")}">#{c("details.contact_email")}</a> with any other questions about the program or stormwater in general.
 
 = render :partial => "sidebar/guidelines"

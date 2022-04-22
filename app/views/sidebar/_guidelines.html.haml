@@ -1,26 +1,23 @@
-%h2 Volunteer Guidelines
+%h2 General Volunteer Guidelines
 %p
-  Thank you for your dedication to San Francisco! Your well-being and enjoyment are important to us. All volunteers are
-  expected to conduct themselves in a safe, courteous and legal manner while participating in activities on City
-  property or right-of-way. Please follow these guidelines:
+  Thank you for your dedication to #{c("city.name")}! Your well-being and enjoyment are important to us. All volunteers are expected to conduct themselves in a safe, courteous and legal manner while participating in activities on #{c("city.type")} property or right-of-way. Please follow these guidelines:
 
 %h3 General Safety
 %ol
   %li
     Wear appropriate footwear, clothing, sunscreen and eye protection (when necessary).
   %li
-    Keep hydrated.
+    Be extra careful in wet or slippery conditions.
   %li
-    Call 911 for emergencies.
+    Report non-emergency issues #{c("details.report_issues")}. Call 911 for emergencies.
+
 
 %h3 Traffic Safety
 %ol
   %li
-    When possible, stay out of the street.
+    Stay out of the street as much as possible, and work from the sidewalk if you can.
   %li
-    When working in or around a gutter, work from the sidewalk.
-  %li
-    If working near traffic, wear a bright reflective work vest or bright-colored clothing. x
+    Wear a bright reflective work vest or bright-colored clothing.
   %li
     Cross streets at signals or crosswalks, not mid-block.
 
@@ -29,57 +26,24 @@
   %li
     Always work with a partner near water.
   %li
-    Watch for poison oak and blackberry thorns.
-  %li
     Watch your footing on slopes and shorelines.
   %li
     Never allow children to work on steep slopes or near shorelines without adult supervision.
 
-%h3 Tool Safety
-%ol
-  %li
-    Do not use power tools.
-  %li
-    Carry tools carefully to avoid hitting others.
-  %li
-    Always use the right tools for the job. Ask a team leader or City staff if you are unsure.
-  %li
-    Never allow children to play with tools or to use sharp tools.
-  %li
-    Always keep your tools close to you.
-  %li
-    Count and clean your tools after an activity/cleanup.
-  %li
-    Return borrowed tools and supplies, as agreed.
-
 %h3 Debris Removal
 %ol
   %li
-    Always sweep, rake or shovel glass. Never pick up sharp objects with your hands.
+    Wear gloves or use a rake or broom to clear the drain, and use caution when picking up debris. Always sweep, rake or shovel glass. Never pick up sharp objects with your hands.
   %li
-    Separate collected materials into recycling (blue), compost (green), and landfill (black) garbage bins.
+    Separate collected materials into the appropriate garbage, recycling, yard waste, or compost bins.
   %li
-    To the extent practicable, place recyclables and smaller garbage bags into home refuse containers.
-  %li
-    Contact San Francisco 311 by calling 3-1-1 for pickup of City-issued debris bags. Tell them the quantity of
-    bags, type of debris and the nearest address.
-  %li
-    Never touch hazardous or medical waste (including automotive fluids and hypodermic needles). Report items to
-    the 311 Call Center or to a City employee, if present.
+    Never touch hazardous or medical waste (including automotive fluids and hypodermic needles). Report such items #{c("details.report_issues")}.
 
 %h3 General Conduct
 %ol
   %li
-    Always be courteous to fellow volunteers and City employees.
+    Always be courteous to fellow volunteers and #{c("city.type")} employees.
   %li
-    Never use vulgar language or engage in threatening or disruptive actions.
-  %li
-    Never make unauthorized changes to City property or right-of-way, including landscaping.
-  %li
-    Keep foreign mulch and soils off City property and right-of-way.
+    Never make unauthorized changes to #{c("city.type")} property or right-of-way, including landscaping.
 
-%p
-  Note: The City reserves the right to immediately withdraw support for any volunteer if, at the sole discretion of the
-  City, the volunteer’s conduct while participating in volunteer activities on City property or right-of-way is
-  determined to be inconsistent with these Volunteer Guidelines or violates any local, state or federal law. Withdrawal
-  of support may include repossession of loaned tools and revocation of related agreements.
+= render :partial => "sidebar/tos"

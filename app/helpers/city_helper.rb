@@ -1,11 +1,14 @@
 # frozen_string_literal: true
 
+require 'dry/schema'
+require 'hash_dot'
+
 module CityHelper
   def c(key_chain)
     keys = key_chain.to_s.split('.')
     raise 'Must specify keys' if keys.empty?
 
-    keys.inject(CityHelper.config('somerville')) { |h, key| h[key] }
+    raw(keys.inject(CityHelper.config('placeholder')) { |h, key| h.fetch(key.to_sym) })
   end
 
   def self.config(name)
@@ -17,16 +20,48 @@ module CityHelper
   end
 
   def self.load!(city_config_dir)
-    # TOOD: validate
-    default_config = File.join(city_config_dir, 'default.yml')
-    raise 'missing default config' unless File.exist?(default_config)
-
     @@cities = {}
     Dir[File.join(city_config_dir, '*.yml')].each do |config|
-      next if File.identical?(config, default_config)
-
       city_name = File.basename(config, '.yml')
-      @@cities[city_name] = Config.load_files(default_config, config)
+      @@cities[city_name] = Schema.load(config)
+    end
+  end
+
+  # Placeholder markup
+  def self.p(name)
+    "'<b style=\"color: red;\">[#{name}]</b>'"
+  end
+end
+
+class Schema
+  def self.load(config)
+    file_contents = IO.read(config)
+    file_contents = ERB.new(file_contents).result
+    yml = YAML.safe_load(file_contents)
+    result = @@schema.call(yml)
+    errors = result.errors(full: true).to_h
+    raise "Error validating #{config}:\n#{errors}" unless errors.empty?
+
+    result.to_h.to_dot
+  end
+
+  @@schema = Dry::Schema.Params do
+    required(:map_center).hash do
+      required(:lat).filled(:string)
+      required(:lng).filled(:string)
+    end
+    required(:city).hash do
+      required(:name).filled(:string)
+      required(:type).filled(:string)
+    end
+    required(:app_url).filled(:string)
+    required(:details).hash do
+      required(:destination).filled(:string)
+      required(:trash_page_label).filled(:string)
+      required(:trash_page_url).filled(:string)
+      required(:contact_email).filled(:string)
+      required(:contact_name).filled(:string)
+      required(:report_issues).filled(:string)
     end
   end
 end

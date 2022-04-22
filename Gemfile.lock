@@ -58,9 +58,6 @@ GEM
     builder (3.2.3)
     byebug (11.1.1)
     concurrent-ruby (1.1.5)
-    config (4.0.0)
-      deep_merge (~> 1.2, >= 1.2.1)
-      dry-validation (~> 1.0, >= 1.0.0)
     coveralls (0.8.23)
       json (>= 1.8, < 3)
       simplecov (~> 0.16.1)
@@ -70,7 +67,6 @@ GEM
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
     crass (1.0.5)
-    deep_merge (1.2.2)
     devise (4.7.1)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -108,12 +104,6 @@ GEM
       dry-core (~> 0.5, >= 0.5)
       dry-inflector (~> 0.1, >= 0.1.2)
       dry-logic (~> 1.0, >= 1.0.2)
-    dry-validation (1.7.0)
-      concurrent-ruby (~> 1.0)
-      dry-container (~> 0.7, >= 0.7.1)
-      dry-core (~> 0.5, >= 0.5)
-      dry-initializer (~> 3.0)
-      dry-schema (~> 1.8, >= 1.8.0)
     erubi (1.9.0)
     execjs (2.7.0)
     ffi (1.11.1)
@@ -123,6 +113,7 @@ GEM
     haml (5.1.2)
       temple (>= 0.8.0)
       tilt
+    hash_dot (2.5.0)
     hashdiff (1.0.0)
     http_accept_language (2.1.1)
     i18n (1.7.0)
@@ -304,12 +295,13 @@ PLATFORMS
 DEPENDENCIES
   airbrake (~> 10.0)
   byebug
-  config
   coveralls
   devise (~> 4.7)
   dotenv-rails
+  dry-schema
   geokit (~> 1.13)
   haml (~> 5.1)
+  hash_dot
   http_accept_language (~> 2.0)
   local_time (~> 2.1)
   obscenity (~> 1.0, >= 1.0.2)
