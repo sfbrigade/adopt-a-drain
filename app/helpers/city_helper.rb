@@ -8,7 +8,16 @@ module CityHelper
     keys = key_chain.to_s.split('.')
     raise 'Must specify keys' if keys.empty?
 
-    raw(keys.inject(CityHelper.config('placeholder')) { |h, key| h.fetch(key.to_sym) })
+    config = CityHelper.config(current_city)
+    raw(keys.inject(config) { |h, key| h.fetch(key.to_sym) })
+  end
+
+  def current_city
+    if respond_to?(:request)
+      city = request.domain.split('.')[0]
+      return city if @@cities.key?(city)
+    end
+    'placeholder'
   end
 
   def self.config(name)
