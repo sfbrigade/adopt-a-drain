@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# TODO: redirect to about if domain is not supported
 Rails.application.routes.draw do
   devise_for :users, controllers: {
     passwords: 'passwords',

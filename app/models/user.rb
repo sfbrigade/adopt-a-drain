@@ -23,4 +23,18 @@ class User < ApplicationRecord
   def name
     [first_name, last_name].reject(&:blank?).join(' ')
   end
+
+  def self.find_for_authentication(conditions = {})
+    where(email: conditions[:email], city_domain: CityHelper.city_for_domain(conditions[:domain])).first
+  end
+
+  # Disable devise email uniqueness check since we require that email + city be unique
+  # https://github.com/heartcombo/devise/wiki/How-To%3A-Allow-users-to-sign-in-with-something-other-than-their-email-address
+  def email_required?
+    false
+  end
+
+  def will_save_change_to_email?
+    false
+  end
 end

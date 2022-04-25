@@ -20,6 +20,7 @@ class UsersController < Devise::RegistrationsController
 
   def create # rubocop:disable Metrics/AbcSize
     build_resource(sign_up_params)
+    resource.city_domain = helpers.current_city
     if resource.save
       yield resource if block_given?
       sign_in(resource_name, resource)

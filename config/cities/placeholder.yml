@@ -5,6 +5,7 @@ city:
   name: <%= CityHelper.p("city.name") %>
   type: <%= CityHelper.p("city.type") %>
 app_url: <%= CityHelper.p("app_url") %>
+domains: [localhost]
 details:
   destination: <%= CityHelper.p("details.destination") %>
   trash_page_label: <%= CityHelper.p("details.trash_page_label") %>

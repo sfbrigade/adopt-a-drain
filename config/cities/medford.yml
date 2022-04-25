@@ -1,10 +1,11 @@
 map_center:
-  lat: '42.4184296'
-  lng: '-71.1061639'
+  lat: "42.4184296"
+  lng: "-71.1061639"
 city:
   name: Medford
   type: City
 app_url: https://adopt-a-drain-medford-mass.herokuapp.com/
+domains: [medford.localhost, medford.mysticdrains.org]
 details:
   destination: the Mystic River or Lakes
   trash_page_label: Medford’s trash and recycling page

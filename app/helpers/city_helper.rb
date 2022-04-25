@@ -4,6 +4,7 @@ require 'dry/schema'
 require 'hash_dot'
 
 module CityHelper
+  # View helper for reading strings from the config
   def c(key_chain)
     keys = key_chain.to_s.split('.')
     raise 'Must specify keys' if keys.empty?
@@ -13,11 +14,12 @@ module CityHelper
   end
 
   def current_city
-    if respond_to?(:request)
-      city = request.domain.split('.')[0]
-      return city if @@cities.key?(city)
-    end
-    'placeholder'
+    @current_city ||= CityHelper.city_for_domain(request.domain) if respond_to?(:request)
+    @current_city
+  end
+
+  def self.city_for_domain(domain)
+    @@domains[domain]
   end
 
   def self.config(name)
@@ -30,9 +32,14 @@ module CityHelper
 
   def self.load!(city_config_dir)
     @@cities = {}
+    @@domains = {}
     Dir[File.join(city_config_dir, '*.yml')].each do |config|
       city_name = File.basename(config, '.yml')
-      @@cities[city_name] = Schema.load(config)
+      city = Schema.load(config)
+      @@cities[city_name] = city
+      city.domains.each do |domain|
+        @@domains[domain] = city_name
+      end
     end
   end
 
@@ -63,6 +70,7 @@ class Schema
       required(:name).filled(:string)
       required(:type).filled(:string)
     end
+    required(:domains).filled(array[:string])
     required(:app_url).filled(:string)
     required(:details).hash do
       required(:destination).filled(:string)

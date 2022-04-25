@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_15_170343) do
+ActiveRecord::Schema.define(version: 2022_04_25_124630) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "cube"
@@ -103,7 +103,8 @@ ActiveRecord::Schema.define(version: 2018_05_15_170343) do
     t.string "last_sign_in_ip"
     t.string "first_name"
     t.string "last_name"
-    t.index ["email"], name: "index_users_on_email", unique: true
+    t.string "city_domain"
+    t.index ["email", "city_domain"], name: "users_by_email_and_city_domain", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
