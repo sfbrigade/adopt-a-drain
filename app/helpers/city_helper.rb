@@ -72,7 +72,6 @@ class Schema
       required(:type).filled(:string)
     end
     required(:domains).filled(array[:string])
-    required(:app_url).filled(:string)
     required(:details).hash do
       required(:destination).filled(:string)
       required(:trash_page_label).filled(:string)

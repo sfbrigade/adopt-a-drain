@@ -4,7 +4,6 @@ map_center:
 city:
   name: Medford
   type: City
-app_url: https://adopt-a-drain-medford-mass.herokuapp.com/
 domains: [medford.localhost, medford.mysticdrains.org]
 details:
   destination: the Mystic River or Lakes

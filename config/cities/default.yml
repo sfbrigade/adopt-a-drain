@@ -7,7 +7,6 @@ map_center:
 city:
   name: San Francisco
   type: City
-app_url: https://adopt-a-drain-medford-mass.herokuapp.com/
 domains: [localhost]
 details:
   destination: San Francisco

@@ -4,7 +4,6 @@ map_center:
 city:
   name: <%= CityHelper.p("city.name") %>
   type: <%= CityHelper.p("city.type") %>
-app_url: <%= CityHelper.p("app_url") %>
 domains: [placeholder.localhost]
 details:
   destination: <%= CityHelper.p("details.destination") %>
