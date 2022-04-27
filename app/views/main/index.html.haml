@@ -3,7 +3,7 @@
     .sidebar
       .navbar.navbar-default
         %a{href: root_url}
-          = image_tag "logos/adopt-a-drain.png", :alt => t("titles.main", :thing => t("defaults.thing").titleize), :title => t("titles.main", :thing => t("defaults.thing").titleize)
+          = image_tag c("adopt_a_drain_logo"), :alt => c("titles.main"), :title => c("titles.main")
         %button.navbar-toggle{"data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", :type => "button"}
           %span.sr-only Toggle navigation
           %span.icon-bar
@@ -27,7 +27,7 @@
           - elsif @reset_password_token.present?
             = render :partial => 'passwords/edit'
           - else
-            %iframe{ :width => "100%", :src => "https://www.youtube.com/embed/Z1Vjrx3IAH0", :frameborder => "0", :allowfullscreen => "allowfullscreen" }
+            %iframe{ :width => "100%", :src => "https://www.youtube.com/embed/269AeYt_S9s", :frameborder => "0", :allowfullscreen => "allowfullscreen" }
             = render :partial => "sidebar/search"
         -# Corresponds to guideline div above
         %div.hidden.visible-xs-block
@@ -37,24 +37,14 @@
         #logos
           .row
             .col-xs-4
-              %a{:href => "https://sfwater.org/index.aspx?page=1184"}
-                = image_tag "logos/sfpuc.png", :alt => t("sponsors.sfpuc"), :title => t("sponsors.sfpuc"), :class => "puc"
+              %a{:href => c("sponsors.city_url")}
+                = image_tag c("sponsors.city_logo"), :alt => c("sponsors.city"), :title => c("sponsors.city"), :class => "puc"
             .col-xs-4
-              %a{:href => "http://sfdpw.org/"}
-                = image_tag "logos/SFPWlogo.jpg", :alt => t("sponsors.sfpw"), :title => t("sponsors.sfpw"), :class => "dpw"
+              %a{:href => c("sponsors.org_url")}
+                = image_tag c("sponsors.org_logo"), :alt => c("sponsors.org"), :title => c("sponsors.org"), :class => "dpw"
             .col-xs-4
-              %a{:href => "http://datasf.org/"}
-                = image_tag "logos/DataSFLogo.png", :alt => t("sponsors.datasf"), :title => t("sponsors.datasf"), :class => "datasf"
-          .row
-            .col-xs-4
-              %a{:href => "http://codeforsanfrancisco.org/"}
-                = image_tag "logos/codeforsanfrancisco.png", :alt => t("sponsors.built"), :title => t("sponsors.built"), :class => "cfsf"
-            .col-xs-4
-              %a{:href => "http://codeforamerica.org/"}
-                = image_tag "logos/cfa.jpg", :alt => t("sponsors.cfa"), :title => t("sponsors.cfa"), :class => "cfa"
-            .col-xs-4
-              %a{:href => "http://tech.sfgov.org/"}
-                = image_tag "logos/dtlogo.png", :alt => t("sponsors.dt"), :title => t("sponsors.dt"), :class => "dt"
+              %a{:href => c("sponsors.dev_url")}
+                = image_tag c("sponsors.dev_logo"), :alt => c("sponsors.dev"), :title => c("sponsors.dev"), :class => "datasf"
     .col-md-9.map-container
       #map
         &nbsp;

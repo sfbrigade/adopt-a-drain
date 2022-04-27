@@ -12,3 +12,16 @@ details:
   contact_email: <%= CityHelper.p("details.contact_email") %>
   contact_name: <%= CityHelper.p("details.contact_name") %>
   report_issues: <%= CityHelper.p("details.report_issues") %>
+sponsors:
+  dev: Coronado Consulting
+  dev_logo: logos/coronado.png
+  dev_url: mailto:j.korenstein@gamedaymatchup.net?subject=Inquiry about technology behind Adopt-A-Drain
+  org: Mystic River Watershed Association
+  org_logo: logos/mrwa-logo.png
+  org_url: https://example.com
+  city: Placeholder city
+  city_logo: logos/placeholder-logo.png
+  city_url: https://example.com
+adopt_a_drain_logo: logos/placeholder-logo.png
+titles:
+  main: Adopt-a-Drain Placeholder

@@ -80,5 +80,22 @@ class Schema
       required(:contact_name).filled(:string)
       required(:report_issues).filled(:string)
     end
+    required(:adopt_a_drain_logo).filled(:string)
+    required(:sponsors).hash do
+      required(:dev).filled(:string)
+      required(:dev_logo).filled(:string)
+      required(:dev_url).filled(:string)
+
+      required(:org).filled(:string)
+      required(:org_logo).filled(:string)
+      required(:org_url).filled(:string)
+
+      required(:city).filled(:string)
+      required(:city_logo).filled(:string)
+      required(:city_url).filled(:string)
+    end
+    required(:titles).hash do
+      required(:main).filled(:string)
+    end
   end
 end

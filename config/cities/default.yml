@@ -15,3 +15,16 @@ details:
   contact_email: test@example.com
   contact_name: Placeholder
   report_issues: by contacting SF public works
+sponsors:
+  dev: Coronado Consulting
+  dev_logo: logos/coronado.png
+  dev_url: mailto:j.korenstein@gamedaymatchup.net?subject=Inquiry about technology behind Adopt-A-Drain
+  org: Medford Public Works
+  org_logo: logos/medford-org.png
+  org_url: https://medfordenergy.org/gogreen/
+  city: City of Medford
+  city_logo: logos/medford-city.png
+  city_url: https://www.medfordma.org/
+adopt_a_drain_logo: logos/adopt-a-drain-medford.png
+titles:
+  main: Adopt-a-Drain San Francisco
