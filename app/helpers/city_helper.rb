@@ -35,6 +35,7 @@ module CityHelper
     @@domains = {}
     Dir[File.join(city_config_dir, '*.yml')].each do |config|
       city_name = File.basename(config, '.yml')
+      city_name = nil if city_name == 'default'
       city = Schema.load(config)
       @@cities[city_name] = city
       city.domains.each do |domain|

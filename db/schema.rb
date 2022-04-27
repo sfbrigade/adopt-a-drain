@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_25_124630) do
+ActiveRecord::Schema.define(version: 2022_04_25_161153) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "cube"
@@ -75,7 +75,8 @@ ActiveRecord::Schema.define(version: 2022_04_25_124630) do
     t.datetime "deleted_at"
     t.string "adopted_name"
     t.boolean "priority", default: false, null: false
-    t.index ["city_id"], name: "index_things_on_city_id", unique: true
+    t.string "city_domain"
+    t.index ["city_id", "city_domain"], name: "things_by_city_id_and_domain", unique: true
     t.index ["deleted_at"], name: "index_things_on_deleted_at"
   end
 

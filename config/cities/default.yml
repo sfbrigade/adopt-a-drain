@@ -1,0 +1,18 @@
+# The default city is used when the current city is nil, for compatibility with
+# existing deployments. Existing deployments will not have city_domain set on
+# records.
+map_center:
+  lat: "37.774929"
+  lng: "-122.419416"
+city:
+  name: San Francisco
+  type: City
+app_url: https://adopt-a-drain-medford-mass.herokuapp.com/
+domains: [localhost]
+details:
+  destination: San Francisco
+  trash_page_label: SF public works
+  trash_page_url: https://www.sfpublicworks.org/
+  contact_email: test@example.com
+  contact_name: Placeholder
+  report_issues: by contacting SF public works

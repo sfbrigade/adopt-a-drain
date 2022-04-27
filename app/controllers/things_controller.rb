@@ -4,7 +4,10 @@ class ThingsController < ApplicationController
   respond_to :json
 
   def show
-    @things = Thing.find_closest(params[:lat], params[:lng], params[:limit] || 10)
+    @things = Thing.find_closest(params[:lat],
+                                 params[:lng],
+                                 params[:limit] || 10,
+                                 helpers.current_city)
     if @things.blank?
       render(json: {errors: {address: [t('errors.not_found', thing: t('defaults.thing'))]}}, status: :not_found)
     else

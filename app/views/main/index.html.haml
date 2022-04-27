@@ -13,7 +13,7 @@
         -# Corresponds to guideline div below
         %div.hidden-xs
           %h3.text-center
-            = t("titles.adopted_tagline", :count => Thing.adopted.count, :things => t("defaults.things"))
+            = t("titles.adopted_tagline", :count => Thing.adopted(current_city).count, :things => t("defaults.things"))
             .small
               Last updated
               = local_date(Time.now, '%B %e, %Y')

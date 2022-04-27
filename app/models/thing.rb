@@ -15,18 +15,24 @@ class Thing < ApplicationRecord
                  :full_address, :state, :street_address, :street_name,
                  :street_number, :zip
   has_many :reminders, dependent: :destroy
-  validates :city_id, uniqueness: true, allow_nil: true
+  validates :city_id,
+            uniqueness: {scope: :city_domain, message: 'ID should be unique per city'},
+            allow_nil: true
   validates :lat, presence: true
   validates :lng, presence: true
   validates :name, obscenity: true
 
-  scope :adopted, -> { where.not(user_id: nil) }
+  scope :adopted,
+        lambda { |city_domain|
+          where(city_domain: city_domain).where.not(user_id: nil)
+        }
 
-  def self.find_closest(lat, lng, limit = 10)
+  def self.find_closest(lat, lng, limit = 10, current_city = nil)
     query = <<-SQL
       SELECT *, earth_distance(ll_to_earth(lat, lng), ll_to_earth(?, ?)) as distance
       FROM things
       WHERE deleted_at is NULL
+      AND city_domain #{current_city.nil? ? ' IS NULL' : " = '#{current_city}'"}
       ORDER BY distance
       LIMIT ?
     SQL
