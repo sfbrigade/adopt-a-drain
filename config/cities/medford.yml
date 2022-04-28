@@ -5,6 +5,7 @@ city:
   name: Medford
   type: City
 domains: [medford.localhost, medford.mysticdrains.org]
+main_url: https://medford.mysticdrains.org/
 details:
   destination: the Mystic River or Lakes
   trash_page_label: Medford’s trash and recycling page
@@ -22,6 +23,15 @@ sponsors:
   city: City of Medford
   city_logo: logos/medford-city.png
   city_url: https://www.medfordma.org/
+socials:
+  site_url: https://medfordenergy.org/gogreen/
+  site_label: gogreenmedford.org
+  facebook: https://www.facebook.com/GoGreenMedford
+  instagram: https://www.instagram.com/gogreenmedford/?hl=en
+  twitter: https://twitter.com/GoGreenMedford
+  linkedin: https://www.linkedin.com/company/city-of-medford-medford-ma-02155/
+  email: enviro@medford-ma.gov
+  phone: 781-393-2137
 adopt_a_drain_logo: logos/adopt-a-drain-medford.png
 titles:
   main: Adopt-a-Drain Medford

@@ -4,6 +4,7 @@ class ThingMailer < ApplicationMailer
   def first_adoption_confirmation(thing)
     @thing = thing
     @user = thing.user
+    @current_city = thing.city_domain
 
     mail(to: @user.email, subject: ["Thanks for adopting a drain, #{@user.name.split.first}!"])
   end
@@ -11,18 +12,24 @@ class ThingMailer < ApplicationMailer
   def second_adoption_confirmation(thing)
     @thing = thing
     @user = thing.user
+    @current_city = thing.city_domain
+
     mail(to: @user.email, subject: ["Thanks for adopting another drain, #{@user.name.split.first}!"])
   end
 
   def third_adoption_confirmation(thing)
     @thing = thing
     @user = thing.user
+    @current_city = thing.city_domain
+
     mail(to: @user.email, subject: ["We really do love you, #{@user.name.split.first}!"])
   end
 
   def reminder(thing)
     @thing = thing
     @user = thing.user
+    @current_city = thing.city_domain
+
     mail(to: @user.email, subject: ['Remember to clear your adopted drain'])
   end
 

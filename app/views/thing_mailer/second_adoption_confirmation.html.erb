@@ -2,7 +2,7 @@
   <table width="100%" border="0" cellspacing="0" cellpadding="0">
     <tr>
       <td style="text-align: center;">
-        <%= image_tag "logos/adopt-a-drain-sfpuc.png", :alt => "sfwater adopt-a-drain logo", :title => "sfwater adopt-a-drain logo" %>
+        <%= image_tag c("adopt_a_drain_logo"), :alt => "adopt-a-drain logo", :title => "adopt-a-drain logo" %>
       </td>
     </tr>
   </table>
@@ -14,16 +14,10 @@
   <p>
     Wow! Thank you for adopting another drain.
   </p>
-  <p>
-    Use social media to spread the word! Be sure to tag us @sfwater and use the
-    hashtags #DrainHero, #AdoptADrain and #SFSewer in your posts.
-  </p>
 
   <p>
     If you encounter medical waste, construction debris, or if the drain is
-    clogged beneath the grate, <a
-    href="http://www.sf311.org/index.aspx?page=127">report to 311</a> to have
-    it cleared by the City.
+    clogged beneath the grate, report non-emergency issues <%= c("details.report_issues") %>.
   </p>
 
   <p>
@@ -35,45 +29,35 @@
     Sincerely,
   </p>
   <p>
-    SFPUC <a href="https://adoptadrain.sfwater.org/">Adopt a Drain</a> Team
+    <a href="<%= c("socials.site_url") %>">Adopt a Drain</a> Team
     <br />
-    <a href="tel:415-554-3289">415-554-3289</a>
+    <a href="tel:<%= c("socials.phone") %>"><%= c("socials.phone") %></a>
     <br />
-    <a href="mailto:info@sfwater.org">info@sfwater.org</a>
+    <a href="mailto:<%= c("socials.email") %>"><%= c("socials.email") %></a>
   </p>
 
   <p>
     <em>
-      Remember, the City and County of San Francisco won't be held responsible
-      for anything that happens to you or others in service of maintaining your
-      drain. Please be careful.
+      Remember, the <%= "#{c("city.type")} of #{c("city.name")}" %> is not responsible for anything that happens to you or others in service of maintaining your drain. Please be careful!
     </em>
   </p>
 
   <p style="font-style: italic; font-size: 11px;">
-    If you move or are no longer able to tend to your drain, please abandon it on
-    <a href="adoptadrain.sfwater.org">https://adoptadrain.sfwater.org</a>. Thank you.
+    If you move or are no longer able to tend to your drain, please let us know by unclaiming it on <a href="<%= c("main_url") %>">our site</a>. Thank you!
   </p>
 
   <p>
-    <a href="https://facebook.com/sfwater" style="text-decoration:none !important;">
-      <%= image_tag "icons/facebook.png", :alt => "sfwater facebook", :title => "sfwater facebook" %>
+    <a href="<%= c("socials.facebook") %>" style="text-decoration:none !important;">
+      <%= image_tag "icons/facebook.png", :alt => "mystic facebook", :title => "mystic facebook" %>
     </a>
     &nbsp;
-    <a href="https://twitter.com/SFWater" style="text-decoration:none !important;">
-      <%= image_tag "icons/twitter.png", :alt => "sfwater twitter", :title => "sfwater twitter" %>
+    <a href="<%= c("socials.twitter") %>" style="text-decoration:none !important;">
+      <%= image_tag "icons/twitter.png", :alt => "mystic twitter", :title => "mystic twitter" %>
     </a>
     &nbsp;
-    <a href="https://www.instagram.com/sfwater/" style="text-decoration:none !important;">
-      <%= image_tag "icons/instagram.png", :alt => "sfwater instagram", :title => "sfwater instagram" %>
-    </a>
-    &nbsp;
-    <a href="https://www.youtube.com/user/SFPUCcommunications" style="text-decoration:none !important;">
-      <%= image_tag "icons/youtube.png", :alt => "sfwater youtube", :title => "sfwater youtube" %>
-    </a>
-    &nbsp;
-    <a href="https://www.linkedin.com/company/sfpuc" style="text-decoration:none !important;">
-      <%= image_tag "icons/linkedin.png", :alt => "sfwater linkedin", :title => "sfwater linkedin" %>
+
+    <a href="<%= c("socials.linkedin") %>" style="text-decoration:none !important;">
+      <%= image_tag "icons/linkedin.png", :alt => "mystic linkedin", :title => "mystic linkedin" %>
     </a>
   </p>
 </td></tr></table>

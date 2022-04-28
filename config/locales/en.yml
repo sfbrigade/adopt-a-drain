@@ -97,7 +97,7 @@ en:
     adopted_tagline: "%{count} %{things} adopted in SF"
     byline: "by %{name}"
     edit_profile: "Edit your Profile"
-    main: "Adopt-a-%{thing} San Francisco"
+    main: "Adopt-a-%{thing} Mystic River"
     ofline: "of %{organization}"
     priority_html: '<strong>%{thing_title} in Need</strong> - this %{thing} tends to get dirtier than its siblings and needs more TLC'
     sign_in: "Sign in to adopt this %{thing}"

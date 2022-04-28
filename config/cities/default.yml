@@ -7,7 +7,8 @@ map_center:
 city:
   name: San Francisco
   type: City
-domains: [localhost]
+domains: [localhost, mysticdrains.org]
+main_url: https://mysticdrains.org/
 details:
   destination: San Francisco
   trash_page_label: SF public works
@@ -28,3 +29,12 @@ sponsors:
 adopt_a_drain_logo: logos/adopt-a-drain-medford.png
 titles:
   main: Adopt-a-Drain San Francisco
+socials:
+  site_url: https://medfordenergy.org/gogreen/
+  site_label: gogreenmedford.org
+  facebook: https://www.facebook.com/GoGreenMedford
+  instagram: https://www.instagram.com/gogreenmedford/?hl=en
+  twitter: https://twitter.com/GoGreenMedford
+  linkedin: https://www.linkedin.com/company/city-of-medford-medford-ma-02155/
+  email: enviro@medford-ma.gov
+  phone: 781-393-2137

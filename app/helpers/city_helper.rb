@@ -72,6 +72,7 @@ class Schema
       required(:type).filled(:string)
     end
     required(:domains).filled(array[:string])
+    required(:main_url).filled(:string)
     required(:details).hash do
       required(:destination).filled(:string)
       required(:trash_page_label).filled(:string)
@@ -96,6 +97,16 @@ class Schema
     end
     required(:titles).hash do
       required(:main).filled(:string)
+    end
+    required(:socials).hash do
+      required(:site_url).filled(:string)
+      required(:site_label).filled(:string)
+      required(:facebook).filled(:string)
+      required(:instagram).filled(:string)
+      required(:twitter).filled(:string)
+      required(:linkedin).filled(:string)
+      required(:email).filled(:string)
+      required(:phone).filled(:string)
     end
   end
 end

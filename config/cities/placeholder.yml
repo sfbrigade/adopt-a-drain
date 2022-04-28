@@ -5,6 +5,7 @@ city:
   name: <%= CityHelper.p("city.name") %>
   type: <%= CityHelper.p("city.type") %>
 domains: [placeholder.localhost]
+main_url: https://placeholder.mysticdrains.org/
 details:
   destination: <%= CityHelper.p("details.destination") %>
   trash_page_label: <%= CityHelper.p("details.trash_page_label") %>
@@ -25,3 +26,12 @@ sponsors:
 adopt_a_drain_logo: logos/placeholder-logo.png
 titles:
   main: Adopt-a-Drain Placeholder
+socials:
+  site_url: https://medfordenergy.org/gogreen/
+  site_label: gogreenmedford.org
+  facebook: https://www.facebook.com/GoGreenMedford
+  instagram: https://www.instagram.com/gogreenmedford/?hl=en
+  twitter: https://twitter.com/GoGreenMedford
+  linkedin: https://www.linkedin.com/company/city-of-medford-medford-ma-02155/
+  email: enviro@medford-ma.gov
+  phone: 781-393-2137
