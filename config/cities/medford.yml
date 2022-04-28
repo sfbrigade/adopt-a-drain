@@ -35,3 +35,10 @@ socials:
 adopt_a_drain_logo: logos/adopt-a-drain-medford.png
 titles:
   main: Adopt-a-Drain Medford
+data:
+  file: medford_drains.csv
+  columns:
+    id: watershed
+    lat: lat
+    lng: lon
+    name: [type]

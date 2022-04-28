@@ -1,11 +1,11 @@
 map_center:
-  lat: "37.774929"
-  lng: "-122.419416"
+  lat: "42.4053412"
+  lng: "-71.0872767"
 city:
-  name: <%= CityHelper.p("city.name") %>
-  type: <%= CityHelper.p("city.type") %>
-domains: [placeholder.localhost]
-main_url: https://placeholder.mysticdrains.org/
+  name: Everett
+  type: City
+domains: [everett.localhost]
+main_url: https://everett.mysticdrains.org/
 details:
   destination: <%= CityHelper.p("details.destination") %>
   trash_page_label: <%= CityHelper.p("details.trash_page_label") %>
@@ -36,9 +36,9 @@ socials:
   email: test@example.com
   phone: 555-555-5555
 data:
-  file: placeholder.csv
+  file: Everett_Drain_Catch_Basin_WGS84_20220421.csv
   columns:
-    id: watershed
-    lat: lat
-    lng: lon
-    name: [type]
+    id: CB_ID
+    lat: Latitude
+    lng: Longtitude
+    name: [StreetName CB_ID]

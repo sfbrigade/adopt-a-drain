@@ -27,6 +27,11 @@ class Thing < ApplicationRecord
           where(city_domain: city_domain).where.not(user_id: nil)
         }
 
+  scope :for_city,
+        lambda { |city_domain|
+          where(city_domain: city_domain)
+        }
+
   def self.find_closest(lat, lng, limit = 10, current_city = nil)
     query = <<-SQL
       SELECT *, earth_distance(ll_to_earth(lat, lng), ll_to_earth(?, ?)) as distance

@@ -23,7 +23,7 @@ module CityHelper
   end
 
   def self.config(name)
-    @@cities[name]
+    @@cities.fetch(name)
   end
 
   def self.cities
@@ -107,6 +107,15 @@ class Schema
       required(:linkedin).filled(:string)
       required(:email).filled(:string)
       required(:phone).filled(:string)
+    end
+    required(:data).hash do
+      required(:file).filled(:string)
+      required(:columns).hash do
+        required(:id).filled(:string)
+        required(:lat).filled(:string)
+        required(:lng).filled(:string)
+        required(:name).filled(array[:string])
+      end
     end
   end
 end

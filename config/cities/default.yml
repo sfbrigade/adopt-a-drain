@@ -38,3 +38,10 @@ socials:
   linkedin: https://www.linkedin.com/company/city-of-medford-medford-ma-02155/
   email: enviro@medford-ma.gov
   phone: 781-393-2137
+data:
+  file: medford_drains.csv
+  columns:
+    id: watershed
+    lat: lat
+    lng: lon
+    name: [type]
