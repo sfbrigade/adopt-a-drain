@@ -53,7 +53,7 @@
       = t("labels.city")
       %small
         = image_tag "lock.png", :class => "lock", :alt => t("captions.private"), :title => t("captions.private")
-    = f.text_field "city", :placeholder => t("defaults.city"), :class => "form-control"
+    = f.text_field "city", :placeholder => c("city.name"), :class => "form-control"
   %fieldset.form-group
     %label{:for => "user_state", :id => "user_state_label", :class => 'control-label'}
       = t("labels.state")

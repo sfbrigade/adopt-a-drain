@@ -27,13 +27,9 @@ en:
     required: "(required)"
   defaults:
     address: "address"
-    address_1: "1 Dr Carlton B Goodlett Pl."
-    address_2: "Suite 500"
-    city: "San Francisco"
-    city_state: "San Francisco, California"
-    neighborhood: "Civic Center"
+    address_1: "123 Good Place"
+    address_2: "Unit 2"
     sms_number: "415-555-1212"
-    state: "CA"
     thing: "drain"
     things: "drains"
     this_thing: "This %{thing}"
@@ -73,7 +69,7 @@ en:
     forgot_password: "Forgot your password?"
     remembered_password: "Never mind. I remembered my password."
     click_for_more: "Click to learn more"
-    learn_more: "Learn more about adopting a %{thing}"
+    learn_more: ""
     special: "This %{thing} is special! Learn why."
   notices:
     abandoned: "%{thing} abandoned!"
@@ -94,7 +90,7 @@ en:
   titles:
     adopt: "Adopt this %{thing}"
     adopted: "%{thing_name} has been adopted"
-    adopted_tagline: "%{count} %{things} adopted in SF"
+    adopted_tagline: "%{count} %{things} adopted in %{city}"
     byline: "by %{name}"
     edit_profile: "Edit your Profile"
     main: "Adopt-a-%{thing} Mystic River"
@@ -102,11 +98,11 @@ en:
     priority_html: '<strong>%{thing_title} in Need</strong> - this %{thing} tends to get dirtier than its siblings and needs more TLC'
     sign_in: "Sign in to adopt this %{thing}"
     thank_you: "Thank you for adopting this %{thing}!"
-    email_text: "I just adopted one of San Francisco's 25,000+ storm drains and pledged to help keep it clear of leaves and debris. You, too, can Adopt a Drain and help the City avoid flooding at %{root_url}."
-    tweet_text: "Flooded streets aren't fun. I adopted my own SF storm drain at %{root_url}. Claim and name yours #sfsewer @sfwater"
+    email_text: "I just adopted one of %{city}'s storm drains and pledged to help keep it clear of leaves and debris. You, too, can Adopt a Drain and help the City avoid flooding at %{root_url}."
+    tweet_text: "Flooded streets aren't fun. I adopted my own %{city} storm drain at %{root_url}. Claim and name yours."
     tos: "Volunteer Waiver"
   site:
-    description: "You can adopt one of San Francisco's 25,000+ storm drains and pledge to help keep it clear of leaves and debris this rainy season. Lend a hand and help the City avoid flooding."
+    description: "You can adopt one of %{city}'s storm drains and pledge to help keep it clear of leaves and debris this rainy season. Lend a hand and help the City avoid flooding."
   sponsors:
     built: "Code for San Francisco"
     cfa: "Code for America"

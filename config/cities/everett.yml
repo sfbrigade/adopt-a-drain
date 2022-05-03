@@ -4,6 +4,7 @@ map_center:
 city:
   name: Everett
   type: City
+  state: Massachusetts
 domains: [everett.localhost]
 main_url: https://everett.mysticdrains.org/
 details:

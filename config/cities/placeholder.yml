@@ -4,6 +4,7 @@ map_center:
 city:
   name: <%= CityHelper.p("city.name") %>
   type: <%= CityHelper.p("city.type") %>
+  state: Massachusetts
 domains: [placeholder.localhost]
 main_url: https://placeholder.mysticdrains.org/
 details:

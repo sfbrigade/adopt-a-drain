@@ -70,6 +70,7 @@ class Schema
     required(:city).hash do
       required(:name).filled(:string)
       required(:type).filled(:string)
+      required(:state).filled(:string)
     end
     required(:domains).filled(array[:string])
     required(:main_url).filled(:string)

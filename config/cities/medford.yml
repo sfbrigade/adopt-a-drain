@@ -4,6 +4,7 @@ map_center:
 city:
   name: Medford
   type: City
+  state: Massachusetts
 domains: [medford.localhost, medford.mysticdrains.org]
 main_url: https://medford.mysticdrains.org/
 details:

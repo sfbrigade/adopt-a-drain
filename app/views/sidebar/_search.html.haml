@@ -3,7 +3,7 @@
   = hidden_field_tag "current_user_id", current_user.try(:id)
   %fieldset.form-group.hidden
     = label_tag "city_state", t("labels.city_state"), :id => "city_state_label", :class => 'control-label'
-    = select_tag "city_state", "<option value=\"#{t("defaults.city_state")}\" selected=\"selected\">#{t("defaults.city_state")}</option>".html_safe, :class => "form-control"
+    = select_tag "city_state", "<option value=\"#{c("city.name")}, #{c("city.state")}\" selected=\"selected\">#{c("city.name")}, #{c("city.state")}</option>".html_safe, :class => "form-control"
   %fieldset.form-group
     = search_field_tag "address", params[:address], :placeholder => t("labels.address"), :class => "search-query form-control"
     .help-block
