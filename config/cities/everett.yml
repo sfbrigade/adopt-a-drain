@@ -41,4 +41,4 @@ data:
     id: CB_ID
     lat: Latitude
     lng: Longtitude
-    name: [StreetName CB_ID]
+    name: [StreetName, CB_ID]

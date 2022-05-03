@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_25_161153) do
+ActiveRecord::Schema.define(version: 2022_04_28_225111) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "cube"
@@ -69,7 +69,7 @@ ActiveRecord::Schema.define(version: 2022_04_25_161153) do
     t.string "name"
     t.decimal "lat", precision: 16, scale: 14, null: false
     t.decimal "lng", precision: 17, scale: 14, null: false
-    t.integer "city_id"
+    t.string "city_id"
     t.integer "user_id"
     t.string "system_use_code"
     t.datetime "deleted_at"

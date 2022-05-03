@@ -2,9 +2,9 @@
 
 # from Savannah implementation
 # run with:
-# docker-compose run --rm web bundle exec rake data:load_drains
+# docker-compose run --rm web bundle exec rake data:load_drains[everett]
 # or
-# heroku rake data:load_drains
+# heroku rake data:load_drains[everett]
 
 namespace :data do
   require 'open-uri'
@@ -59,7 +59,7 @@ namespace :data do
 
     # Remove things not listed in the input data
     new_ids = drains.map { |d| d.fetch(columns.fetch(:id)) }
-    existing_ids = Thing.for_city(city).select(:city_id)
+    existing_ids = Thing.for_city(city).select(:city_id).map(&:city_id)
     removed_ids = existing_ids.difference(new_ids)
     removed_ids.each_slice(100) do |ids|
       Thing.for_city(city).where(city_id: ids).destroy_all
