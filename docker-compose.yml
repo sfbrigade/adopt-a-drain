@@ -8,15 +8,27 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
   web:
+    # TODO: Do I need to precompile? heroku seems to do it automatically https://devcenter.heroku.com/articles/rails-asset-pipeline
     build: .
-    command: bundle exec rails s -p ${PORT:-3000} -b '0.0.0.0'
+    command: bundle exec rails s -p ${PORT} -b '0.0.0.0'
     volumes:
       - .:/myapp
     ports:
-      - "${PORT:-3000}:${PORT:-3000}"
+      - "${PORT}:${PORT}"
     environment:
-      PORT: ${PORT:-3000}
-      DB_HOST: db
+      - PORT
+      - DB_HOST
+      - DB_PASSWORD
+      - DB_USER
+      - GOOGLE_MAPS_JAVASCRIPT_API_KEY
+      - GOOGLE_GEOCODER_API_KEY
+      - GOOGLE_MAPS_KEY
+      - SECRET_KEY_BASE
+      - MAILSERVER_HOST
+      - MAILSERVER_DOMAIN
+      - MAILSERVER_USERNAME
+      - MAILSERVER_PASSWORD
+
     depends_on:
       - db
 

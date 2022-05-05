@@ -17,3 +17,7 @@ staging: # read from DATABASE_URL
 
 production: # read from DATABASE_URL
   adapter: postgresql
+  encoding: unicode
+  database: adopt_a_thing_development
+  pool: 5
+  username: postgres

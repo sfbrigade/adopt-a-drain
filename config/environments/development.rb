@@ -52,3 +52,13 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {address: 'localhost', port: 1025}
 end
+
+# from adopt-a-drain-savannah AND https://www.leemunroe.com/send-automated-email-ruby-rails-mailgun/
+ActionMailer::Base.smtp_settings = {
+  authentication: :plain,
+  address: ENV['MAILSERVER_HOST'],
+  port: '587',
+  domain: ENV['MAILSERVER_DOMAIN'],
+  user_name: ENV['MAILSERVER_USERNAME'],
+  password: ENV['MAILSERVER_PASSWORD'],
+}

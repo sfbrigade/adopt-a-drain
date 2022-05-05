@@ -86,11 +86,22 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 end
 
+# ActionMailer::Base.smtp_settings = {
+#   address: 'smtp.sendgrid.net',
+#   port: '25',
+#   authentication: :plain,
+#   user_name: ENV['SENDGRID_USERNAME'],
+#   password: ENV['SENDGRID_PASSWORD'],
+#   domain: ENV['SENDGRID_DOMAIN'],
+# }
+
+# from adopt-a-drain-savannah AND https://www.leemunroe.com/send-automated-email-ruby-rails-mailgun/
+
 ActionMailer::Base.smtp_settings = {
-  address: 'smtp.sendgrid.net',
-  port: '25',
   authentication: :plain,
-  user_name: ENV['SENDGRID_USERNAME'],
-  password: ENV['SENDGRID_PASSWORD'],
-  domain: ENV['SENDGRID_DOMAIN'],
+  address: ENV['MAILSERVER_HOST'],
+  port: '587',
+  domain: ENV['MAILSERVER_DOMAIN'],
+  user_name: ENV['MAILSERVER_USERNAME'],
+  password: ENV['MAILSERVER_PASSWORD'],
 }
