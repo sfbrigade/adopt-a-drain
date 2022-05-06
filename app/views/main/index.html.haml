@@ -3,7 +3,7 @@
     .sidebar
       .navbar.navbar-default
         %a{href: root_url}
-          = image_tag c("adopt_a_drain_logo"), :alt => c("titles.main"), :title => c("titles.main")
+          = image_tag c("site.logo"), :alt => t("titles.main", :thing => t("defaults.thing").titleize, :city => c("city.name")), :title => t("titles.main", :thing => t("defaults.thing").titleize, :city => c("city.name"))
         %button.navbar-toggle{"data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", :type => "button"}
           %span.sr-only Toggle navigation
           %span.icon-bar
@@ -35,16 +35,26 @@
             %button.btn.btn-block.btn-primary#tagline
               = t("defaults.tagline")
         #logos
-          .row
+          .row.sidebar-logo-row
+            .col-xs-1
             .col-xs-4
-              %a{:href => c("sponsors.city_url")}
-                = image_tag c("sponsors.city_logo"), :alt => c("sponsors.city"), :title => c("sponsors.city"), :class => "puc"
+              %a{:href => c("city.url")}
+                = image_tag c("city.logo"), :alt => c("city.title"), :title => c("city.title"), :class => "puc"
+            .col-xs-2
             .col-xs-4
-              %a{:href => c("sponsors.org_url")}
-                = image_tag c("sponsors.org_logo"), :alt => c("sponsors.org"), :title => c("sponsors.org"), :class => "dpw"
+              %a{:href => "https://mysticriver.org/"}
+                = image_tag "logos/mrwa-logo.png", :alt => "Mystic River Watershed Association", :title => "Mystic River Watershed Association", :class => "dpw"
+            .col-xs-1
+          .row.sidebar-logo-row
+            .col-xs-1
             .col-xs-4
-              %a{:href => c("sponsors.dev_url")}
-                = image_tag c("sponsors.dev_logo"), :alt => c("sponsors.dev"), :title => c("sponsors.dev"), :class => "datasf"
+              %a{:href => "https://www.mass.gov/orgs/massachusetts-department-of-environmental-protection"}
+                = image_tag "logos/massdep-logo.png", :alt => "Massachusetts Department of Environmental Protection", :title => "Massachusetts Department of Environmental Protection", :class => "datasf"
+            .col-xs-2
+            .col-xs-4
+              %a{:href => "mailto:j.korenstein@gamedaymatchup.net?subject=Inquiry about technology behind Adopt-a-drain"}
+                = image_tag "logos/coronado.png", :alt => "Coronado Consulting", :title => "Coronado Consulting", :class => "datasf"
+            .col-xs-1
     .col-md-9.map-container
       #map
         &nbsp;
@@ -58,8 +68,8 @@
   = render :partial => "sidebar/details", layout: "layouts/modal", locals: {id: "details", title: "What Does it Mean To Adopt a Drain?"}
 :javascript
   this.cityConfig = { 
-    mapCenterLat: #{c('map_center.lat')}, 
-    mapCenterLng: #{c('map_center.lng')} 
+    mapCenterLat: #{c('city.center.lat')}, 
+    mapCenterLng: #{c('city.center.lng')} 
   }
   $(function() {
     $('.navbar-toggle').on('click', function(){

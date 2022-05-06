@@ -2,7 +2,7 @@
   <table width="100%" border="0" cellspacing="0" cellpadding="0">
     <tr>
       <td style="text-align: center;">
-        <%= image_tag c("adopt_a_drain_logo"), :alt => "adopt-a-drain logo", :title => "adopt-a-drain logo" %>
+        <%= image_tag c("site.logo"), :alt => "adopt-a-drain logo", :title => "adopt-a-drain logo" %>
       </td>
     </tr>
   </table>
@@ -17,7 +17,7 @@
 
   <p>
     If you encounter medical waste, construction debris, or if the drain is
-    clogged beneath the grate, report non-emergency issues <%= c("details.report_issues") %>.
+    clogged beneath the grate, report non-emergency issues <%= c("city.report_issues") %>.
   </p>
 
   <p>
@@ -29,35 +29,38 @@
     Sincerely,
   </p>
   <p>
-    <a href="<%= c("socials.site_url") %>">Adopt a Drain</a> Team
+    <a href="<%= c("org.url") %>">Adopt a Drain</a> Team
     <br />
-    <a href="tel:<%= c("socials.phone") %>"><%= c("socials.phone") %></a>
+    <a href="tel:<%= c("org.phone") %>"><%= c("org.phone") %></a>
     <br />
-    <a href="mailto:<%= c("socials.email") %>"><%= c("socials.email") %></a>
+    <a href="mailto:<%= c("org.email") %>"><%= c("org.email") %></a>
   </p>
 
   <p>
     <em>
-      Remember, the <%= "#{c("city.type")} of #{c("city.name")}" %> is not responsible for anything that happens to you or others in service of maintaining your drain. Please be careful!
+      Remember, the <%= {c("city.title")} %> is not responsible for anything that happens to you or others in service of maintaining your drain. Please be careful!
     </em>
   </p>
 
   <p style="font-style: italic; font-size: 11px;">
-    If you move or are no longer able to tend to your drain, please let us know by unclaiming it on <a href="<%= c("main_url") %>">our site</a>. Thank you!
+    If you move or are no longer able to tend to your drain, please let us know by unclaiming it on <a href="<%= c("site.main_url") %>">our site</a>. Thank you!
   </p>
 
   <p>
-    <a href="<%= c("socials.facebook") %>" style="text-decoration:none !important;">
-      <%= image_tag "icons/facebook.png", :alt => "mystic facebook", :title => "mystic facebook" %>
+    <a href="<%= c("city.facebook") %>" style="text-decoration:none !important;">
+      <%= image_tag "icons/facebook.png", :alt => "facebook", :title => "facebook" %>
     </a>
     &nbsp;
-    <a href="<%= c("socials.twitter") %>" style="text-decoration:none !important;">
-      <%= image_tag "icons/twitter.png", :alt => "mystic twitter", :title => "mystic twitter" %>
+    <a href="<%= c("city.instagram") %>" style="text-decoration:none !important;">
+      <%= image_tag "icons/instagram.png", :alt => "instagram", :title => "instagram" %>
     </a>
     &nbsp;
-
-    <a href="<%= c("socials.linkedin") %>" style="text-decoration:none !important;">
-      <%= image_tag "icons/linkedin.png", :alt => "mystic linkedin", :title => "mystic linkedin" %>
+    <a href="<%= c("city.twitter") %>" style="text-decoration:none !important;">
+      <%= image_tag "icons/twitter.png", :alt => "twitter", :title => "twitter" %>
+    </a>
+    &nbsp;
+    <a href="<%= c("city.linkedin") %>" style="text-decoration:none !important;">
+      <%= image_tag "icons/linkedin.png", :alt => "linkedin", :title => "linkedin" %>
     </a>
   </p>
 </td></tr></table>

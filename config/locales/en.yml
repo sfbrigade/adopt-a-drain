@@ -75,12 +75,12 @@ en:
     abandoned: "%{thing} abandoned!"
     adopted: "You just adopted a %{thing}!"
     alpha: >
-        We're just getting started! We'd love to get your <a
-        href='%{feedback_url}'>feedback</a> or your help with the <a
-        href='%{code_url}'>code</a>.
+      We're just getting started! We'd love to get your <a
+      href='%{feedback_url}'>feedback</a> or your help with the <a
+      href='%{code_url}'>code</a>.
 
-        <a href='%{background_target}' data-toggle='modal'
-        data-target='%{background_target}'>Learn more about the project.</a>
+      <a href='%{background_target}' data-toggle='modal'
+      data-target='%{background_target}'>Learn more about the project.</a>
     password_reset: "Password reset instructions sent! Check your email."
     reminder_sent: "Reminder sent!"
     signed_in: "Signed in!"
@@ -93,9 +93,9 @@ en:
     adopted_tagline: "%{count} %{things} adopted in %{city}"
     byline: "by %{name}"
     edit_profile: "Edit your Profile"
-    main: "Adopt-a-%{thing} Mystic River"
+    main: "Adopt-a-%{thing} %{city}"
     ofline: "of %{organization}"
-    priority_html: '<strong>%{thing_title} in Need</strong> - this %{thing} tends to get dirtier than its siblings and needs more TLC'
+    priority_html: "<strong>%{thing_title} in Need</strong> - this %{thing} tends to get dirtier than its siblings and needs more TLC"
     sign_in: "Sign in to adopt this %{thing}"
     thank_you: "Thank you for adopting this %{thing}!"
     email_text: "I just adopted one of %{city}'s storm drains and pledged to help keep it clear of leaves and debris. You, too, can Adopt a Drain and help the City avoid flooding at %{root_url}."

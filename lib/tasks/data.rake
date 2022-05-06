@@ -41,13 +41,17 @@ namespace :data do
           city_id: id,
         }
 
-        thing = Thing.for_city(city).where(city_id: id).first
+        thing = Thing.with_deleted.for_city(city).where(city_id: id).first
         if thing
           # Don't update the name in case a user has renamed it
           thing.assign_attributes(thing_hash.slice(:lat, :lng))
-          updated += 1 if thing.changed?
+          thing.deleted_at = nil
+          if thing.changed?
+            updated += 1
+            thing.save!
+          end
         else
-          Thing.create(thing_hash)
+          Thing.create!(thing_hash)
           created += 1
         end
 

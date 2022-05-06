@@ -2,7 +2,7 @@
   <table width="100%" border="0" cellspacing="0" cellpadding="0">
     <tr>
       <td style="text-align: center;">
-        <%= image_tag c("adopt_a_drain_logo"), :alt => "adopt-a-drain logo", :title => "adopt-a-drain logo" %>
+        <%= image_tag c("site.logo"), :alt => "adopt-a-drain logo", :title => "adopt-a-drain logo" %>
       </td>
     </tr>
   </table>
@@ -25,10 +25,10 @@
       Clear about 10 feet around your drain, removing anything that could get swept in or clog the drain, including leaves, trash, and snow.
     </li>
     <li>
-      Dispose of trash or recyclables as you would normally, in their appropriate bins. Organic material like leaves and sticks can be disposed of with your yard waste. Visit <a href="<%= c("details.trash_page_url") %>"> <%= c("details.trash_page_label") %> </a> if you have questions about how to dispose of debris.
+      Dispose of trash or recyclables as you would normally, in their appropriate bins. Organic material like leaves and sticks can be disposed of with your yard waste. Visit <a href="<%= c("city.trash_page_url") %>"> <%= c("city.trash_page_label") %> </a> if you have questions about how to dispose of debris.
     </li>
     <li>
-      Medical waste or needles? Construction debris? Drain clogged below the grate? Report it <%= c("details.report_issues") %>.
+      Medical waste or needles? Construction debris? Drain clogged below the grate? Report it <%= c("city.report_issues") %>.
     </li>
   </ul>
 
@@ -53,7 +53,7 @@
   </ul>
 
   <p>
-    Visit <a href="<%= c("socials.site_url") %>"><%= c("socials.site_label") %></a> to learn more about environmental efforts taking place in Medford. You can also find us on <a href="<%= c("socials.facebook") %>">Facebook</a>, <a href="<%= c("socials.instagram") %>">Instagram</a>, or <a href="<%= c("socials.twitter") %>">Twitter</a>. Contact <a href="mailto:<%= c("socials.email") %>"><%= c("socials.email") %></a> or call <%= c("socials.phone") %> with any questions. 
+    Visit <a href="<%= c("org.url") %>"><%= c("org.name") %></a> to learn more about environmental efforts taking place in the Mystic River watershed. Contact <a href="mailto:<%= c("org.email") %>"><%= c("org.email") %></a> or call <a href="tel:<%= c("org.phone") %>"><%= c("org.phone") %></a> with any questions. 
   </p>
 
   <p>
@@ -64,17 +64,34 @@
     Sincerely,
   </p>
   <p>
-    <%= "#{c("city.type")} of #{c("city.name")}" %>
+    <%= c("city.title") %>
   </p>
 
   <p>
     <em>
-     Remember, the <%= "#{c("city.type")} of #{c("city.name")}" %> is not responsible for anything that happens to you or others in service of maintaining your drain. Please be careful!
+     Remember, the <%= c("city.title") %> is not responsible for anything that happens to you or others in service of maintaining your drain. Please be careful!
     </em>
   </p>
 
   <p style="font-style: italic; font-size: 11px;">
-    If you move or are no longer able to tend to your drain, please let us know by unclaiming it on <a href="<%= c("main_url") %>">our site</a>. Thank you!
+    If you move or are no longer able to tend to your drain, please let us know by unclaiming it on <a href="<%= c("site.main_url") %>">our site</a>. Thank you!
   </p>
 
+  <p>
+    <a href="<%= c("city.facebook") %>" style="text-decoration:none !important;">
+      <%= image_tag "icons/facebook.png", :alt => "facebook", :title => "facebook" %>
+    </a>
+    &nbsp;
+    <a href="<%= c("city.instagram") %>" style="text-decoration:none !important;">
+      <%= image_tag "icons/instagram.png", :alt => "instagram", :title => "instagram" %>
+    </a>
+    &nbsp;
+    <a href="<%= c("city.twitter") %>" style="text-decoration:none !important;">
+      <%= image_tag "icons/twitter.png", :alt => "twitter", :title => "twitter" %>
+    </a>
+    &nbsp;
+    <a href="<%= c("city.linkedin") %>" style="text-decoration:none !important;">
+      <%= image_tag "icons/linkedin.png", :alt => "linkedin", :title => "linkedin" %>
+    </a>
+  </p>
 </td></tr></table>

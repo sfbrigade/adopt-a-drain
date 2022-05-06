@@ -31,14 +31,17 @@ module CityHelper
   end
 
   def self.load!(city_config_dir)
+    base = File.join(city_config_dir, 'base.yml')
     @@cities = {}
     @@domains = {}
     Dir[File.join(city_config_dir, '*.yml')].each do |config|
+      next if config == base
+
       city_name = File.basename(config, '.yml')
       city_name = nil if city_name == 'default'
-      city = Schema.load(config)
+      city = Schema.load(base, config)
       @@cities[city_name] = city
-      city.domains.each do |domain|
+      city.site.domains.each do |domain|
         @@domains[domain] = city_name
       end
     end
@@ -51,10 +54,14 @@ module CityHelper
 end
 
 class Schema
-  def self.load(config)
+  def self.load_yml(config)
     file_contents = IO.read(config)
     file_contents = ERB.new(file_contents).result
-    yml = YAML.safe_load(file_contents)
+    YAML.safe_load(file_contents)
+  end
+
+  def self.load(base, config)
+    yml = load_yml(base).deep_merge(load_yml(config))
     result = @@schema.call(yml)
     errors = result.errors(full: true).to_h
     raise "Error validating #{config}:\n#{errors}" unless errors.empty?
@@ -63,52 +70,41 @@ class Schema
   end
 
   @@schema = Dry::Schema.Params do
-    required(:map_center).hash do
-      required(:lat).filled(:string)
-      required(:lng).filled(:string)
-    end
     required(:city).hash do
       required(:name).filled(:string)
       required(:type).filled(:string)
+      required(:title).filled(:string)
       required(:state).filled(:string)
-    end
-    required(:domains).filled(array[:string])
-    required(:main_url).filled(:string)
-    required(:details).hash do
-      required(:destination).filled(:string)
-      required(:trash_page_label).filled(:string)
+      required(:center).hash do
+        required(:lat).filled(:string)
+        required(:lng).filled(:string)
+      end
+      required(:runoff_destination).filled(:string)
       required(:trash_page_url).filled(:string)
-      required(:contact_email).filled(:string)
-      required(:contact_name).filled(:string)
+      required(:trash_page_label).filled(:string)
       required(:report_issues).filled(:string)
-    end
-    required(:adopt_a_drain_logo).filled(:string)
-    required(:sponsors).hash do
-      required(:dev).filled(:string)
-      required(:dev_logo).filled(:string)
-      required(:dev_url).filled(:string)
-
-      required(:org).filled(:string)
-      required(:org_logo).filled(:string)
-      required(:org_url).filled(:string)
-
-      required(:city).filled(:string)
-      required(:city_logo).filled(:string)
-      required(:city_url).filled(:string)
-    end
-    required(:titles).hash do
-      required(:main).filled(:string)
-    end
-    required(:socials).hash do
-      required(:site_url).filled(:string)
-      required(:site_label).filled(:string)
+      required(:logo).filled(:string)
+      required(:url).filled(:string)
       required(:facebook).filled(:string)
       required(:instagram).filled(:string)
       required(:twitter).filled(:string)
       required(:linkedin).filled(:string)
+    end
+
+    required(:site).hash do
+      required(:domains).filled(array[:string])
+      required(:main_url).filled(:string)
+      required(:logo).filled(:string)
+    end
+
+    required(:org).hash do
       required(:email).filled(:string)
+      required(:name).filled(:string)
+      required(:logo).filled(:string)
+      required(:url).filled(:string)
       required(:phone).filled(:string)
     end
+
     required(:data).hash do
       required(:file).filled(:string)
       required(:columns).hash do

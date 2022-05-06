@@ -1,41 +1,24 @@
-map_center:
-  lat: "42.4053412"
-  lng: "-71.0872767"
 city:
   name: Everett
   type: City
-  state: Massachusetts
-domains: [everett.localhost]
-main_url: https://everett.mysticdrains.org/
-details:
-  destination: <%= CityHelper.p("details.destination") %>
-  trash_page_label: <%= CityHelper.p("details.trash_page_label") %>
-  trash_page_url: <%= CityHelper.p("details.trash_page_url") %>
-  contact_email: <%= CityHelper.p("details.contact_email") %>
-  contact_name: <%= CityHelper.p("details.contact_name") %>
-  report_issues: <%= CityHelper.p("details.report_issues") %>
-sponsors:
-  dev: Coronado Consulting
-  dev_logo: logos/coronado.png
-  dev_url: mailto:j.korenstein@gamedaymatchup.net?subject=Inquiry about technology behind Adopt-A-Drain
-  org: Mystic River Watershed Association
-  org_logo: logos/mrwa-logo.png
-  org_url: https://example.com
-  city: Placeholder city
-  city_logo: logos/placeholder-logo.png
-  city_url: https://example.com
-adopt_a_drain_logo: logos/placeholder-logo.png
-titles:
-  main: Adopt-a-Drain Placeholder
-socials:
-  site_url: https://example.com
-  site_label: Placeholder
-  facebook: https://example.com
-  instagram: https://example.com
-  twitter: https://example.com
-  linkedin: https://example.com
-  email: test@example.com
-  phone: 555-555-5555
+  center:
+    lat: "42.4053412"
+    lng: "-71.0872767"
+  title: City of Everett
+  runoff_destination: the Mystic River or Lakes
+  trash_page_label: Everett's recycling page
+  trash_page_url: https://cityofeverett.com/city-hall/departments/public-works/recycling/
+  report_issues: by contacting the Mayor's office at 617-394-2270
+  logo: logos/everett-city.png
+  url: https://cityofeverett.com/
+  facebook: https://www.facebook.com/cityofeverettma
+  instagram: https://www.instagram.com/cityofeverettma/
+  twitter: https://twitter.com/cityofeverettma?lang=en
+  linkedin: https://www.linkedin.com/company/everettma/
+site:
+  domains: [localhost, everett.localhost, everett.mysticdrains.org]
+  main_url: https://medford.mysticdrains.org/
+  logo: logos/adopt-a-drain-everett.png
 data:
   file: Everett_Drain_Catch_Basin_WGS84_20220421.csv
   columns:

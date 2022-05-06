@@ -2,20 +2,20 @@
 %html
   %head
     %title
-      = t("titles.main", :thing => t("defaults.thing").titleize)
+      = t("titles.main", :thing => t("defaults.thing").titleize, :city => c("city.name"))
     = csrf_meta_tag
     %meta{:name => "viewport", :content => "width=device-width, initial-scale=1"}
     %meta{:name => "twitter:card", :content => "summary"}
     %meta{:name => "twitter:site", :content => "@SFWater"}
-    %meta{:name => "twitter:title", :content => t("titles.main", :thing => t("defaults.thing").titleize)}
+    %meta{:name => "twitter:title", :content => t("titles.main", :thing => t("defaults.thing").titleize, :city => c("city.name"))}
     %meta{:name => "twitter:description", :content => t("site.description", :city => c("city.name"))}
-    %meta{:name => "twitter:image", :content => image_url(c("adopt_a_drain_logo"))}
+    %meta{:name => "twitter:image", :content => image_url(c("site.logo"))}
     %meta{:property => "og:description", :content => t("site.description", :city => c("city.name"))}
     %meta{:property => "og:type", :content => "article"}
     %meta{:property => "og:url", :content => root_url}
-    %meta{:property => "og:title", :content => t("titles.main", :thing => t("defaults.thing").titleize)}
-    %meta{:property => "og:site_name", :content => t("titles.main", :thing => t("defaults.thing").titleize)}
-    %meta{:property => "og:image", :content => image_url(c("adopt_a_drain_logo"))}
+    %meta{:property => "og:title", :content => t("titles.main", :thing => t("defaults.thing").titleize, :city => c("city.name"))}
+    %meta{:property => "og:site_name", :content => t("titles.main", :thing => t("defaults.thing").titleize, :city => c("city.name"))}
+    %meta{:property => "og:image", :content => image_url(c("site.logo"))}
     %meta{:property => "og:locale", :content => "en_US"}
     / HTML5 shim, for IE6-8 support of HTML5 elements
     /[if lt IE 9]

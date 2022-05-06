@@ -258,3 +258,7 @@ a.guidelines {
     min-width: 594px;
   }
 }
+
+.sidebar-logo-row {
+  margin-bottom: 1rem;
+}

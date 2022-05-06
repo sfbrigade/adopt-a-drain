@@ -39,7 +39,7 @@ class ThingMailer < ApplicationMailer
     @deleted_thing_ids_with_no_adoptee = deleted_things_no_adoptee.map { |t| t['city_id'] }
     @created_thing_ids = created_things.map { |t| t['city_id'] }
     subject = t('subjects.update_report',
-                title: t('titles.main', thing: t('defaults.thing').titleize),
+                title: t('titles.main', thing: t('defaults.thing').titleize, city: c('city.name')),
                 deleted_adopted_count: deleted_things_with_adoptee.count,
                 created_count: created_things.count,
                 deleted_unadopted_count: deleted_things_no_adoptee.count,
