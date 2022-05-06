@@ -4,10 +4,10 @@ require:
 AllCops:
   TargetRailsVersion: 5.2
   Exclude:
-    - 'bin/*'
-    - 'db/schema.rb'
-    - 'db/seeds.rb'
-    - 'vendor/bundle/**/*'
+    - "bin/*"
+    - "db/schema.rb"
+    - "db/seeds.rb"
+    - "vendor/bundle/**/*"
 
 Layout/DotPosition:
   EnforcedStyle: trailing
@@ -19,7 +19,7 @@ Layout/AccessModifierIndentation:
   EnforcedStyle: outdent
 
 Metrics/BlockLength:
-  ExcludedMethods: ['test']
+  Enabled: false
 
 Metrics/BlockNesting:
   Max: 2
@@ -29,10 +29,11 @@ Layout/LineLength:
   Enabled: false
 
 Metrics/MethodLength:
+  Enabled: false
   CountComments: false
   Max: 10
   Exclude:
-    - 'db/migrate/*.rb'
+    - "db/migrate/*.rb"
 
 Metrics/ParameterLists:
   Max: 4
@@ -40,10 +41,10 @@ Metrics/ParameterLists:
 
 Style/CollectionMethods:
   PreferredMethods:
-    map:      'collect'
-    reduce:   'inject'
-    find:     'detect'
-    find_all: 'select'
+    map: "collect"
+    reduce: "inject"
+    find: "detect"
+    find_all: "select"
 
 Style/Documentation:
   Enabled: false
@@ -52,10 +53,10 @@ Style/DoubleNegation:
   Enabled: false
 
 Style/TrailingCommaInArguments:
-  EnforcedStyleForMultiline: 'comma'
+  EnforcedStyleForMultiline: "comma"
 
 Style/TrailingCommaInArrayLiteral:
-  EnforcedStyleForMultiline: 'comma'
+  EnforcedStyleForMultiline: "comma"
 
 Style/TrailingCommaInHashLiteral:
-  EnforcedStyleForMultiline: 'comma'
+  EnforcedStyleForMultiline: "comma"

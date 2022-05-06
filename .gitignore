@@ -22,3 +22,6 @@
 !/log/.keep
 /tmp
 .env
+
+node_modules/
+dist/
