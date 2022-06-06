@@ -1,7 +1,12 @@
 # frozen_string_literal: true
 
-# TODO: redirect to about if domain is not supported
 Rails.application.routes.draw do
+  # Redirect to landing page if accessing an unsupported domain.
+  match '(*path)',
+        to: redirect('https://mysticriver.org', status: 302),
+        via: :all,
+        constraints: ->(request) { CityHelper.city_for_domain(request.host).nil? }
+
   devise_for :users, controllers: {
     passwords: 'passwords',
     registrations: 'users',
