@@ -115,3 +115,5 @@ class Schema
     end
   end
 end
+
+CityHelper.load! File.expand_path('../../config/cities', __dir__)
