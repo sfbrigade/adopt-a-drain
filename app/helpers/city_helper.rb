@@ -14,7 +14,7 @@ module CityHelper
   end
 
   def current_city
-    @current_city ||= CityHelper.city_for_domain(request.domain) if respond_to?(:request)
+    @current_city ||= CityHelper.city_for_domain(request.host) if respond_to?(:request)
     @current_city
   end
 
@@ -38,7 +38,6 @@ module CityHelper
       next if config == base
 
       city_name = File.basename(config, '.yml')
-      city_name = nil if city_name == 'default'
       city = Schema.load(base, config)
       @@cities[city_name] = city
       city.site.domains.each do |domain|

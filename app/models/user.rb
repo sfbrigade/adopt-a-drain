@@ -24,8 +24,9 @@ class User < ApplicationRecord
     [first_name, last_name].reject(&:blank?).join(' ')
   end
 
+  # TODO: gracefully reject duplicate emails
   def self.find_for_authentication(conditions = {})
-    where(email: conditions[:email], city_domain: CityHelper.city_for_domain(conditions[:domain])).first
+    where(email: conditions[:email], city_domain: CityHelper.city_for_domain(conditions[:host])).first
   end
 
   # Disable devise email uniqueness check since we require that email + city be unique
