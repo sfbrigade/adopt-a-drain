@@ -1,12 +1,17 @@
 # frozen_string_literal: true
 
 class ThingMailer < ApplicationMailer
+  def from_city
+    config = CityHelper.config(@current_city)
+    "Adopt a Drain #{config.city.name} <noreply@mysticdrains.org>"
+  end
+
   def first_adoption_confirmation(thing)
     @thing = thing
     @user = thing.user
     @current_city = thing.city_domain
 
-    mail(to: @user.email, subject: ["Thanks for adopting a drain, #{@user.name.split.first}!"])
+    mail(from: from_city, to: @user.email, subject: ["Thanks for adopting a drain, #{@user.name.split.first}!"])
   end
 
   def second_adoption_confirmation(thing)
@@ -14,7 +19,7 @@ class ThingMailer < ApplicationMailer
     @user = thing.user
     @current_city = thing.city_domain
 
-    mail(to: @user.email, subject: ["Thanks for adopting another drain, #{@user.name.split.first}!"])
+    mail(from: from_city, to: @user.email, subject: ["Thanks for adopting another drain, #{@user.name.split.first}!"])
   end
 
   def third_adoption_confirmation(thing)
@@ -22,7 +27,7 @@ class ThingMailer < ApplicationMailer
     @user = thing.user
     @current_city = thing.city_domain
 
-    mail(to: @user.email, subject: ["We really do love you, #{@user.name.split.first}!"])
+    mail(from: from_city, to: @user.email, subject: ["We really do love you, #{@user.name.split.first}!"])
   end
 
   def reminder(thing)
@@ -30,7 +35,7 @@ class ThingMailer < ApplicationMailer
     @user = thing.user
     @current_city = thing.city_domain
 
-    mail(to: @user.email, subject: ['Remember to clear your adopted drain'])
+    mail(from: from_city, to: @user.email, subject: ['Remember to clear your adopted drain'])
   end
 
   # rubocop:disable Metrics/AbcSize

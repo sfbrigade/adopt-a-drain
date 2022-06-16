@@ -8,7 +8,7 @@ set +o allexport
         --ap $MAILSERVER_PASSWORD \
         --port 587 \
         -tls \
-        --from postmaster@mail.mysticdrains.org \
+        --from noreply@mysticdrains.org \
         --to me@alexjball.com \
         --h-Subject: "Hello" \
         --body 'Testing some Mailgun awesomness!'
