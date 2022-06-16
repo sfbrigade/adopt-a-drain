@@ -25,7 +25,6 @@ ActionMailer::Base.smtp_settings = {
   password: ENV['MAILSERVER_PASSWORD'],
   # The domain of the sending host
   domain: ENV['MAILSERVER_DOMAIN'],
-  enable_starttls_auto: true,
 }
 
 # Initialize the Rails application.
