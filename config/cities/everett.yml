@@ -17,7 +17,7 @@ city:
   linkedin: https://www.linkedin.com/company/everettma/
 site:
   domains: [localhost, everett.localhost, everett.mysticdrains.org]
-  main_url: https://medford.mysticdrains.org/
+  main_url: https://everett.mysticdrains.org/
   logo: logos/adopt-a-drain-everett.png
 data:
   file: Everett_Drain_Catch_Basin_WGS84_20220421.csv
