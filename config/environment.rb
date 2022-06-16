@@ -15,11 +15,15 @@ require File.expand_path('application', __dir__)
 
 # from adopt-a-drain-savannah
 ActionMailer::Base.smtp_settings = {
+  # The address of the remote mail server
   address: ENV['MAILSERVER_HOST'],
   port: '587',
   authentication: :plain,
+  # The email address of the sender account
   user_name: ENV['MAILSERVER_USERNAME'],
+  # The password of the user_name
   password: ENV['MAILSERVER_PASSWORD'],
+  # The domain of the sending host
   domain: ENV['MAILSERVER_DOMAIN'],
   enable_starttls_auto: true,
 }
