@@ -2,8 +2,8 @@ city:
   name: Everett
   type: City
   center:
-    lat: "42.4053412"
-    lng: "-71.0872767"
+    lat: "42.4083274"
+    lng: "-71.0564758"
   title: City of Everett
   runoff_destination: the Mystic River or Lakes
   trash_page_label: Everett's recycling page
