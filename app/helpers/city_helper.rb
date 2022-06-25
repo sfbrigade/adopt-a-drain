@@ -26,8 +26,17 @@ module CityHelper
     @@cities.fetch(name)
   end
 
+  def self.check(name)
+    @@cities.fetch(name)
+    name
+  end
+
   def self.cities
     @@cities
+  end
+
+  def self.city_names
+    @@cities.keys
   end
 
   def self.load!(city_config_dir)

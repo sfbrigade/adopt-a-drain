@@ -1,0 +1,5 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+everett:
+  export_recipient_emails: [me@example.com]
+  name: everett

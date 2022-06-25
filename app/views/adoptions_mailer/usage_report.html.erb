@@ -1,0 +1,14 @@
+<p>
+Hello, this is an automated usage report for <a href="<%= c("site.main_url") %>">Adopt a Drain <%= c("city.name")%></a>.
+</p>
+
+<p>
+In total, <%= @user_count %> residents have signed up on your site and have adopted <%= @adoption_count %> drains. 
+</p>
+
+<% if @city.last_export_time != Time.at(0) %>
+<p>
+Over the last <%= days_since_last_report %> days, <%= @user_count - @city.last_user_count %> residents have signed up and have adopted <%= @adoption_count - @city.last_adoption_count %> drains.
+</p>
+
+<% end %>

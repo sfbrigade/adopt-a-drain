@@ -7,6 +7,7 @@ erik:
   voice_number: 1234567890
   sms_number: 1234567890
   encrypted_password: "$2a$10$KF/JMZ494ZLhWLgHZeBTf.cSL4l0Wjij4gIZP7BzkueAC1p4nW0ma"
+  city_domain: everett
 
 dan:
   first_name: Dan
@@ -16,6 +17,7 @@ dan:
   voice_number: 1234567890
   sms_number: 1234567890
   encrypted_password: "$2a$10$KF/JMZ494ZLhWLgHZeBTf.cSL4l0Wjij4gIZP7BzkueAC1p4nW0ma"
+  city_domain: cambridge
 
 admin:
   first_name: Admin
@@ -26,3 +28,4 @@ admin:
   sms_number: 1234567890
   encrypted_password: "$2a$10$KF/JMZ494ZLhWLgHZeBTf.cSL4l0Wjij4gIZP7BzkueAC1p4nW0ma"
   admin: true
+  city_domain: everett

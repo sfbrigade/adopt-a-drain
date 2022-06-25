@@ -4,26 +4,30 @@ thing_1:
   lat: 42.383339
   lng: -71.049226
   name: ""
-  system_use_code: 'ABC'
+  system_use_code: "ABC"
   priority: false
+  city_domain: "everett"
 
 thing_2:
   city_id: 2,
   lat: 42.381021
   lng: -71.075964
   priority: true
+  city_domain: "cambridge"
 
 thing_3:
   city_id: 3
   lat: 42.380106
   lng: -71.073419
   priority: true
+  city_domain: "everett"
 
 thing_4:
   city_id: 4
   lat: 42.377728
   lng: -71.070918
   priority: false
+  city_domain: "cambridge"
 
 thing_5:
   city_id: 5
@@ -66,5 +70,5 @@ thing_11:
   lat: 42.383339
   lng: -71.049226
   name: "Catch Basin Drain"
-  system_use_code: 'ABC'
+  system_use_code: "ABC"
   priority: false
