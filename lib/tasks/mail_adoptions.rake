@@ -16,6 +16,7 @@ namespace 'mail' do
              else
                cities.split(' ').map { |c| CityHelper.check(c) }
              end
+    cities = cities.filter { |c| City.where(name: c).any? }
 
     p "Processing #{cities}"
 
