@@ -13,6 +13,22 @@ module CityHelper
     raw(keys.inject(config) { |h, key| h.fetch(key.to_sym) })
   end
 
+  def c?(key_chain)
+    keys = key_chain.to_s.split('.')
+    raise 'Must specify keys' if keys.empty?
+
+    h = CityHelper.config(current_city)
+    keys.each do |k|
+      h = h[k.to_sym]
+      return false if h.nil?
+    end
+    true
+  end
+
+  def set_current_city(city)
+    @current_city = CityHelper.check(city)
+  end
+
   def current_city
     @current_city ||= CityHelper.city_for_domain(request.host) if respond_to?(:request)
     @current_city
@@ -94,9 +110,9 @@ class Schema
       required(:logo).filled(:string)
       required(:url).filled(:string)
       required(:facebook).filled(:string)
-      required(:instagram).filled(:string)
+      optional(:instagram).filled(:string)
       required(:twitter).filled(:string)
-      required(:linkedin).filled(:string)
+      optional(:linkedin).filled(:string)
     end
 
     required(:site).hash do
@@ -116,10 +132,10 @@ class Schema
     required(:data).hash do
       required(:file).filled(:string)
       required(:columns).hash do
-        required(:id).filled(:string)
+        optional(:id).filled(:string)
         required(:lat).filled(:string)
         required(:lng).filled(:string)
-        required(:name).filled(array[:string])
+        optional(:name).filled(array[:string])
       end
     end
   end

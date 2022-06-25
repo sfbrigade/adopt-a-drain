@@ -50,17 +50,24 @@
     <a href="<%= c("city.facebook") %>" style="text-decoration:none !important;">
       <%= image_tag "icons/facebook.png", :alt => "facebook", :title => "facebook" %>
     </a>
-    &nbsp;
-    <a href="<%= c("city.instagram") %>" style="text-decoration:none !important;">
-      <%= image_tag "icons/instagram.png", :alt => "instagram", :title => "instagram" %>
-    </a>
+
+    <% if c?("city.instagram") %>    
+      &nbsp;
+      <a href="<%= c("city.instagram") %>" style="text-decoration:none !important;">
+        <%= image_tag "icons/instagram.png", :alt => "instagram", :title => "instagram" %>
+      </a>
+    <% end %>
+
     &nbsp;
     <a href="<%= c("city.twitter") %>" style="text-decoration:none !important;">
       <%= image_tag "icons/twitter.png", :alt => "twitter", :title => "twitter" %>
     </a>
-    &nbsp;
-    <a href="<%= c("city.linkedin") %>" style="text-decoration:none !important;">
-      <%= image_tag "icons/linkedin.png", :alt => "linkedin", :title => "linkedin" %>
-    </a>
+
+    <% if c?("city.instagram") %>    
+      &nbsp;
+      <a href="<%= c("city.linkedin") %>" style="text-decoration:none !important;">
+        <%= image_tag "icons/linkedin.png", :alt => "linkedin", :title => "linkedin" %>
+      </a>
+    <% end %>
   </p>
 </td></tr></table>
