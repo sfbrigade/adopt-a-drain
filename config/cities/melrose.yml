@@ -16,7 +16,7 @@ city:
   twitter: https://twitter.com/cityofmelrose?lang=en
   linkedin: https://www.linkedin.com/company/cityofmelrose/
 site:
-  domains: [localhost, melrose.localhost, melrose.mysticdrains.org]
+  domains: [melrose.localhost, melrose.mysticdrains.org]
   main_url: https://melrose.mysticdrains.org/
   logo: logos/adopt-a-drain-melrose.png
 data:

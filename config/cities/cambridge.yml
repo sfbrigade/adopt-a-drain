@@ -15,7 +15,7 @@ city:
   twitter: https://twitter.com/cambma
   linkedin: https://www.linkedin.com/company/city-of-cambridge/
 site:
-  domains: [localhost, cambridge.localhost, cambridge.mysticdrains.org]
+  domains: [cambridge.localhost, cambridge.mysticdrains.org]
   main_url: https://cambridge.mysticdrains.org/
   logo: logos/adopt-a-drain-cambridge.png
 data:

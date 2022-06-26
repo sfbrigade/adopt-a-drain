@@ -14,7 +14,7 @@ city:
   facebook: https://www.facebook.com/townoflexingtonma/
   twitter: https://twitter.com/TownOfLexMA
 site:
-  domains: [localhost, lexington.localhost, lexington.mysticdrains.org]
+  domains: [lexington.localhost, lexington.mysticdrains.org]
   main_url: https://lexington.mysticdrains.org/
   logo: logos/adopt-a-drain-lexington.png
 data:

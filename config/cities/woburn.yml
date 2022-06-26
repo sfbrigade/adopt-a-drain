@@ -14,7 +14,7 @@ city:
   facebook: https://www.facebook.com/mayor.galvin
   twitter: https://twitter.com/cityofwoburn?lang=en
 site:
-  domains: [localhost, woburn.localhost, woburn.mysticdrains.org]
+  domains: [woburn.localhost, woburn.mysticdrains.org]
   main_url: https://woburn.mysticdrains.org/
   logo: logos/adopt-a-drain-woburn.png
 data:

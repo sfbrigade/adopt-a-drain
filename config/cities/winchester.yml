@@ -14,7 +14,7 @@ city:
   facebook: https://www.facebook.com/profile.php?id=100064725634937
   twitter: https://twitter.com/Winchester_MA
 site:
-  domains: [localhost, winchester.localhost, winchester.mysticdrains.org]
+  domains: [winchester.localhost, winchester.mysticdrains.org]
   main_url: https://winchester.mysticdrains.org/
   logo: logos/adopt-a-drain-winchester.png
 data:

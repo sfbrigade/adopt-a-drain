@@ -15,7 +15,7 @@ city:
   twitter: https://twitter.com/ChelseaGov_MA
   linkedin: https://www.linkedin.com/company/city-of-chelsea/
 site:
-  domains: [localhost, chelsea.localhost, chelsea.mysticdrains.org]
+  domains: [chelsea.localhost, chelsea.mysticdrains.org]
   main_url: https://chelsea.mysticdrains.org/
   logo: logos/adopt-a-drain-chelsea.png
 data:
