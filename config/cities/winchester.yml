@@ -1,0 +1,26 @@
+city:
+  name: Winchester
+  type: Town
+  center:
+    lat: "42.4547328"
+    lng: "-71.2202532"
+  title: Town of Winchester
+  runoff_destination: the Mystic River or Lakes
+  trash_page_label: Winchester's trash and recycling page
+  trash_page_url: https://www.winchester.us/196/Transfer-Station-Recycling-Center
+  report_issues: <a target="_blank" href="https://www.winchester.us/requesttracker.aspx">online</a>
+  logo: logos/winchester-city.png
+  url: https://www.winchester.us/
+  facebook: https://www.facebook.com/profile.php?id=100064725634937
+  twitter: https://twitter.com/Winchester_MA
+site:
+  domains: [localhost, winchester.localhost, winchester.mysticdrains.org]
+  main_url: https://winchester.mysticdrains.org/
+  logo: logos/adopt-a-drain-winchester.png
+data:
+  file: Winchester_swInlet_1.csv
+  columns:
+    id: FACILITYID
+    lat: "y"
+    lng: "x"
+    name: [StreetName]

@@ -1,0 +1,27 @@
+city:
+  name: Arlington
+  type: Town
+  center:
+    lat: "42.4155068"
+    lng: "-71.1585997"
+  title: Town of Arlington
+  runoff_destination: the Mystic River or Lakes
+  trash_page_label: Arlington's recycling, trash, and composting page
+  trash_page_url: https://www.arlingtonma.gov/departments/public-works/recycling-trash-composting
+  report_issues: by contacting Public Works at 781-316-3301
+  logo: logos/arlington-seal.png
+  url: https://www.arlingtonma.gov/
+  facebook: https://www.facebook.com/arlingtonma
+  twitter: https://twitter.com/arlingtonmagov
+  linkedin: https://www.linkedin.com/company/town-of-arlington-ma/
+site:
+  domains: [arlington.localhost, arlington.mysticdrains.org]
+  main_url: https://arlington.mysticdrains.org/
+  logo: logos/adopt-a-drain-arlington.png
+data:
+  file: Arlington_WGS84_v2_0_filtered.csv
+  columns:
+    id: facilityid
+    lat: Latitude
+    lng: Longitude
+    name: [locdesc]

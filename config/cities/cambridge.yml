@@ -1,0 +1,27 @@
+city:
+  name: Cambridge
+  type: City
+  center:
+    lat: "42.3784958"
+    lng: "-71.1829489"
+  title: City of Cambridge
+  runoff_destination: the Charles River or Alewife Brook
+  trash_page_label: Cambridge's curbside collection page
+  trash_page_url: https://www.cambridgema.gov/services/curbsidecollections
+  report_issues: via <a target="_blank" href="https://www.cambridgema.gov/commonwealthconnect">Commonwealth Connect</a>
+  logo: logos/cambridge-city.png
+  url: https://www.cambridgema.gov/
+  facebook: https://facebook.com/CambridgeMA.Gov
+  twitter: https://twitter.com/cambma
+  linkedin: https://www.linkedin.com/company/city-of-cambridge/
+site:
+  domains: [localhost, cambridge.localhost, cambridge.mysticdrains.org]
+  main_url: https://cambridge.mysticdrains.org/
+  logo: logos/adopt-a-drain-cambridge.png
+data:
+  file: CambridgeSew_Catchbasin_filtered.csv
+  columns:
+    id: FACILITYID
+    lat: "y"
+    lng: "x"
+    name: [ADDRESS]

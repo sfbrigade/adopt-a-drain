@@ -1,0 +1,26 @@
+city:
+  name: Somerville
+  type: City
+  center:
+    lat: "42.3956156"
+    lng: "-71.1387672"
+  title: City of Somerville
+  runoff_destination: the Mystic River or Alewife Brook
+  trash_page_label: Somerville's trash and recycling page
+  trash_page_url: https://www.somervillema.gov/departments/dpw-sanitation/somerville-trash-recycling-information
+  report_issues: <a target="_blank" href="https://www.somervillema.gov/departments/constituent-services/311-service-center">online</a> or by calling 311
+  logo: logos/somerville-city.png
+  url: https://www.somervillema.gov/
+  facebook: http://www.facebook.com/SomervilleCity
+  instagram: http://instagram.com/somervillecity
+  twitter: https://twitter.com/Somervillecity
+  linkedin: https://www.linkedin.com/company/city-of-somerville/
+site:
+  domains: [localhost, somerville.localhost, somerville.mysticdrains.org]
+  main_url: https://somerville.mysticdrains.org/
+  logo: logos/adopt-a-drain-somerville.png
+data:
+  file: Somerville_Catch_Basins_0.csv
+  columns:
+    lat: "y"
+    lng: "x"

@@ -1,0 +1,26 @@
+city:
+  name: Melrose
+  type: City
+  center:
+    lat: "42.457202"
+    lng: "-71.054108"
+  title: City of Melrose
+  runoff_destination: the Mystic River or Lakes
+  trash_page_label: Melrose's trash and recycling page
+  trash_page_url: https://www.cityofmelrose.org/trash-recycling
+  report_issues: via <a target="_blank" href="https://seeclickfix.com/melrose">SeeClickFix</a>
+  logo: logos/melrose-city.png
+  url: https://www.cityofmelrose.org/
+  facebook: https://www.facebook.com/cityofmelrosemass
+  instagram: https://www.instagram.com/cityofmelrosema/
+  twitter: https://twitter.com/cityofmelrose?lang=en
+  linkedin: https://www.linkedin.com/company/cityofmelrose/
+site:
+  domains: [localhost, melrose.localhost, melrose.mysticdrains.org]
+  main_url: https://melrose.mysticdrains.org/
+  logo: logos/adopt-a-drain-melrose.png
+data:
+  file: Melrose_ssCatchBasins_0.csv
+  columns:
+    lat: "y"
+    lng: "x"

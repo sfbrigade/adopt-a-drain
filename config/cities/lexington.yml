@@ -1,0 +1,24 @@
+city:
+  name: Lexington
+  type: Town
+  center:
+    lat: "42.4481863"
+    lng: "-71.2951278"
+  title: Town of Lexington
+  runoff_destination: the Charles, Mystic, or Shawsheen Rivers
+  trash_page_label: Lexington's trash page
+  trash_page_url: https://www.lexingtonma.gov/environmental-services/pages/trash
+  report_issues: by calling Lexington Public Works at 781-274-8300
+  logo: logos/lexington-city.png
+  url: https://www.lexingtonma.gov/
+  facebook: https://www.facebook.com/townoflexingtonma/
+  twitter: https://twitter.com/TownOfLexMA
+site:
+  domains: [localhost, lexington.localhost, lexington.mysticdrains.org]
+  main_url: https://lexington.mysticdrains.org/
+  logo: logos/adopt-a-drain-lexington.png
+data:
+  file: Lexington_storm_inlets_0.csv
+  columns:
+    lat: "y"
+    lng: "x"

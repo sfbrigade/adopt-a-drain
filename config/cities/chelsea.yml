@@ -1,0 +1,25 @@
+city:
+  name: Chelsea
+  type: City
+  center:
+    lat: "42.399049"
+    lng: "-71.0673553"
+  title: City of Chelsea
+  runoff_destination: the Mystic River or Lakes
+  trash_page_label: Chelsea's trash, recycling, and waste collection page
+  trash_page_url: https://www.chelseama.gov/WasteCollection
+  report_issues: via <a target="_blank" href="https://www.chelseama.gov/home/pages/seeclickfix">SeeClickFix</a>
+  logo: logos/chelsea-city.png
+  url: https://www.chelseama.gov/
+  facebook: https://www.facebook.com/CityOfChelsea
+  twitter: https://twitter.com/ChelseaGov_MA
+  linkedin: https://www.linkedin.com/company/city-of-chelsea/
+site:
+  domains: [localhost, chelsea.localhost, chelsea.mysticdrains.org]
+  main_url: https://chelsea.mysticdrains.org/
+  logo: logos/adopt-a-drain-chelsea.png
+data:
+  file: Chelsea_catchbasins_WGS84_20220623_filtered.csv
+  columns:
+    lat: Latitude
+    lng: Longitude

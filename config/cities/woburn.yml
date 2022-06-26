@@ -1,0 +1,26 @@
+city:
+  name: Woburn
+  type: City
+  center:
+    lat: "42.4900137"
+    lng: "-71.2296051"
+  title: City of Woburn
+  runoff_destination: the Mystic River Watershed
+  trash_page_label: Woburn's trash and recycling page
+  trash_page_url: https://www.woburnma.gov/government/health/trash-and-recycling/
+  report_issues: <a target="_blank" href="https://www.woburnma.gov/report-a-concern/">online</a>
+  logo: logos/woburn-city.png
+  url: https://www.woburnma.gov/
+  facebook: https://www.facebook.com/mayor.galvin
+  twitter: https://twitter.com/cityofwoburn?lang=en
+site:
+  domains: [localhost, woburn.localhost, woburn.mysticdrains.org]
+  main_url: https://woburn.mysticdrains.org/
+  logo: logos/adopt-a-drain-woburn.png
+data:
+  file: Woburn_catchbasins_WGS84_20220623.csv
+  columns:
+    id: p_facility
+    lat: Latitude
+    lng: Longitude
+    name: [p_locdesc]

@@ -1,0 +1,28 @@
+city:
+  name: Watertown
+  type: City
+  center:
+    lat: "42.3721351"
+    lng: "-71.1786436"
+  title: City of Watertown
+  runoff_destination: the Charles River
+  trash_page_label: Watertown's trash and recycling page
+  trash_page_url: https://watertown-ma.gov/738/Trash-and-Recycling
+  report_issues: <a target="_blank" href="https://watertown-ma.gov/582/Report-It">SeeClickFix</a>
+  logo: logos/watertown-city.png
+  url: https://watertown-ma.gov/
+  facebook: https://www.facebook.com/watertowngov/
+  instagram: https://www.instagram.com/watertownmagov/
+  twitter: https://twitter.com/watertowngov
+  linkedin: https://www.linkedin.com/in/town-of-watertown-23043a202/
+site:
+  domains: [localhost, watertown.localhost, watertown.mysticdrains.org]
+  main_url: https://watertown.mysticdrains.org/
+  logo: logos/adopt-a-drain-watertown.png
+data:
+  file: Watertown_catchbasins_LatLong_20220623.csv
+  columns:
+    id: GlobalID
+    lat: "y"
+    lng: "x"
+    name: [StreetName]
