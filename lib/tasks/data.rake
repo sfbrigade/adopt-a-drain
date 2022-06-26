@@ -2,6 +2,8 @@
 
 # rubocop:disable Metrics/AbcSize
 # rubocop:disable Metrics/ClassLength
+# rubocop:disable Metrics/CyclomaticComplexity
+# rubocop:disable Metrics/PerceivedComplexity
 
 # from Savannah implementation
 # run with:
@@ -47,6 +49,41 @@ class LoadDrains
     clean_up
   end
 
+  def process_matches
+    puts "#{@matches[:conflicts].size} conflicting matches: #{@matches[:conflicts]}"
+    puts "#{@matches[:new_input_ids].size} new drains"
+    puts "#{@matches[:updated].size} updated drains"
+    puts "#{@matches[:removed_existing_ids].size} removed drains: #{@matches[:removed_existing_ids]}"
+
+    apply_changes unless @dry_run
+  end
+
+  def apply_changes
+    raise "Conflicting matches: #{@matches[:conflicts]}" unless @matches[:conflicts].empty?
+
+    puts 'Applying changes...'
+
+    puts 'Creating new things...'
+    @matches[:new_input_ids].each do |id|
+      thing = Thing.new(@input.fetch(id))
+      thing.save!(validate: false)
+    end
+
+    puts 'Updating things...'
+    @matches[:updated].each do |d|
+      thing = Thing.with_deleted.for_city(@city).where(city_id: d['matched_record_id']).first!
+      # Update the city_id to allow adding id's later
+      thing.assign_attributes(@input.fetch(d['input_id']).slice(:lat, :lng, :city_id))
+      thing.deleted_at = nil
+      thing.save! if thing.changed?
+    end
+
+    puts 'Deleting things...'
+    @matches[:removed_existing_ids].each_slice(100) do |ids|
+      Thing.for_city(city).where(city_id: ids).destroy_all
+    end
+  end
+
   # - for each record in the temp table, locate matching records in the temp
   #   table (self-join to detect duplicates) and in the things table (detect
   #   existing records). Records match if id's match or they are within 1 foot
@@ -56,53 +93,6 @@ class LoadDrains
   # - > 1 matching record, duplicates in input = error
   # - things without matches = delete
   def match_drains
-    puts 'Matching...'
-    check_no_duplicate_inputs
-    match_existing
-  end
-
-  def process_matches
-    if @dry_run
-      puts "#{@matches[:conflicts].size} conflicting matches: #{@matches[:conflicts]}"
-      puts "#{@matches[:new_input_ids].size} new drains"
-      puts "#{@matches[:updated].size} updated drains"
-      puts "#{@matches[:removed_existing_ids].size} removed drains: #{@matches[:removed_existing_ids]}"
-    else
-      apply_matches
-    end
-  end
-
-  def apply_matches
-    raise "Conflicting matches: #{@matches[:conflicts]}" unless @matches[:conflicts].empty?
-
-    thing_hashes = @inputs.map do |i|
-      [i[:id], {
-        name: i[:name],
-        lat: i[:lat],
-        lng: i[:lng],
-        city_domain: @city,
-        city_id: i[:id],
-      }]
-    end.to_h
-
-    @matches[:new_input_ids].each do |id|
-      Thing.create!(thing_hashes.fetch(id))
-    end
-
-    @matches[:updated].each do |d|
-      thing = Thing.with_deleted.for_city(@city).where(city_id: d['matched_record_id']).first!
-      # Update the city_id to allow adding id's later
-      thing.assign_attributes(thing_hash.slice(:lat, :lng, :city_id))
-      thing.deleted_at = nil
-      thing.save! if thing.changed?
-    end
-
-    @matches[:removed_existing_ids].each_slice(100) do |ids|
-      Thing.for_city(city).where(city_id: ids).destroy_all
-    end
-  end
-
-  def match_existing
     matched = match_input 'existing'
     updated = matched.filter { |_k, v| v.size == 1 }.map { |_k, v| v[0] }
     existing_ids = Thing.for_city(@city).select(:city_id).map(&:city_id)
@@ -115,13 +105,31 @@ class LoadDrains
     }
   end
 
-  def check_no_duplicate_inputs
+  def remove_duplicate_inputs
     matched_input = match_input 'input'
     duplicates = matched_input.filter { |_k, v| v.size > 1 }
     return if duplicates.empty?
 
-    puts "Duplicate input rows found \n#{duplicates.map { |k, v| "#{k}: #{v}" }.join("\n\n")}"
-    raise 'Duplicate input found' unless @dry_run
+    dropped = {}
+    kept = {}
+    duplicates.each do |input_id, records|
+      next if dropped.key?(input_id)
+
+      records.each do |d|
+        id = d['matched_record_id']
+        if id == input_id
+          kept[id] = true
+        else
+          dropped[id] = true
+        end
+      end
+    end
+
+    puts "Warning: Co-located input drains found. Keeping #{kept.keys}, Dropping #{dropped.keys}"
+
+    @conn.execute <<-SQL
+      DELETE FROM input where id IN (#{dropped.keys.map { |k| "'#{k}'" }.join(', ')})
+    SQL
   end
 
   def match_input(table, max_colocation_ft = 1.0)
@@ -141,7 +149,10 @@ class LoadDrains
       ) AS matched_record ON true
     SQL
 
-    records.group_by { |m| m['input_id'] }.map { |k, v| [k, v.filter { |x| !x.nil? }] }.to_h
+    records.
+      group_by { |m| m['input_id'] }.
+      map { |k, v| [k, v.filter { |x| !x['matched_record_id'].nil? }] }.
+      to_h
   end
 
   def clean_up
@@ -169,12 +180,14 @@ class LoadDrains
         VALUES ($1, $2,ST_SetSRID(ST_MakePoint($3, $4), 4326))
     SQL
 
-    @input.each do |drain|
+    @input.each do |_k, drain|
       @conn.raw_connection.exec_prepared(
         statement_id,
-        [drain[:id], drain[:name], drain[:lng], drain[:lat]],
+        [drain[:city_id], drain[:name], drain[:lng], drain[:lat]],
       )
     end
+
+    remove_duplicate_inputs
   end
 
   def load_existing_table
@@ -212,11 +225,8 @@ class LoadDrains
            else
              SecureRandom.uuid
            end
-      name = if columns.key?(:name)
-               columns.fetch(:name).map { |c| drain.fetch(c) }.join(' ')
-             else
-               'Storm Drain'
-             end
+      name = columns.fetch(:name).map { |c| drain.fetch(c) }.join(' ').strip!.presence if columns.key?(:name)
+      name ||= 'Storm Drain'
       {
         id: id,
         name: name,
@@ -225,10 +235,32 @@ class LoadDrains
       }
     end
 
-    input.group_by { |i| i[:id] }.map do |id, records|
-      puts "Warning: duplicate input ID #{id}. Using first record" if records.size > 1
+    input = input.group_by { |i| i[:id] }.map do |id, records|
+      puts "Warning: duplicate input ID #{id} (#{records.size} found). Using first record #{records[0]}" if records.size > 1
       records[0]
     end
+
+    input = input.filter do |record|
+      if record[:lat].blank?
+        puts 'Warning: missing lat', record
+        false
+      elsif record[:lng].blank?
+        puts 'Warning: missing lon', record
+        false
+      else
+        true
+      end
+    end
+
+    input.map do |i|
+      [i[:id], {
+        name: i[:name],
+        lat: i[:lat],
+        lng: i[:lng],
+        city_domain: @city,
+        city_id: i[:id],
+      }]
+    end.to_h
   end
 end
 
