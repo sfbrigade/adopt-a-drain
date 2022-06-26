@@ -65,22 +65,24 @@ class LoadDrains
 
     puts 'Creating new things...'
     @matches[:new_input_ids].each do |id|
-      thing = Thing.new(@input.fetch(id))
+      thing = Thing.new(@input.fetch(id).slice(:lat, :lng, :city_id, :name))
       thing.save!(validate: false)
     end
 
     puts 'Updating things...'
     @matches[:updated].each do |d|
+      input = @input.fetch(d['input_id'])
       thing = Thing.with_deleted.for_city(@city).where(city_id: d['matched_record_id']).first!
-      # Update the city_id to allow adding id's later
-      thing.assign_attributes(@input.fetch(d['input_id']).slice(:lat, :lng, :city_id))
+      thing.lat = input[:lat]
+      thing.lng = input[:lng]
+      thing.city_id = input[:city_id] unless input[:generated_id]
       thing.deleted_at = nil
       thing.save! if thing.changed?
     end
 
     puts 'Deleting things...'
     @matches[:removed_existing_ids].each_slice(100) do |ids|
-      Thing.for_city(city).where(city_id: ids).destroy_all
+      Thing.for_city(@city).where(city_id: ids).destroy_all
     end
   end
 
@@ -213,6 +215,7 @@ class LoadDrains
   def parse_input
     config = CityHelper.config(@city).data
     columns = config.fetch(:columns)
+    generated_id = !columns.key?(:id)
     data_path = Rails.root.join 'config', 'cities', 'data', config.fetch(:file)
     raise "Missing data file #{data_path}" unless File.exist? data_path
 
@@ -220,10 +223,10 @@ class LoadDrains
     drains = CSV.parse(csv_string, headers: true, liberal_parsing: true)
 
     input = drains.map do |drain|
-      id = if columns.key?(:id)
-             drain.fetch(columns.fetch(:id))
-           else
+      id = if generated_id
              SecureRandom.uuid
+           else
+             drain.fetch(columns.fetch(:id))
            end
       name = columns.fetch(:name).map { |c| drain.fetch(c) }.join(' ').strip!.presence if columns.key?(:name)
       name ||= 'Storm Drain'
@@ -254,6 +257,7 @@ class LoadDrains
 
     input.map do |i|
       [i[:id], {
+        generated_id: generated_id,
         name: i[:name],
         lat: i[:lat],
         lng: i[:lng],
