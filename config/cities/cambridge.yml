@@ -5,7 +5,7 @@ city:
     lat: "42.3784958"
     lng: "-71.1829489"
   title: City of Cambridge
-  runoff_destination: the Charles River or Alewife Brook
+  runoff_destination: the Alewife Brook and Mystic River
   trash_page_label: Cambridge's curbside collection page
   trash_page_url: https://www.cambridgema.gov/services/curbsidecollections
   report_issues: via <a target="_blank" href="https://www.cambridgema.gov/commonwealthconnect">Commonwealth Connect</a>

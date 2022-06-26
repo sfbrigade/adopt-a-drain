@@ -5,7 +5,7 @@ city:
     lat: "42.4481863"
     lng: "-71.2951278"
   title: Town of Lexington
-  runoff_destination: the Charles, Mystic, or Shawsheen Rivers
+  runoff_destination: the Mystic and Charles Rivers
   trash_page_label: Lexington's trash page
   trash_page_url: https://www.lexingtonma.gov/environmental-services/pages/trash
   report_issues: by calling Lexington Public Works at 781-274-8300

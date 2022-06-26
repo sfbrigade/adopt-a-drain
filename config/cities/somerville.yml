@@ -5,7 +5,7 @@ city:
     lat: "42.3956156"
     lng: "-71.1387672"
   title: City of Somerville
-  runoff_destination: the Mystic River or Alewife Brook
+  runoff_destination: the Mystic and Charles Rivers
   trash_page_label: Somerville's trash and recycling page
   trash_page_url: https://www.somervillema.gov/departments/dpw-sanitation/somerville-trash-recycling-information
   report_issues: <a target="_blank" href="https://www.somervillema.gov/departments/constituent-services/311-service-center">online</a> or by calling 311

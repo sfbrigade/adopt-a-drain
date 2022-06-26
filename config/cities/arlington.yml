@@ -5,7 +5,7 @@ city:
     lat: "42.4155068"
     lng: "-71.1585997"
   title: Town of Arlington
-  runoff_destination: the Mystic River or Lakes
+  runoff_destination: the Mill Brook, Alewife Brook and Mystic Rivers
   trash_page_label: Arlington's recycling, trash, and composting page
   trash_page_url: https://www.arlingtonma.gov/departments/public-works/recycling-trash-composting
   report_issues: by contacting Public Works at 781-316-3301

@@ -5,7 +5,7 @@ city:
     lat: "42.3721351"
     lng: "-71.1786436"
   title: City of Watertown
-  runoff_destination: the Charles River
+  runoff_destination: the Mystic and Charles Rivers
   trash_page_label: Watertown's trash and recycling page
   trash_page_url: https://watertown-ma.gov/738/Trash-and-Recycling
   report_issues: <a target="_blank" href="https://watertown-ma.gov/582/Report-It">SeeClickFix</a>

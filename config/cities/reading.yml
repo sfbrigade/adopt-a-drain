@@ -5,7 +5,7 @@ city:
     lat: "42.5335964"
     lng: "-71.1386262"
   title: Town of Reading
-  runoff_destination: the Mystic River or Lakes
+  runoff_destination: the Aberjona River
   trash_page_label: Reading's rubbish and recycling page
   trash_page_url: https://www.readingma.gov/248/Rubbish-Recycling
   report_issues: via <a target="_blank" href="https://seeclickfix.com/reading">SeeClickFix</a>

@@ -5,7 +5,7 @@ city:
     lat: "42.399049"
     lng: "-71.0673553"
   title: City of Chelsea
-  runoff_destination: the Mystic River or Lakes
+  runoff_destination: the Mystic River
   trash_page_label: Chelsea's trash, recycling, and waste collection page
   trash_page_url: https://www.chelseama.gov/WasteCollection
   report_issues: via <a target="_blank" href="https://www.chelseama.gov/home/pages/seeclickfix">SeeClickFix</a>

@@ -5,7 +5,7 @@ city:
     lat: "42.457202"
     lng: "-71.054108"
   title: City of Melrose
-  runoff_destination: the Mystic River or Lakes
+  runoff_destination: the Malden and Mystic Rivers
   trash_page_label: Melrose's trash and recycling page
   trash_page_url: https://www.cityofmelrose.org/trash-recycling
   report_issues: via <a target="_blank" href="https://seeclickfix.com/melrose">SeeClickFix</a>

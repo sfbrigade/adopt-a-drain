@@ -5,7 +5,7 @@ city:
     lat: "42.4900137"
     lng: "-71.2296051"
   title: City of Woburn
-  runoff_destination: the Mystic River Watershed
+  runoff_destination: the Aberjona and Mystic Rivers
   trash_page_label: Woburn's trash and recycling page
   trash_page_url: https://www.woburnma.gov/government/health/trash-and-recycling/
   report_issues: <a target="_blank" href="https://www.woburnma.gov/report-a-concern/">online</a>
