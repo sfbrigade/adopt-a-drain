@@ -7,8 +7,44 @@ const cities: City[] = [
     title: "Everett",
   },
   {
-    name: "medford",
-    title: "Medford",
+    name: "arlington",
+    title: "Arlington",
+  },
+  {
+    name: "cambridge",
+    title: "Cambridge",
+  },
+  {
+    name: "chelsea",
+    title: "Chelsea",
+  },
+  {
+    name: "lexington",
+    title: "Lexington",
+  },
+  {
+    name: "melrose",
+    title: "Melrose",
+  },
+  {
+    name: "reading",
+    title: "Reading",
+  },
+  {
+    name: "somerville",
+    title: "Somerville",
+  },
+  {
+    name: "watertown",
+    title: "Watertown",
+  },
+  {
+    name: "winchester",
+    title: "Winchester",
+  },
+  {
+    name: "woburn",
+    title: "Woburn",
   },
 ]
 type City = { name: string; title: string }
