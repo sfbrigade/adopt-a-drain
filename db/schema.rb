@@ -51,18 +51,6 @@ ActiveRecord::Schema.define(version: 2022_06_26_203913) do
     t.index ["name"], name: "index_cities_on_name", unique: true
   end
 
-  create_table "layer", primary_key: ["topology_id", "layer_id"], force: :cascade do |t|
-    t.integer "topology_id", null: false
-    t.integer "layer_id", null: false
-    t.string "schema_name", null: false
-    t.string "table_name", null: false
-    t.string "feature_column", null: false
-    t.integer "feature_type", null: false
-    t.integer "level", default: 0, null: false
-    t.integer "child_id"
-    t.index ["schema_name", "table_name", "feature_column"], name: "layer_schema_name_table_name_feature_column_key", unique: true
-  end
-
   create_table "rails_admin_histories", id: :serial, force: :cascade do |t|
     t.string "message"
     t.string "username"
@@ -88,13 +76,6 @@ ActiveRecord::Schema.define(version: 2022_06_26_203913) do
     t.index ["to_user_id"], name: "index_reminders_on_to_user_id"
   end
 
-  create_table "spatial_ref_sys", primary_key: "srid", id: :integer, default: nil, force: :cascade do |t|
-    t.string "auth_name", limit: 256
-    t.integer "auth_srid"
-    t.string "srtext", limit: 2048
-    t.string "proj4text", limit: 2048
-  end
-
   create_table "things", id: :serial, force: :cascade do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -110,14 +91,6 @@ ActiveRecord::Schema.define(version: 2022_06_26_203913) do
     t.string "city_domain"
     t.index ["city_id", "city_domain"], name: "things_by_city_id_and_domain", unique: true
     t.index ["deleted_at"], name: "index_things_on_deleted_at"
-  end
-
-  create_table "topology", id: :serial, force: :cascade do |t|
-    t.string "name", null: false
-    t.integer "srid", null: false
-    t.float "precision", null: false
-    t.boolean "hasz", default: false, null: false
-    t.index ["name"], name: "topology_name_key", unique: true
   end
 
   create_table "users", id: :serial, force: :cascade do |t|
@@ -149,5 +122,4 @@ ActiveRecord::Schema.define(version: 2022_06_26_203913) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "layer", "topology", name: "layer_topology_id_fkey"
 end

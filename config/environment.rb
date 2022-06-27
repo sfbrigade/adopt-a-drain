@@ -27,5 +27,7 @@ ActionMailer::Base.smtp_settings = {
   domain: ENV['MAILSERVER_DOMAIN'],
 }
 
+ActiveRecord::SchemaDumper.ignore_tables |= %w[spatial_ref_sys layer topology]
+
 # Initialize the Rails application.
 Rails.application.initialize!
