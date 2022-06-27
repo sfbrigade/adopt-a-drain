@@ -5,11 +5,19 @@
 # rubocop:disable Metrics/CyclomaticComplexity
 # rubocop:disable Metrics/PerceivedComplexity
 
-# from Savannah implementation
-# run with:
-# docker-compose run --rm web bundle exec rake data:load_drains[everett]
+# Usage:
+# rake data:load_drains cities='all'|'everett cambridge...' [write=true]
+# write must be set to true for drains to be updated
+# Run locally:
+# docker compose run web bundle exec rake data:load_drains cities=all write=true
 # or
-# heroku rake data:load_drains[everett]
+# heroku rake data:load_drains cities=all write=true
+
+def log(*args)
+  print '> '
+  args.each { |a| print(a) }
+  print "\n"
+end
 
 namespace :data do
   task load_drains: :environment do
@@ -19,7 +27,7 @@ namespace :data do
              else
                cities.split(' ').map { |c| CityHelper.check(c) }
              end
-    dry_run = ENV['apply'] != 'true'
+    dry_run = ENV['write'] != 'true'
     loader = LoadDrains.new(dry_run)
     cities.each do |city|
       loader.load_drains(city)
@@ -32,14 +40,15 @@ class LoadDrains
   def initialize(dry_run)
     @dry_run = dry_run
     @conn = ActiveRecord::Base.connection
+
+    log 'Dry Run' if @dry_run
   end
 
   def load_drains(city)
     @city = city
 
-    puts
-    puts 'Dry Run' if @dry_run
-    puts "Loading drains for #{@city}"
+    log
+    log "Loading drains for #{@city}"
 
     @input = parse_input
     load_input_table
@@ -50,10 +59,10 @@ class LoadDrains
   end
 
   def process_matches
-    puts "#{@matches[:conflicts].size} conflicting matches: #{@matches[:conflicts]}"
-    puts "#{@matches[:new_input_ids].size} new drains"
-    puts "#{@matches[:updated].size} updated drains"
-    puts "#{@matches[:removed_existing_ids].size} removed drains: #{@matches[:removed_existing_ids]}"
+    log "#{@matches[:conflicts].size} conflicting matches: #{@matches[:conflicts]}"
+    log "#{@matches[:new_input_ids].size} new drains"
+    log "#{@matches[:updated].size} updated drains"
+    log "#{@matches[:removed_existing_ids].size} removed drains: #{@matches[:removed_existing_ids]}"
 
     apply_changes unless @dry_run
   end
@@ -61,26 +70,26 @@ class LoadDrains
   def apply_changes
     raise "Conflicting matches: #{@matches[:conflicts]}" unless @matches[:conflicts].empty?
 
-    puts 'Applying changes...'
+    log 'Applying changes...'
 
-    puts 'Creating new things...'
+    log 'Creating new things...'
     @matches[:new_input_ids].each do |id|
-      thing = Thing.new(@input.fetch(id).slice(:lat, :lng, :city_id, :name))
+      thing = Thing.new(@input.fetch(id))
       thing.save!(validate: false)
     end
 
-    puts 'Updating things...'
+    log 'Updating things...'
     @matches[:updated].each do |d|
-      input = @input.fetch(d['input_id'])
+      input = @input.fetch(d['input_id']).except(:name)
+      input = input.except(:city_id) if @generate_id
+
       thing = Thing.with_deleted.for_city(@city).where(city_id: d['matched_record_id']).first!
-      thing.lat = input[:lat]
-      thing.lng = input[:lng]
-      thing.city_id = input[:city_id] unless input[:generated_id]
+      thing.assign_attributes(input)
       thing.deleted_at = nil
       thing.save! if thing.changed?
     end
 
-    puts 'Deleting things...'
+    log 'Deleting things...'
     @matches[:removed_existing_ids].each_slice(100) do |ids|
       Thing.for_city(@city).where(city_id: ids).destroy_all
     end
@@ -127,7 +136,7 @@ class LoadDrains
       end
     end
 
-    puts "Warning: Co-located input drains found. Keeping #{kept.keys}, Dropping #{dropped.keys}"
+    log "Warning: Co-located input drains found. Keeping #{kept.keys}, Dropping #{dropped.keys}"
 
     @conn.execute <<-SQL
       DELETE FROM input where id IN (#{dropped.keys.map { |k| "'#{k}'" }.join(', ')})
@@ -215,7 +224,7 @@ class LoadDrains
   def parse_input
     config = CityHelper.config(@city).data
     columns = config.fetch(:columns)
-    generated_id = !columns.key?(:id)
+    @generate_id = !columns.key?(:id)
     data_path = Rails.root.join 'config', 'cities', 'data', config.fetch(:file)
     raise "Missing data file #{data_path}" unless File.exist? data_path
 
@@ -223,7 +232,7 @@ class LoadDrains
     drains = CSV.parse(csv_string, headers: true, liberal_parsing: true)
 
     input = drains.map do |drain|
-      id = if generated_id
+      id = if @generate_id
              SecureRandom.uuid
            else
              drain.fetch(columns.fetch(:id))
@@ -239,16 +248,16 @@ class LoadDrains
     end
 
     input = input.group_by { |i| i[:id] }.map do |id, records|
-      puts "Warning: duplicate input ID #{id} (#{records.size} found). Using first record #{records[0]}" if records.size > 1
+      log "Warning: duplicate input ID #{id} (#{records.size} found). Using first record #{records[0]}" if records.size > 1
       records[0]
     end
 
     input = input.filter do |record|
       if record[:lat].blank?
-        puts 'Warning: missing lat', record
+        log 'Warning: missing lat', record
         false
       elsif record[:lng].blank?
-        puts 'Warning: missing lon', record
+        log 'Warning: missing lon', record
         false
       else
         true
@@ -257,7 +266,6 @@ class LoadDrains
 
     input.map do |i|
       [i[:id], {
-        generated_id: generated_id,
         name: i[:name],
         lat: i[:lat],
         lng: i[:lng],
@@ -266,61 +274,4 @@ class LoadDrains
       }]
     end.to_h
   end
-end
-
-def process_city(city)
-  config = CityHelper.config(city).data
-  columns = config.fetch(:columns)
-  data_path = Rails.root.join 'config', 'cities', 'data', config.fetch(:file)
-  raise "Missing data file #{data_path}" unless File.exist? data_path
-
-  puts "There are #{Thing.for_city(city).count} drains for #{city}..."
-  puts "Loading drains for #{city} from #{data_path} ..."
-  csv_string = File.open(data_path).read
-  drains = CSV.parse(csv_string, headers: true)
-  puts "Loading #{drains.size} drains."
-
-  # Update or create things listed in the input data
-  total = 0
-  drains.each_slice(1000) do |group|
-    updated = 0
-    created = 0
-    group.each do |drain|
-      id = drain.fetch(columns.fetch(:id))
-      thing_hash = {
-        name: columns.fetch(:name).map { |c| drain.fetch(c) }.join(' '),
-        lat: drain.fetch(columns.fetch(:lat)),
-        lng: drain.fetch(columns.fetch(:lng)),
-        city_domain: city,
-        city_id: id,
-      }
-
-      thing = Thing.with_deleted.for_city(city).where(city_id: id).first
-      if thing
-        # Don't update the name in case a user has renamed it
-        thing.assign_attributes(thing_hash.slice(:lat, :lng))
-        thing.deleted_at = nil
-        if thing.changed?
-          updated += 1
-          thing.save!
-        end
-      else
-        Thing.create!(thing_hash)
-        created += 1
-      end
-
-      total += 1
-    end
-
-    puts "updated/created: #{updated}/#{created} ... #{total}"
-  end
-
-  # Remove things not listed in the input data
-  new_ids = drains.map { |d| d.fetch(columns.fetch(:id)) }
-  existing_ids = Thing.for_city(city).select(:city_id).map(&:city_id)
-  removed_ids = existing_ids.difference(new_ids)
-  removed_ids.each_slice(100) do |ids|
-    Thing.for_city(city).where(city_id: ids).destroy_all
-  end
-  puts "removed #{removed_ids.size} things"
 end
