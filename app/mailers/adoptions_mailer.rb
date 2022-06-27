@@ -36,34 +36,41 @@ class AdoptionsMailer < ApplicationMailer
 
   def compute_stats
     @export_time = Time.zone.now
-    @user_count = User.count
-    @adoption_count = Thing.where.not(user_id: nil).count
+    @user_count = users.count
+    @adoption_count = adopted_drains.count
+  end
+
+  def users
+    User.where(city_domain: @city.name)
+  end
+
+  def adopted_drains
+    Thing.where(city_domain: @city.name).where.not(user_id: nil)
   end
 
   def attach_files
     date = @export_time.strftime('%m-%d-%Y')
-    attachments["signups-#{date}.csv"] = signups
-    attachments["adopted-drains-#{date}.csv"] = adopted_drains
+    attachments["signups-#{date}.csv"] = signups_csv
+    attachments["adopted-drains-#{date}.csv"] = adopted_drains_csv
   end
 
-  def adopted_drains
+  def adopted_drains_csv
     CSV.generate(
       write_headers: true,
       headers: %w[id email_address lat lng],
     ) do |csv|
-      adopted_drains = Thing.where.not(user_id: nil).where(city_domain: @city.name)
       adopted_drains.each do |t|
         csv << [t.city_id, t.user.email, t.lat, t.lng]
       end
     end
   end
 
-  def signups
+  def signups_csv
     CSV.generate(
       write_headers: true,
       headers: %w[first_name last_name email joined_at],
     ) do |csv|
-      User.where(city_domain: @city.name).each do |u|
+      users.each do |u|
         csv << [u.first_name, u.last_name, u.email, u.created_at]
       end
     end
