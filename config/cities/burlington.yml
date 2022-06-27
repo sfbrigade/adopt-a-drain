@@ -1,0 +1,27 @@
+city:
+  name: Burlington
+  type: Town
+  center:
+    lat: "42.5052397"
+    lng: "-71.2748498"
+  title: Town of Burlington
+  runoff_destination: the Malden and Mystic Rivers
+  trash_page_label: Burlington's trash and recycling page
+  trash_page_url: https://www.burlington.org/453/Trash-Recycling
+  report_issues: by contacting Public Works at 781-270-1670
+  logo: logos/burlington-city.png
+  url: https://www.burlington.org/
+  facebook: https://www.burlington.org/facebook
+  twitter: https://www.burlington.org/twitter
+  instagram: https://www.burlington.org/instagram
+site:
+  domains: [burlington.localhost, burlington.mysticdrains.org]
+  main_url: https://burlington.mysticdrains.org/
+  logo: logos/adopt-a-drain-burlington.png
+data:
+  file: burlington_temp.csv
+  columns:
+    id: id
+    lat: lat
+    lng: lng
+    name: [name]

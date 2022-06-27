@@ -1,0 +1,26 @@
+city:
+  name: Revere
+  type: City
+  center:
+    lat: "42.4192113"
+    lng: "-71.0619612"
+  title: City of Revere
+  runoff_destination: the Mystic River
+  trash_page_label: Revere's trash and recycling page
+  trash_page_url: https://www.revere.org/trash
+  report_issues: by calling 311
+  logo: logos/revere-city.png
+  url: https://www.revere.org/
+  facebook: https://www.facebook.com/CityofRevere/
+  twitter: https://twitter.com/revere311
+site:
+  domains: [revere.localhost, revere.mysticdrains.org]
+  main_url: https://revere.mysticdrains.org/
+  logo: logos/adopt-a-drain-revere.png
+data:
+  file: revere_temp.csv
+  columns:
+    id: id
+    lat: lat
+    lng: lng
+    name: [name]

@@ -46,6 +46,14 @@ const cities: City[] = [
     name: "woburn",
     title: "Woburn",
   },
+  {
+    name: "burlington",
+    title: "Burlington",
+  },
+  {
+    name: "revere",
+    title: "Revere",
+  },
 ]
 type City = { name: string; title: string }
 
