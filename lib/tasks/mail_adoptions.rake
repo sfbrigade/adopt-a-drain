@@ -18,25 +18,31 @@ namespace 'mail' do
              end
     cities = cities.filter { |c| City.where(name: c).any? }
 
-    p "Processing #{cities}"
+    puts "Processing #{cities}"
 
     cities.each do |city|
-      p "Sending report for #{city}"
+      puts "Sending report for #{city}"
       AdoptionsMailer.with(city: city).usage_report.deliver_now
     end
+  end
+
+  task send_system_report: :environment do
+    recipients = ENV.fetch('recipients').split(' ')
+    puts "Sending system report to #{recipients}"
+    AdoptionsMailer.with(recipients: recipients).system_usage_report.deliver_now
   end
 
   # rake mail:configure_reports config='[{"city": "everett", "emails": ["me@example.com", "me2@example.com"]}]'
   task configure_reports: :environment do
     config = JSON.parse ENV.fetch('config')
 
-    p "Processing #{config}"
+    puts "Processing #{config}"
 
     config.each do |c|
       name = CityHelper.check(c.fetch('city'))
       emails = c.fetch('emails')
 
-      p "Configuring #{name}"
+      puts "Configuring #{name}"
 
       city = City.find_or_initialize_by(name: name)
       city.update(export_recipient_emails: emails)
