@@ -1,4 +1,4 @@
-# Operations Playbook
+# Developer Operations Playbook
 
 How to run and maintain the site.
 
@@ -99,3 +99,6 @@ To manually send reports to some or all cities:
 
 `heroku run rake mail:send_reports cities=all`
 
+To manually send the system usage report:
+
+`heroku run rake mail:send_system_report recipients='me@example.com me2@example.com'`
