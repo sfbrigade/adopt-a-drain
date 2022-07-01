@@ -2,8 +2,8 @@ city:
   name: Chelsea
   type: City
   center:
-    lat: "42.399049"
-    lng: "-71.0673553"
+    lat: "42.39367347957022"
+    lng: "-71.02661367985444"
   title: City of Chelsea
   runoff_destination: the Mystic River
   trash_page_label: Chelsea's trash, recycling, and waste collection page

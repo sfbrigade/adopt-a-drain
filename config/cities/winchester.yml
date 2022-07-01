@@ -2,8 +2,8 @@ city:
   name: Winchester
   type: Town
   center:
-    lat: "42.4547328"
-    lng: "-71.2202532"
+    lat: "42.44696522862948"
+    lng: "-71.17862876270499"
   title: Town of Winchester
   runoff_destination: the Aberona and Mystic Rivers
   trash_page_label: Winchester's trash and recycling page

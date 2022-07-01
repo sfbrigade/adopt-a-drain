@@ -2,8 +2,8 @@ city:
   name: Lexington
   type: Town
   center:
-    lat: "42.4481863"
-    lng: "-71.2951278"
+    lat: "42.44620133930837"
+    lng: "-71.22148860001086"
   title: Town of Lexington
   runoff_destination: the Mystic and Charles Rivers
   trash_page_label: Lexington's trash page

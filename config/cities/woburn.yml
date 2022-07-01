@@ -2,8 +2,8 @@ city:
   name: Woburn
   type: City
   center:
-    lat: "42.4900137"
-    lng: "-71.2296051"
+    lat: "42.48041665349727"
+    lng: "-71.17298226912622"
   title: City of Woburn
   runoff_destination: the Aberjona and Mystic Rivers
   trash_page_label: Woburn's trash and recycling page

@@ -2,8 +2,8 @@ city:
   name: Somerville
   type: City
   center:
-    lat: "42.3956156"
-    lng: "-71.1387672"
+    lat: "42.38838449396033"
+    lng: "-71.10095828878448"
   title: City of Somerville
   runoff_destination: the Mystic and Charles Rivers
   trash_page_label: Somerville's trash and recycling page

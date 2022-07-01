@@ -2,8 +2,8 @@ city:
   name: Cambridge
   type: City
   center:
-    lat: "42.3784958"
-    lng: "-71.1829489"
+    lat: "42.37231408444312"
+    lng: "-71.10348578572862"
   title: City of Cambridge
   runoff_destination: the Alewife Brook and Mystic River
   trash_page_label: Cambridge's curbside collection page

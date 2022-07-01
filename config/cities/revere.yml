@@ -2,8 +2,8 @@ city:
   name: Revere
   type: City
   center:
-    lat: "42.4192113"
-    lng: "-71.0619612"
+    lat: "42.40851715995541"
+    lng: "-71.0077983497486"
   title: City of Revere
   runoff_destination: the Mystic River
   trash_page_label: Revere's trash and recycling page
