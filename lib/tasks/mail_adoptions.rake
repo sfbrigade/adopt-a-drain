@@ -2,13 +2,30 @@
 
 # from Savannah implementation
 # run with:
-# docker-compose run --rm web bundle exec rake data:load_drains[everett]
+# docker compose run web bundle exec rake mail:configure_reports config="$(cat report-config.json)"
+# docker compose run web bundle exec rake mail:send_reports cities=everett period_in_days=0
+# docker compose run web bundle exec rake mail:send_system_report period_in_days=0
 # or
-# heroku rake data:load_drains[everett]
+# heroku run rake mail:send_reports cities="everett cambridge" period_in_days=0
+# heroku run rake mail:send_reports cities=all period_in_days=0
+# heroku run rake mail:send_system_report period_in_days=0
+#
+# See DevOps.md
+
+def filter_reports(cities)
+  period_in_days = ENV.fetch('period_in_days', 30).to_i
+  now = Time.zone.now
+  cities.filter do |c|
+    c = City.where(name: c).first
+    if c.nil?
+      false
+    else
+      now > c.last_export_time + period_in_days.days
+    end
+  end
+end
 
 namespace 'mail' do
-  # rake mail:send_reports cities="everett cambridge"
-  # rake mail:send_reports cities="all"
   task send_reports: :environment do
     cities = ENV.fetch('cities')
     cities = if cities == 'all'
@@ -16,7 +33,7 @@ namespace 'mail' do
              else
                cities.split(' ').map { |c| CityHelper.check(c) }
              end
-    cities = cities.filter { |c| City.where(name: c).any? }
+    cities = filter_reports(cities)
 
     puts "Processing #{cities}"
 
@@ -27,19 +44,21 @@ namespace 'mail' do
   end
 
   task send_system_report: :environment do
-    recipients = ENV.fetch('recipients').split(' ')
-    puts "Sending system report to #{recipients}"
-    AdoptionsMailer.with(recipients: recipients).system_usage_report.deliver_now
+    should_send = filter_reports(['system']).first.present?
+    if should_send
+      puts 'Sending system report'
+      AdoptionsMailer.system_usage_report.deliver_now
+    end
   end
 
-  # rake mail:configure_reports config='[{"city": "everett", "emails": ["me@example.com", "me2@example.com"]}]'
   task configure_reports: :environment do
     config = JSON.parse ENV.fetch('config')
 
     puts "Processing #{config}"
 
     config.each do |c|
-      name = CityHelper.check(c.fetch('city'))
+      name = c.fetch('city')
+      name = name == 'system' ? name : CityHelper.check(name)
       emails = c.fetch('emails')
 
       puts "Configuring #{name}"

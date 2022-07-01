@@ -33,7 +33,7 @@ class AdoptionsMailer < ApplicationMailer
 
   # Usage across all cities for MyRWA
   def system_usage_report
-    recipients = params[:recipients]
+    recipients = City.where(name: 'system').first!.export_recipient_emails
     @users = User.all
     @adopted_drains = Thing.where.not(user_id: nil)
 

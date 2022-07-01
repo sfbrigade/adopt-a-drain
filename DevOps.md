@@ -71,7 +71,7 @@ If any input rows match any other input rows, the loader prints a warning and se
 
 # Configure report recipients
 
-Reports are sent to administrators for each city. The emails are stored in the database and configured using a json snippet. For new cities or to update the emails:
+Reports are sent to administrators for each city, and MyRWA at a system level. The emails are stored in the database and configured using a json snippet. For new cities or to update the emails:
 
 ```json
 // report-config.json
@@ -84,8 +84,15 @@ Reports are sent to administrators for each city. The emails are stored in the d
     "city": "cambridge",
     "emails": ["me3@example.com"]
   }
+  // Configure the system report with the `system` city name
+  {
+    "city": "system",
+    "emails": ["me4@example.com"]
+  }
 ]
 ```
+
+Note that the system report is configured with the `system` city name. Then, run this command to set the emails in the file. Only cities listed in the file will be affected:
 
 `heroku run rake mail:configure_reports config="$(cat report-config.json)"`
 
@@ -95,10 +102,10 @@ Usage reports are automatically sent monthly using [Herokue Scheduler](https://d
 
 To manually send reports to some or all cities:
 
-`heroku run rake mail:send_reports cities="everett cambridge"`
+`heroku run rake mail:send_reports cities="everett cambridge" period_in_days=0`
 
-`heroku run rake mail:send_reports cities=all`
+`heroku run rake mail:send_reports cities=all period_in_days=0`
 
 To manually send the system usage report:
 
-`heroku run rake mail:send_system_report recipients='me@example.com me2@example.com'`
+`heroku run rake mail:send_system_report period_in_days=0`
