@@ -2,8 +2,8 @@ city:
   name: Burlington
   type: Town
   center:
-    lat: "42.5052397"
-    lng: "-71.2748498"
+    lat: "42.50644453171278"
+    lng: "-71.19287864979137"
   title: Town of Burlington
   runoff_destination: the Malden and Mystic Rivers
   trash_page_label: Burlington's trash and recycling page
@@ -19,9 +19,7 @@ site:
   main_url: https://burlington.mysticdrains.org/
   logo: logos/adopt-a-drain-burlington.png
 data:
-  file: burlington_temp.csv
+  file: Burlington_CBN_WGS84_20220627.csv
   columns:
-    id: id
-    lat: lat
-    lng: lng
-    name: [name]
+    lat: Latitude
+    lng: Longitude
