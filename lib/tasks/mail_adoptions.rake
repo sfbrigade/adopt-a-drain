@@ -17,7 +17,7 @@ def filter_reports(cities)
   now = Time.zone.now
   cities.filter do |c|
     c = City.where(name: c).first
-    if c.nil?
+    if c.nil? || c.export_recipient_emails.empty?
       false
     else
       now > c.last_export_time + period_in_days.days
