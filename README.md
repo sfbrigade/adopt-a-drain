@@ -1,25 +1,19 @@
 # Adopt-a-Drain
 
 [![Join the chat at https://gitter.im/sfbrigade/adopt-a-drain](https://badges.gitter.im/sfbrigade/adopt-a-drain.svg)](https://gitter.im/sfbrigade/adopt-a-drain?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-
-[![Build Status](http://img.shields.io/travis/sfbrigade/adopt-a-drain.svg)][travis]
-[![Dependency Status](http://img.shields.io/gemnasium/sfbrigade/adopt-a-drain.svg)][gemnasium]
-[![Coverage Status](http://img.shields.io/coveralls/sfbrigade/adopt-a-drain.svg)][coveralls]
-
-[travis]: http://travis-ci.org/sfbrigade/adopt-a-drain
-[gemnasium]: https://gemnasium.com/sfbrigade/adopt-a-drain
-[coveralls]: https://coveralls.io/r/sfbrigade/adopt-a-drain
+[![Test Status](https://github.com/sfbrigade/adopt-a-drain/workflows/Test/badge.svg)](https://github.com/sfbrigade/adopt-a-drain/actions)
 
 Claim responsibility for cleaning out a storm drain after it rains.
 
+
+⚠️⚠️⚠️⚠️⚠️⚠️⚠️
+
+This repository no longer reflects the [official San Francisco Adopt-a-Drain website](https://adoptadrain.sfwater.org/), which is now maintained by [Civic Hub](https://www.civichub.us/adopt-a-platform).
+
+⚠️⚠️⚠️⚠️⚠️⚠️⚠️
+
 ## Screenshot
 ![Adopt-a-Drain](/adopt.png "Adopt-a-Drain")
-
-## Demo
-You can see a running version of the application at
-[http://adopt-a-drain.herokuapp.com/][demo].
-
-[demo]: http://adopt-a-drain.herokuapp.com/
 
 ## Installation
 This application requires [Postgres](http://www.postgresql.org/) to be installed

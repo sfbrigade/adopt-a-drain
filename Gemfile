@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 source 'https://rubygems.org'
-ruby '2.6.3'
+ruby '2.7.8'
 
 gem 'airbrake', '~> 10.0'
 gem 'devise', '~> 4.7'
@@ -18,16 +18,11 @@ gem 'validates_formatting_of', '~> 0.9.0'
 gem 'paranoia', '~> 2.4'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw]
 
-gem 'byebug', groups: %i[development test]
 gem 'dotenv-rails', groups: %i[development test]
 
 group :assets do
   gem 'sass-rails', '>= 4.0.3'
   gem 'uglifier'
-end
-
-group :development do
-  gem 'spring'
 end
 
 group :production do
@@ -37,9 +32,10 @@ group :production do
 end
 
 group :test do
-  gem 'coveralls', require: false
+  gem 'capybara', '~> 3.39'
   gem 'rails-controller-testing' # TODO: remove and replace usages
   gem 'rubocop-rails'
+  gem 'selenium-webdriver'
   gem 'simplecov', require: false
   gem 'webmock'
 end

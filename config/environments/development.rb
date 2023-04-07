@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-options = Rack::Server.new.options
-
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -11,8 +9,9 @@ Rails.application.configure do
   config.cache_classes = false
 
   # asset host
-  config.action_controller.asset_host = "http://#{options[:Host]}:#{options[:Port]}"
-  config.action_mailer.asset_host = config.action_controller.asset_host
+  # options = Rack::Server.new.options
+  # config.action_controller.asset_host = "http://#{options[:Host]}:#{options[:Port]}"
+  # config.action_mailer.asset_host = config.action_controller.asset_host
 
   # Do not eager load code on boot.
   config.eager_load = false

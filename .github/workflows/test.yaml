@@ -1,0 +1,39 @@
+name: Test
+on: [push]
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    env:
+      PGHOST: localhost
+      PGUSER: adoptadrain
+      DB_USER: adoptadrain
+      RAILS_ENV: test
+      BUNDLE_JOBS: 4
+      BUNDLE_RETRY: 3
+      BUNDLE_PATH: "vendor/bundle"
+      BUNDLE_BUILD__SASSC: "--disable-march-tune-native"
+      BUNDLE_FROZEN: "true"
+
+    services:
+      postgres:
+        image: postgres:14
+        env:
+          POSTGRES_USER: adoptadrain
+          POSTGRES_DB: adopt_a_thing_test
+          POSTGRES_PASSWORD: ""
+          POSTGRES_HOST_AUTH_METHOD: trust
+        ports: ["5432:5432"]
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: "Ruby: Install Ruby"
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+      - name: Setup test database
+        run: bin/rails db:test:prepare
+      - name: Run tests
+        run: bin/rails test
