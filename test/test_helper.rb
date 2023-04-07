@@ -3,10 +3,9 @@
 ENV['RAILS_ENV'] ||= 'test'
 
 require 'simplecov'
-require 'coveralls'
 require 'minitest/mock'
 
-SimpleCov.formatters = [SimpleCov::Formatter::HTMLFormatter, Coveralls::SimpleCov::Formatter]
+SimpleCov.formatters = [SimpleCov::Formatter::HTMLFormatter]
 SimpleCov.start('rails') do
   minimum_coverage(97)
 end
@@ -14,6 +13,7 @@ end
 require File.expand_path('../config/environment', __dir__)
 require 'rails/test_help'
 require 'webmock/minitest'
+WebMock.disable_net_connect!(allow_localhost: true)
 
 module ActionDispatch
   class IntegrationTest

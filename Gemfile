@@ -32,9 +32,10 @@ group :production do
 end
 
 group :test do
-  gem 'coveralls', require: false
+  gem 'capybara', '~> 3.39'
   gem 'rails-controller-testing' # TODO: remove and replace usages
   gem 'rubocop-rails'
+  gem 'selenium-webdriver'
   gem 'simplecov', require: false
   gem 'webmock'
 end
