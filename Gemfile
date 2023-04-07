@@ -18,16 +18,11 @@ gem 'validates_formatting_of', '~> 0.9.0'
 gem 'paranoia', '~> 2.4'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw]
 
-gem 'byebug', groups: %i[development test]
 gem 'dotenv-rails', groups: %i[development test]
 
 group :assets do
   gem 'sass-rails', '>= 4.0.3'
   gem 'uglifier'
-end
-
-group :development do
-  gem 'spring'
 end
 
 group :production do
