@@ -1,4 +1,4 @@
-FROM ruby:2.6.3
+FROM ruby:2.7.8
 # https://bundler.io/guides/bundler_2_upgrade.html#what-happens-if-my-application-needs-bundler-1-but-i-only-have-bundler-2-installed
 RUN gem install bundler -v "~>1.0"
 RUN apt-get update -qq && apt-get install -y build-essential libpq-dev nodejs

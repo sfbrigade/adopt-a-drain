@@ -2,6 +2,22 @@
 
 How to run and maintain the site.
 
+# Development
+
+```bash
+
+# Tears everything down, creates and sets up the database.
+docker compose down -v
+docker compose up db -d
+docker compose run web bundle exec rake db:create
+docker compose run web bundle exec rake db:schema:load
+docker compose run web bundle exec rake db:migrate
+docker compose up web -d
+docker compose logs -f
+
+# Loads in city data
+docker compose exec web bundle exec rake data:load_drains cities=everett write=true
+```
 # Deployment
 
 ## Environment configuration
