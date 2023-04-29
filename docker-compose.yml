@@ -1,4 +1,5 @@
-version: '2'
+version: "3"
+name: adopt-a-drain
 services:
   db:
     image: postgis/postgis:14-3.2-alpine

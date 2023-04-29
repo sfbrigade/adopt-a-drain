@@ -1,5 +1,5 @@
-import fs from "fs/promises"
-import sharp from "sharp"
+import fs from "fs/promises";
+import sharp from "sharp";
 
 const cities: City[] = [
   {
@@ -53,6 +53,10 @@ const cities: City[] = [
   {
     name: "revere",
     title: "Revere",
+  },
+  {
+    name: "medford",
+    title: "Medford",
   },
 ]
 type City = { name: string; title: string }

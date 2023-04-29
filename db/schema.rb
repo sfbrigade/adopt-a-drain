@@ -60,12 +60,6 @@ ActiveRecord::Schema.define(version: 2022_06_26_203913) do
     t.index ["zip"], name: "idx_tiger_addr_zip"
   end
 
-# Could not dump table "addrfeat" because of following StandardError
-#   Unknown type 'geometry' for column 'the_geom'
-
-# Could not dump table "bg" because of following StandardError
-#   Unknown type 'geometry' for column 'the_geom'
-
   create_table "cities", force: :cascade do |t|
     t.string "name", null: false
     t.string "export_recipient_emails", default: [], array: true
@@ -76,9 +70,6 @@ ActiveRecord::Schema.define(version: 2022_06_26_203913) do
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_cities_on_name", unique: true
   end
-
-# Could not dump table "county" because of following StandardError
-#   Unknown type 'geometry' for column 'the_geom'
 
   create_table "county_lookup", primary_key: ["st_code", "co_code"], force: :cascade do |t|
     t.integer "st_code", null: false
@@ -100,19 +91,10 @@ ActiveRecord::Schema.define(version: 2022_06_26_203913) do
     t.index ["state"], name: "countysub_lookup_state_idx"
   end
 
-# Could not dump table "cousub" because of following StandardError
-#   Unknown type 'geometry' for column 'the_geom'
-
   create_table "direction_lookup", primary_key: "name", id: :string, limit: 20, force: :cascade do |t|
     t.string "abbrev", limit: 3
     t.index ["abbrev"], name: "direction_lookup_abbrev_idx"
   end
-
-# Could not dump table "edges" because of following StandardError
-#   Unknown type 'geometry' for column 'the_geom'
-
-# Could not dump table "faces" because of following StandardError
-#   Unknown type 'geometry' for column 'the_geom'
 
   create_table "featnames", primary_key: "gid", id: :serial, force: :cascade do |t|
     t.bigint "tlid"
@@ -209,9 +191,6 @@ ActiveRecord::Schema.define(version: 2022_06_26_203913) do
     t.boolean "is_custom", default: true
   end
 
-# Could not dump table "place" because of following StandardError
-#   Unknown type 'geometry' for column 'the_geom'
-
   create_table "place_lookup", primary_key: ["st_code", "pl_code"], force: :cascade do |t|
     t.integer "st_code", null: false
     t.string "state", limit: 2
@@ -251,9 +230,6 @@ ActiveRecord::Schema.define(version: 2022_06_26_203913) do
     t.index ["abbrev"], name: "secondary_unit_lookup_abbrev_idx"
   end
 
-# Could not dump table "state" because of following StandardError
-#   Unknown type 'geometry' for column 'the_geom'
-
   create_table "state_lookup", primary_key: "st_code", id: :integer, default: nil, force: :cascade do |t|
     t.string "name", limit: 40
     t.string "abbrev", limit: 3
@@ -268,12 +244,6 @@ ActiveRecord::Schema.define(version: 2022_06_26_203913) do
     t.boolean "is_hw", default: false, null: false
     t.index ["abbrev"], name: "street_type_lookup_abbrev_idx"
   end
-
-# Could not dump table "tabblock" because of following StandardError
-#   Unknown type 'geometry' for column 'the_geom'
-
-# Could not dump table "tabblock20" because of following StandardError
-#   Unknown type 'geometry(MultiPolygon,4269)' for column 'the_geom'
 
   create_table "things", id: :serial, force: :cascade do |t|
     t.datetime "created_at"
@@ -291,9 +261,6 @@ ActiveRecord::Schema.define(version: 2022_06_26_203913) do
     t.index ["city_id", "city_domain"], name: "things_by_city_id_and_domain", unique: true
     t.index ["deleted_at"], name: "index_things_on_deleted_at"
   end
-
-# Could not dump table "tract" because of following StandardError
-#   Unknown type 'geometry' for column 'the_geom'
 
   create_table "users", id: :serial, force: :cascade do |t|
     t.datetime "created_at"
@@ -323,9 +290,6 @@ ActiveRecord::Schema.define(version: 2022_06_26_203913) do
     t.index ["email", "city_domain"], name: "users_by_email_and_city_domain", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
-
-# Could not dump table "zcta5" because of following StandardError
-#   Unknown type 'geometry' for column 'the_geom'
 
   create_table "zip_lookup", primary_key: "zip", id: :integer, default: nil, force: :cascade do |t|
     t.integer "st_code"
