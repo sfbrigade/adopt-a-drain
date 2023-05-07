@@ -5,7 +5,7 @@
         = t("labels.email")
         %small
           = t("captions.private")
-      = f.email_field "email", :value => params[:user] ? params[:user][:email] : nil, :class => "form-control"
+      = f.email_field "email", :value => params[:user] ? params[:user][:email] : nil, :class => "form-control", :required => true
       .help-block
     .radio
       = f.label "new" , radio_button_tag("user", "new", true).html_safe + t("labels.user_new")
@@ -17,13 +17,13 @@
         = t("labels.first_name")
         %small
           = t("captions.public")
-      = f.text_field "first_name", :class => "form-control"
+      = f.text_field "first_name", :class => "form-control", :required => true
     .form-group
       %label.control-label{:for => "user_last_name", :id => "user_last_name_label"}
         = t("labels.last_name")
         %small
           = t("captions.private")
-      = f.text_field "last_name", :class => "form-control"
+      = f.text_field "last_name", :class => "form-control", :required => true
     .form-group
       %label.control-label{:for => "user_organization", :id => "user_organization_label"}
         = t("labels.organization")
@@ -45,7 +45,7 @@
     .form-group
       %label.control-label{:for => "user_password_confirmation", :id => "user_password_confirmation_label"}
         = t("labels.password_choose")
-      = f.password_field "password_confirmation", :class => "form-control"
+      = f.password_field "password_confirmation", :class => "form-control", :required => true, :minlength => 8
       .help-block
     %p.tos
       = t("defaults.tos", :tos => link_to(t("titles.tos"), "#tos", :id => "tos_link", :"data-toggle" => "modal", :"data-target" => "#tos")).html_safe

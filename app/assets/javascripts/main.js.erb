@@ -488,12 +488,8 @@ $(function() {
     var submitButton = $("#combo-form input[type='submit']");
     $(submitButton).attr("disabled", true);
     var errors = []
-    if(!/[\w\.%\+]+@[\w]+\.+[\w]{2,}/.test($('#user_email').val())) {
-      errors.push($('#user_email'));
-      $('#user_email').parent().addClass(errorClass);
-    } else {
-      $('#user_email').parent().removeClass(errorClass);
-    }
+
+    $('#user_email').parent().removeClass(errorClass);
     if(!$(this).data('state') || $(this).data('state') === 'user_sign_up') {
       if($('#user_first_name').val() === '') {
         errors.push($('#user_first_name'));
@@ -507,12 +503,7 @@ $(function() {
       } else {
         $('#user_last_name').parent().removeClass(errorClass);
       }
-      if($('#user_password_confirmation').val().length < 6 || $('#user_password_confirmation').val().length > 20) {
-        errors.push($('#user_password_confirmation'));
-        $('#user_password_confirmation').parent().addClass(errorClass);
-      } else {
-        $('#user_password_confirmation').parent().removeClass(errorClass);
-      }
+      $('#user_password_confirmation').parent().removeClass(errorClass);
       if(errors.length > 0) {
         $(submitButton).attr("disabled", false);
         errors[0].focus();
@@ -540,30 +531,37 @@ $(function() {
             if(data.errors.email) {
               errors.push($('#user_email'));
               $('#user_email').parent().addClass(errorClass);
+              $('#user_email + .help-block').text(data.errors.email[0]);
             }
             if(data.errors.first_name) {
               errors.push($('#user_first_name'));
               $('#user_first_name').parent().addClass(errorClass);
+              $('#user_first_name + .help-block').text(data.errors.first_name[0]);
             }
             if(data.errors.last_name) {
               errors.push($('#user_last_name'));
               $('#user_last_name').parent().addClass(errorClass);
+              $('#user_last_name + .help-block').text(data.errors.last_name[0]);
             }
             if(data.errors.organization) {
               errors.push($('#user_organization'));
               $('#user_organization').parent().addClass(errorClass);
+              $('#user_organization + .help-block').text(data.errors.organization[0]);
             }
             if(data.errors.voice_number) {
               errors.push($('#user_voice_number'));
               $('#user_voice_number').parent().addClass(errorClass);
+              $('#user_voice_number + .help-block').text(data.errors.voice_number[0]);
             }
             if(data.errors.sms_number) {
               errors.push($('#user_sms_number'));
               $('#user_sms_number').parent().addClass(errorClass);
+              $('#user_sms_number + .help-block').text(data.errors.sms_number[0]);
             }
             if(data.errors.password) {
               errors.push($('#user_password_confirmation'));
               $('#user_password_confirmation').parent().addClass(errorClass);
+              $('#user_password_confirmation + .help-block').text(data.errors.password[0]);
             }
             errors[0].focus();
           },
@@ -930,7 +928,6 @@ $(function() {
         $(link).removeClass('disabled');
       },
       success: function(data) {
-        console.log(data);
         $('#content').html(data);
       }
     });
