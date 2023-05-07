@@ -33,7 +33,8 @@ class AdoptionsMailer < ApplicationMailer
 
   # Usage across all cities for MyRWA
   def system_usage_report
-    recipients = City.where(name: 'system').first!.export_recipient_emails
+    city = City.where(name: 'system').first!
+    recipients = city.export_recipient_emails
     @users = User.all
     @adopted_drains = Thing.where.not(user_id: nil)
 
@@ -45,6 +46,8 @@ class AdoptionsMailer < ApplicationMailer
       to: recipients,
       subject: 'System Usage Report for Adopt a Drain Mystic River',
     )
+
+    city.update(last_export_time: @export_time)
   end
 
   def days_since_last_report
