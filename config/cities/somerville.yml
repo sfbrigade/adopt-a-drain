@@ -20,7 +20,7 @@ site:
   main_url: https://somerville.mysticdrains.org/
   logo: logos/adopt-a-drain-somerville.png
 data:
-  file: Somerville_Catch_Basins_0.csv
+  file: somerville-catch-basins-2023-05-07.csv
   columns:
-    lat: "y"
-    lng: "x"
+    lat: "Y"
+    lng: "X"
