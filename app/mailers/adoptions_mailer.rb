@@ -39,7 +39,7 @@ class AdoptionsMailer < ApplicationMailer
     @adopted_drains = Thing.where.not(user_id: nil)
 
     compute_stats
-    attach_files adoptions: true
+    attach_files adoptions: true, signups: true
 
     mail(
       from: 'Adopt a Drain Mystic River <noreply@mysticdrains.org>',
