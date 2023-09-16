@@ -4,6 +4,45 @@ How to run and maintain the site.
 
 # Development
 
+## Setup
+
+- Install the [heroku command line](https://devcenter.heroku.com/articles/heroku-cli)
+- Create a Heroku account and get added to the [Adopt-a-Drain project](https://dashboard.heroku.com/apps/adopt-a-drain-mrwa)
+- Set up your Heroku command line and connect it to the project:
+  ```bash
+  # Log in to heroku
+  heroku login
+  # Add the heroku remote to your git config. This will allow you to push to heroku and also configures sets the project for the heroku command line.
+  heroku git:remote -a adopt-a-drain-mrwa
+  # Get the latest code from heroku
+  git fetch heroku
+  # Confirm that the heroku remote and app is set up correctly.
+  heroku apps:info
+  ```
+- Get the Google Maps and optionally mailserver credentials from the heroku project for local development by running `heroku config`.
+- Create a `.env` file in the repo root directory with the following contents for local development:
+  ```sh
+  PORT=3000
+  DB_HOST=db
+  DB_PASSWORD=postgres
+  DB_USER=postgres
+  SECRET_KEY_BASE=secret
+
+  GOOGLE_MAPS_JAVASCRIPT_API_KEY=<from heroku config>
+  GOOGLE_GEOCODER_API_KEY=<from heroku config>
+  GOOGLE_MAPS_KEY=<from heroku config>
+
+  # Optional
+  # MAILSERVER_HOST=<from heroku config>
+  # MAILSERVER_DOMAIN=<from heroku config>
+  # MAILSERVER_USERNAME=<from heroku config>
+  # MAILSERVER_PASSWORD=<from heroku config>
+  ```
+
+## Usage
+
+The first time you run the app, or whenever you want to start fresh, run these commands. This will start the app in the background and tail the logs:
+
 ```bash
 
 # Tears everything down, creates and sets up the database.
@@ -15,9 +54,18 @@ docker compose run web bundle exec rake db:migrate
 docker compose up web -d
 docker compose logs -f
 
-# Loads in city data
+# Loads in city data for everett
 docker compose exec web bundle exec rake data:load_drains cities=everett write=true
+
+# Or, to load all city data
+# docker compose exec web bundle exec rake data:load_drains cities=all write=true
+
 ```
+
+Now you can access the site at http://localhost:3000. This loads the default city, everett. To access a different city, use the city name as the subdomain, e.g. http://somerville.localhost:3000. Any city with a file under `config/cities` can be accessed this way.
+
+To stop the app, run `docker compose down`. To start it again, run `docker compose up`. This will run the app in the foregound and stop it when you press `ctrl-c`. The database will be persisted between runs. To stop the app and remove the database, run `docker compose down -v`.
+
 # Deployment
 
 ## Environment configuration
@@ -35,6 +83,8 @@ MAILSERVER_PASSWORD=<your key>
 ```
 
 ## Deploying
+
+The site is deployed by pushing to the heroku remote. Ensure everything is committed to `master` and run:
 
 `git push heroku master`
 
