@@ -55,7 +55,14 @@ module CityHelper
     @@cities.keys
   end
 
-  def self.load!(city_config_dir)
+  def self.load!(city_config_dir, brand_config_dir)
+    @@brands = {}
+    Dir[File.join(brand_config_dir, '*.yml')].each do |config|
+      brand_name = File.basename(config, '.yml')
+      brand = BrandSchema.load(config)
+      @@brands[brand_name] = brand
+    end
+
     base = File.join(city_config_dir, 'base.yml')
     @@cities = {}
     @@domains = {}
@@ -64,7 +71,10 @@ module CityHelper
 
       city_name = File.basename(config, '.yml')
       city = Schema.load(base, config)
-      @@cities[city_name] = city
+
+      city.brand = @@brands.fetch(city.site.brand)
+      
+      @@cities[city_name] = city.to_dot
       city.site.domains.each do |domain|
         @@domains[domain] = city_name
       end
@@ -116,6 +126,7 @@ class Schema
     end
 
     required(:site).hash do
+      required(:brand).filled(:string)
       required(:domains).filled(array[:string])
       required(:main_url).filled(:string)
       required(:logo).filled(:string)
@@ -141,4 +152,25 @@ class Schema
   end
 end
 
-CityHelper.load! File.expand_path('../../config/cities', __dir__)
+class BrandSchema
+  def self.load_yml(config)
+    file_contents = IO.read(config)
+    file_contents = ERB.new(file_contents).result
+    YAML.safe_load(file_contents)
+  end
+
+  def self.load(config)
+    yml = load_yml(config)
+    result = @@schema.call(yml)
+    errors = result.errors(full: true).to_h
+    raise "Error validating #{config}:\n#{errors}" unless errors.empty?
+
+    result.to_h.to_dot
+  end
+
+  @@schema = Dry::Schema.Params do
+    required(:name).filled(:string)
+  end
+end
+
+CityHelper.load! File.expand_path('../../config/cities', __dir__), File.expand_path('../../config/brands', __dir__)

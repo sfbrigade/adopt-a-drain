@@ -1,4 +1,31 @@
-# Adopt-a-Drain
+# MRWA Adop-a-Drain
+
+The [MRWA Adopt-a-Drain](https://mysticriver.org/adopt-a-drain) site is based on the Code for SF site, with support for multiple cities and application skinning. It runs on Heroku. 
+
+Developer Documentation:
+
+- [Development And Deployment](DevOps.md)
+- [City and App Skinning Customizations](Customizations.md)
+
+Current Sites:
+
+- [Arlington](https://arlington.mysticdrains.org/)
+- [Burlington](https://burlington.mysticdrains.org/)
+- [Cambridge](https://cambridge.mysticdrains.org/)
+- [Chelsea](https://chelsea.mysticdrains.org/)
+- [Everett](https://everett.mysticdrains.org/)
+- [Lexington](https://lexington.mysticdrains.org/)
+- [Medford](https://medford.mysticdrains.org/)
+- [Melrose](https://melrose.mysticdrains.org/)
+- [Reading](https://reading.mysticdrains.org/)
+- [Revere](https://revere.mysticdrains.org/)
+- [Somerville](https://somerville.mysticdrains.org/)
+- [Watertown](https://watertown.mysticdrains.org/)
+- [Winchester](https://winchester.mysticdrains.org/)
+- [Woburn](https://woburn.mysticdrains.org/)
+
+--------------
+# Original Adopt-a-Drain README.md
 
 [![Join the chat at https://gitter.im/sfbrigade/adopt-a-drain](https://badges.gitter.im/sfbrigade/adopt-a-drain.svg)](https://gitter.im/sfbrigade/adopt-a-drain?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 

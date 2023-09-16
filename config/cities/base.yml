@@ -1,5 +1,7 @@
 city:
   state: Massachusetts
+site:
+  brand: adopt-a-drain
 org:
   email: contact@mysticriver.org
   name: Mystic River Watershed Association

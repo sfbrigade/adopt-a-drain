@@ -2,7 +2,7 @@
 %html
   %head
     %title
-      = t("titles.main", :thing => t("defaults.thing").titleize, :city => c("city.name"))
+      = "#{c("brand.name")} #{c("city.name")}"
     = csrf_meta_tag
     %meta{:name => "viewport", :content => "width=device-width, initial-scale=1"}
     %meta{:name => "twitter:card", :content => "summary"}
