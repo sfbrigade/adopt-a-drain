@@ -33,7 +33,7 @@ Note that all methods in the CityHelper are accessible from templates, but mainl
 
 # Branding Customization
 
-Branding customization is an extension of city customization. There are a limited number of brands, and each has its own configuration file and schema. City configuration specifies the brand to use, and that brand's configuration is merged into the city configuration under the `brand` key. Templates can then use the `c` method to refer to the brand configuration.
+Branding customization is an extension of city customization. There are a limited number of brands, and each has its own configuration file in `config/brands`. The `BrandSchema` class in `city_helper.rb`. City configuration specifies the brand to use in `site.brand`, and that brand's configuration is merged into the city configuration under the `brand` key. Templates can then use the `c` method to refer to the brand configuration. For example, `c("brand.name")` resolves to "Adopt-a-Drain" or "Storm Stewards" depending on the brand.
 
 (**TODO**) Branding can also swap out entire templates. This is implemented by updating Ruby views to render a different template depending on the current city's brand.
 
