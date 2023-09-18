@@ -14,6 +14,9 @@ city:
   facebook: https://facebook.com/CambridgeMA.Gov
   twitter: https://twitter.com/cambma
   linkedin: https://www.linkedin.com/company/city-of-cambridge/
+brand:
+  # From storm_steweards.yml
+  name: Storm Stewards
 site:
   brand: storm-stewards
   domains: [cambridge.localhost, cambridge.mysticdrains.org]
