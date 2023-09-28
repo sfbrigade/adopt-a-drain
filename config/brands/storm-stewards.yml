@@ -1,1 +1,21 @@
 name: Storm Stewards
+brand_name: Storm Stewards
+button_adopt: Claim! #button.adopt
+update_report: %{title} import (%{deleted_adopted_count} claimed %{things} removed, %{created_count} %{things} added, %{deleted_unadopted_count} unclaimed %{things} removed)" #subjects.update_report
+default_tagline: What does it mean to be a Storm Steward? #default.tagline
+notices_adopted: You just claimed a drain #notices.adopted 
+title_adopt: Claim this drain
+title_adopted:  This drain has been claimed
+title_adopted_tagline: {count} drains claimed in %{city}
+title_main: Storm Stewards %{city}
+sign_in: Sign in to be a Storm Steward
+thank_you: Thank you for claiming this %{thing}!
+title_email_text: I just claimed one of %{city}'s storm drains and pledged to help keep it clear of leaves and debris. You, too, can be a Storm Steward and help the City avoid flooding at %{root_url}."
+title_tweet_text: Flooded streets aren't fun. I claimed my own %{city} storm drain at %{root_url}. Claim and name yours.
+title_description: You can claim one of %{city}'s storm drains and pledge to help keep it clear of leaves and debris this rainy season. Lend a hand and help the City avoid flooding.
+gis_icon_1: Unclaimed
+gis_icon_2: Claimed
+gis_icon_3: In need of care
+imperative: claim
+past_tense_verb: claimed
+gerund: claiming

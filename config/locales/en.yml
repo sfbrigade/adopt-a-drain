@@ -3,7 +3,7 @@
 en:
   buttons:
     abandon: "Abandon this %{thing}"
-    adopt: "Adopt!"
+    adopt: "Adopt!" #comes from brand .yml file via adopt.html.haml
     back: "Back"
     change_password: "Change my password"
     close: "Close"
@@ -17,7 +17,7 @@ en:
     sign_up_or_in: "Register / Sign in"
     update: "Update"
   subjects:
-    update_report: "%{title} import (%{deleted_adopted_count} adopted %{things} removed, %{created_count} %{things} added, %{deleted_unadopted_count} unadopted %{things} removed)"
+    update_report: "%{title} import (%{deleted_adopted_count} adopted %{things} removed, %{created_count} %{things} added, %{deleted_unadopted_count} unadopted %{things} removed)" #comes from brand .yml file via adopt.html.haml
   captions:
     optional: "(optional)"
     private: "(private)"
@@ -33,7 +33,7 @@ en:
     thing: "drain"
     things: "drains"
     this_thing: "This %{thing}"
-    tagline: "What does it mean to adopt a drain?"
+    tagline: "YADDA What does it mean to adopt a drain?" #comes from brand .yml file via adopt.html.haml
     tos: "By signing up, you agree to the %{tos}."
     voice_number: "415-555-1212"
     zip: "94015-2013"
@@ -73,7 +73,7 @@ en:
     special: "This %{thing} is special! Learn why."
   notices:
     abandoned: "%{thing} abandoned!"
-    adopted: "You just adopted a %{thing}!"
+    adopted: "You just adopted a %{thing}!" #comes from brand .yml file via adopt.html.haml
     alpha: >
       We're just getting started! We'd love to get your <a
       href='%{feedback_url}'>feedback</a> or your help with the <a
@@ -88,21 +88,22 @@ en:
     signed_up: "Thanks for signing up!"
     stolen: "%{thing} stolen!"
   titles:
-    adopt: "Adopt this %{thing}"
-    adopted: "%{thing_name} has been adopted"
-    adopted_tagline: "%{count} %{things} adopted in %{city}"
+    adopt: "Adopt this %{thing}" #comes from brand .yml file via adopt.html.haml
+    adopted: "%{thing_name} has been adopted" #comes from brand .yml file via adopt.html.haml
+    adopted_tagline: "%{count} %{things} adopted in %{city}" #comes from brand .yml file via adopt.html.haml
+    adopted_tagline: "%{count} %{things} in %{city}" #comes from brand .yml file via adopt.html.haml
     byline: "by %{name}"
     edit_profile: "Edit your Profile"
-    main: "Adopt-a-%{thing} %{city}"
+    main: "Adopt-a-%{thing} %{city}" #comes from brand .yml file via adopt.html.haml
     ofline: "of %{organization}"
     priority_html: "<strong>%{thing_title} in Need</strong> - this %{thing} tends to get dirtier than its siblings and needs more TLC"
-    sign_in: "Sign in to adopt this %{thing}"
-    thank_you: "Thank you for adopting this %{thing}!"
-    email_text: "I just adopted one of %{city}'s storm drains and pledged to help keep it clear of leaves and debris. You, too, can Adopt a Drain and help the City avoid flooding at %{root_url}."
-    tweet_text: "Flooded streets aren't fun. I adopted my own %{city} storm drain at %{root_url}. Claim and name yours."
+    sign_in: "Sign in to adopt this %{thing}" #comes from brand .yml file via adopt.html.haml
+    thank_you: "Thank you for adopting this %{thing}!" #comes from brand .yml file via adopt.html.haml
+    email_text: "I just adopted one of %{city}'s storm drains and pledged to help keep it clear of leaves and debris. You, too, can Adopt a Drain and help the City avoid flooding at %{root_url}."  #comes from brand .yml file via adopt.html.haml
+    tweet_text: "Flooded streets aren't fun. I adopted my own %{city} storm drain at %{root_url}. Claim and name yours." #comes from brand .yml file via adopt.html.haml
     tos: "Volunteer Waiver"
   site:
-    description: "You can adopt one of %{city}'s storm drains and pledge to help keep it clear of leaves and debris this rainy season. Lend a hand and help the City avoid flooding."
+    description: "You can adopt one of %{city}'s storm drains and pledge to help keep it clear of leaves and debris this rainy season. Lend a hand and help the City avoid flooding." #comes from brand .yml file via adopt.html.haml
   sponsors:
     built: "Code for San Francisco"
     cfa: "Code for America"
