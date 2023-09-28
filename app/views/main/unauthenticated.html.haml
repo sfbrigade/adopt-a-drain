@@ -4,7 +4,7 @@
       %h1
         = image_tag "logos/adopt-a-drain.png", :alt => t("titles.main", :thing => t("defaults.thing").titleize, :city => c("city.name")), :title => t("titles.main", :thing => t("defaults.thing").titleize, :city => c("city.name"))
       %button.btn.btn-block.btn-primary#tagline
-        = t("defaults.tagline")
+         = t("defaults.tagline",:city => c("city.name"))
       #content
         = render :partial => "sidebar/combo_form"
       #logos

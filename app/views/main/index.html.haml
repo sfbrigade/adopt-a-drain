@@ -19,7 +19,7 @@
               = local_date(Time.now, '%B %e, %Y')
           %a.details{:href => "#details", :"data-toggle" => "modal", :"data-target" => "#details"}
             %button.btn.btn-block.btn-primary#tagline
-              = t("defaults.tagline")
+              = t("defaults.tagline", :city => c("city.name"))
         #content
           = render :partial => "layouts/flash", :locals => {:flash => flash}
           - if signed_in?
@@ -33,7 +33,7 @@
         %div.hidden.visible-xs-block
           %a.details{:href => "#details", :"data-toggle" => "modal", :"data-target" => "#details"}
             %button.btn.btn-block.btn-primary#tagline
-              = t("defaults.tagline")
+               = t("defaults.tagline",:city => c("city.name"))
         #logos
           .row.sidebar-logo-row
             .col-xs-1
